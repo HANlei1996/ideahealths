@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Club Detail View Controller-->
+        <scene sceneID="vrj-eu-Yob">
+            <objects>
+                <viewController id="2lH-7P-lQs" customClass="ClubDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fHS-X8-NiQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="2hx-7N-3nT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h6B-Ms-pLw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gd8-He-7S6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="114"/>
+        </scene>
+        <!--Securities Detail View Controller-->
+        <scene sceneID="24z-9w-uCc">
+            <objects>
+                <viewController id="bQP-mM-n4Q" customClass="SecuritiesDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fMn-HO-ITH"/>
+                        <viewControllerLayoutGuide type="bottom" id="hUC-40-r8m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wJs-b0-JSR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YbF-WV-CwX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="114"/>
+        </scene>
+        <!--Pay View Controller-->
+        <scene sceneID="ese-4w-MyN">
+            <objects>
+                <viewController id="Buj-ai-C1n" customClass="PayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vvx-Zw-fId"/>
+                        <viewControllerLayoutGuide type="bottom" id="TaD-NY-m9z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lpf-Fm-Nrt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zT-Ga-Iei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1498" y="114"/>
+        </scene>
+    </scenes>
+</document>
