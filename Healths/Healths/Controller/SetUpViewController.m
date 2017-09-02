@@ -9,6 +9,7 @@
 #import "SetUpViewController.h"
 
 @interface SetUpViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *setupimage;
 
 @end
 
