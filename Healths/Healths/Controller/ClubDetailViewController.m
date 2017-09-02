@@ -9,6 +9,22 @@
 #import "ClubDetailViewController.h"
 
 @interface ClubDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+@property (weak, nonatomic) IBOutlet UILabel *clubName;
+@property (weak, nonatomic) IBOutlet UILabel *clubAddress;
+@property (weak, nonatomic) IBOutlet UIButton *callBtn;
+- (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *membersCount;
+@property (weak, nonatomic) IBOutlet UILabel *citeCount;
+@property (weak, nonatomic) IBOutlet UILabel *coachCount;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+@property (weak, nonatomic) IBOutlet UIButton *imageBtn;
+- (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UILabel *experienceCard;
+@property (weak, nonatomic) IBOutlet UILabel *cardType;
+@property (weak, nonatomic) IBOutlet UILabel *price;
+@property (weak, nonatomic) IBOutlet UILabel *soldCount;
 
 @end
 
@@ -34,4 +50,8 @@
 }
 */
 
+- (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+}
+- (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+}
 @end
