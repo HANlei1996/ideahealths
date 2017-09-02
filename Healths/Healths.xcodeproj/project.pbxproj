@@ -12,6 +12,7 @@
 		841F0EB71F5A87AE000B57B6 /* XBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB61F5A87AE000B57B6 /* XBViewController.m */; };
 		841F0EBA1F5A87CF000B57B6 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB91F5A87CF000B57B6 /* SRViewController.m */; };
 		841F0EBD1F5A87E5000B57B6 /* SFZHMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EBC1F5A87E5000B57B6 /* SFZHMViewController.m */; };
+		841F0EC01F5AA786000B57B6 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EBF1F5AA786000B57B6 /* UserModel.m */; };
 		84C85B091F594D9E00941F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B081F594D9E00941F69 /* main.m */; };
 		84C85B0C1F594D9E00941F69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B0B1F594D9E00941F69 /* AppDelegate.m */; };
 		84C85B151F594D9E00941F69 /* Healths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B131F594D9E00941F69 /* Healths.xcdatamodeld */; };
@@ -106,6 +107,8 @@
 		841F0EB91F5A87CF000B57B6 /* SRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRViewController.m; sourceTree = "<group>"; };
 		841F0EBB1F5A87E5000B57B6 /* SFZHMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFZHMViewController.h; sourceTree = "<group>"; };
 		841F0EBC1F5A87E5000B57B6 /* SFZHMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFZHMViewController.m; sourceTree = "<group>"; };
+		841F0EBE1F5AA786000B57B6 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		841F0EBF1F5AA786000B57B6 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		84C85B041F594D9E00941F69 /* Healths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C85B081F594D9E00941F69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84C85B0A1F594D9E00941F69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 			children = (
 				84C85BA81F59511800941F69 /* Order.h */,
 				84C85BA91F59511800941F69 /* Order.m */,
+				841F0EBE1F5AA786000B57B6 /* UserModel.h */,
+				841F0EBF1F5AA786000B57B6 /* UserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -772,6 +777,7 @@
 				84C85B751F5950E900941F69 /* RSADataSigner.m in Sources */,
 				84C85BC31F59511800941F69 /* RequestAPI.m in Sources */,
 				84C85BA11F5950FA00941F69 /* PayViewController.m in Sources */,
+				841F0EC01F5AA786000B57B6 /* UserModel.m in Sources */,
 				84C85BC61F59511800941F69 /* Utilities.m in Sources */,
 				84C85B741F5950E900941F69 /* openssl_wrapper.m in Sources */,
 				84C85B501F5950DB00941F69 /* bitstream.m in Sources */,

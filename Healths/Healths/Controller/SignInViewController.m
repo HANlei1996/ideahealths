@@ -7,7 +7,7 @@
 //
 
 #import "SignInViewController.h"
-
+#import "UserModel.h"
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordnameTextField;
@@ -106,6 +106,69 @@
         [textField resignFirstResponder];
     }
     return YES;
+}
+#pragma mark - request
+-(void)readyForEncoding{
+    _avi = [Utilities getCoverOnView:self.view];
+    
+    [RequestAPI requestURL:@"/login/getKey" withParameters:@{@"deviceType":@7001,@"deviceId":[Utilities uniqueVendor]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            //[_avi stopAnimating];
+            NSDictionary *result=responseObject [@"result"];
+            NSString *exponent =result[@"exponent"];
+            NSString *modulus =result[@"modulus"];
+            //对内容进行MD5加密
+            NSString *md5Str =[_passwordnameTextField.text getMD5_32BitString];
+            //用模数与指数对MD5加密过的密码进行加密
+            NSString *rsaStr=[NSString encryptWithPublicKeyFromModulusAndExponent:md5Str.UTF8String modulus:modulus exponent:exponent];
+            //加密完成执行登录接口
+            [self signInWithEncryptPwd:rsaStr];
+            
+            
+        }else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+    
+    
+}
+-(void)signInWithEncryptPwd:(NSString *)encryptPwd{
+    [RequestAPI requestURL:@"/login" withParameters:@{@"userName":_usernameTextField.text,@"password":encryptPwd,@"deviceType":@7001,@"deviceId":[Utilities uniqueVendor]} andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            NSDictionary *result=responseObject[@"result"];
+            UserModel *user=[[UserModel alloc]initWithDictionary:result];
+            //将登录获取的用户信息打包存取到单例化全局变量中
+            [[StorageMgr singletonStorageMgr]addKey:@"MemberInfo" andValue:user];
+            //单独将用户的id也存储进单例化全局变量中来作为用户是否已经登录的判断依据，同事也方便其他所有页面更快捷的使用用户id这个参数
+            [[StorageMgr singletonStorageMgr ]addKey:@"MemberId" andValue:user.memberId];
+            //  收起键盘
+            [self.view endEditing:YES];
+            //清空密码输入框里的内容
+            _passwordnameTextField.text=@"";
+            //记忆用户名
+            [Utilities setUserDefaults:@"Username" content:_usernameTextField.text];
+            //用MODEL的方式跳回上一页
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+            
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+        
+    }];
 }
 
 
