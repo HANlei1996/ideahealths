@@ -70,7 +70,6 @@
 		84C85BD61F59524D00941F69 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C85BD51F59524D00941F69 /* libz.tbd */; };
 		84C85BD91F59546B00941F69 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C85BD81F59546B00941F69 /* libstdc++.tbd */; };
 		84C85BDF1F5954E100941F69 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BDB1F5954E100941F69 /* Detail.storyboard */; };
-		84C85BE01F5954E100941F69 /* MyOrder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BDC1F5954E100941F69 /* MyOrder.storyboard */; };
 		84C85BE11F5954E100941F69 /* SetUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BDD1F5954E100941F69 /* SetUp.storyboard */; };
 		84C85BE21F5954E100941F69 /* Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BDE1F5954E100941F69 /* Sign.storyboard */; };
 		84C85BE61F59573B00941F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BE51F59573B00941F69 /* Main.storyboard */; };
@@ -217,7 +216,6 @@
 		84C85BD71F59536500941F69 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		84C85BD81F59546B00941F69 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		84C85BDB1F5954E100941F69 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
-		84C85BDC1F5954E100941F69 /* MyOrder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyOrder.storyboard; sourceTree = "<group>"; };
 		84C85BDD1F5954E100941F69 /* SetUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetUp.storyboard; sourceTree = "<group>"; };
 		84C85BDE1F5954E100941F69 /* Sign.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sign.storyboard; sourceTree = "<group>"; };
 		84C85BE51F59573B00941F69 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -493,7 +491,6 @@
 			children = (
 				84C85BEE1F5A491C00941F69 /* HomeCell */,
 				84C85BDB1F5954E100941F69 /* Detail.storyboard */,
-				84C85BDC1F5954E100941F69 /* MyOrder.storyboard */,
 				84C85BDD1F5954E100941F69 /* SetUp.storyboard */,
 				84C85BDE1F5954E100941F69 /* Sign.storyboard */,
 				84C85BE51F59573B00941F69 /* Main.storyboard */,
@@ -698,7 +695,6 @@
 				84C85BE11F5954E100941F69 /* SetUp.storyboard in Resources */,
 				84C85B171F594D9E00941F69 /* Assets.xcassets in Resources */,
 				84C85BDF1F5954E100941F69 /* Detail.storyboard in Resources */,
-				84C85BE01F5954E100941F69 /* MyOrder.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
