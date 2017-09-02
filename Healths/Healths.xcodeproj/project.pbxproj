@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79B71FD31F5AA9B400FBF3A5 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B71FD21F5AA9B400FBF3A5 /* MyTableViewCell.m */; };
 		84C85B091F594D9E00941F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B081F594D9E00941F69 /* main.m */; };
 		84C85B0C1F594D9E00941F69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B0B1F594D9E00941F69 /* AppDelegate.m */; };
 		84C85B151F594D9E00941F69 /* Healths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B131F594D9E00941F69 /* Healths.xcdatamodeld */; };
@@ -91,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		6FBE97A4BFEF447D0A3919BE /* Pods-Healths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.debug.xcconfig"; sourceTree = "<group>"; };
+		79B71FD11F5AA9B400FBF3A5 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		79B71FD21F5AA9B400FBF3A5 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		84C85B041F594D9E00941F69 /* Healths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C85B081F594D9E00941F69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84C85B0A1F594D9E00941F69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -269,6 +272,15 @@
 				A80F461B059254101490D702 /* libPods-Healths.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79B71FD01F5AA99400FBF3A5 /* MyCell */ = {
+			isa = PBXGroup;
+			children = (
+				79B71FD11F5AA9B400FBF3A5 /* MyTableViewCell.h */,
+				79B71FD21F5AA9B400FBF3A5 /* MyTableViewCell.m */,
+			);
+			name = MyCell;
 			sourceTree = "<group>";
 		};
 		84C85AFB1F594D9E00941F69 = {
@@ -474,6 +486,7 @@
 		84C85BDA1F5954E100941F69 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79B71FD01F5AA99400FBF3A5 /* MyCell */,
 				84C85BEE1F5A491C00941F69 /* HomeCell */,
 				84C85BDB1F5954E100941F69 /* Detail.storyboard */,
 				84C85BDD1F5954E100941F69 /* SetUp.storyboard */,
@@ -753,6 +766,7 @@
 				84C85BC01F59511800941F69 /* JSONS.m in Sources */,
 				84C85BBD1F59511800941F69 /* Order.m in Sources */,
 				84C85B571F5950DB00941F69 /* BasicEncodingRules.m in Sources */,
+				79B71FD31F5AA9B400FBF3A5 /* MyTableViewCell.m in Sources */,
 				84C85BC21F59511800941F69 /* NSString+Crypt.m in Sources */,
 				84C85B151F594D9E00941F69 /* Healths.xcdatamodeld in Sources */,
 				84C85B551F5950DB00941F69 /* rscode.m in Sources */,
