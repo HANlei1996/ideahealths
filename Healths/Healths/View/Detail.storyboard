@@ -318,6 +318,7 @@
                     <navigationItem key="navigationItem" title="会所信息" id="mRb-AX-LMg"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="activityImgView" destination="NlJ-aR-yeI" id="hvU-zT-7N9"/>
                         <outlet property="callBtn" destination="WUM-IL-AwQ" id="m57-se-Vqw"/>
                         <outlet property="cardType" destination="6nv-oc-Peg" id="m9c-0u-a40"/>
                         <outlet property="citeCount" destination="ghy-5m-tB3" id="s0c-E9-53e"/>
@@ -325,8 +326,8 @@
                         <outlet property="clubName" destination="dDv-vK-nWa" id="fDV-18-JE5"/>
                         <outlet property="coachCount" destination="yqc-zT-HCX" id="zpQ-yR-Cx9"/>
                         <outlet property="contentTextView" destination="Not-lm-nfo" id="Tne-Df-5QN"/>
+                        <outlet property="detailView" destination="dMB-Ek-owE" id="3Lm-3V-wHk"/>
                         <outlet property="experienceCard" destination="pTw-i4-I8w" id="6Bc-51-U23"/>
-                        <outlet property="headerImage" destination="NlJ-aR-yeI" id="hc8-Si-IdK"/>
                         <outlet property="imageBtn" destination="SEo-JG-fS3" id="B9t-rI-gFI"/>
                         <outlet property="membersCount" destination="DZY-uw-3lf" id="hXd-kt-tlH"/>
                         <outlet property="price" destination="6v8-kh-Mcg" id="gBA-RB-M9e"/>

@@ -7,9 +7,13 @@
 //
 
 #import "ClubDetailViewController.h"
-
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface ClubDetailViewController ()<UIActionSheetDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+@property (strong, nonatomic) IBOutlet UIView *detailView;
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *activityImgView;
+
 @property (weak, nonatomic) IBOutlet UILabel *clubName;
 @property (weak, nonatomic) IBOutlet UILabel *clubAddress;
 @property (weak, nonatomic) IBOutlet UIButton *callBtn;
@@ -25,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *cardType;
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UILabel *soldCount;
+@property(strong,nonatomic)NSMutableArray *arr1;
 
 @end
 
@@ -97,10 +102,86 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex ==0){
+        //配置“电话”APP的路径，并将要拨打的号码组合到路径中
+        //NSString *targetAppStr=[NSString stringWithFormat:@"telprompt://%@",_activity.phone];
         
+        //NSURL *targetAppUrl=[NSURL URLWithString:targetAppStr];
+        //从当前APP跳转到其他指定的APP中
+        //[[UIApplication sharedApplication] openURL:targetAppUrl];
+
     }
     return;
 }
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    
+    
+    
+    
 }
+
+-(void)addlongPress:(UITableView *)cell{
+    //初始化一个长按手势，设置响应的事件为choose
+    UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(choose:)];
+    //设置长按手势响应的时间
+    longPress.minimumPressDuration=1.0;
+    //将手势添加给cell
+    [cell addGestureRecognizer:longPress];
+    
+}
+
+
+
+//添加单击手势事件
+-(void)addTap:(id)any{
+    //初始化一个单击手势，设置响应事件为tapClick
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+    [any addGestureRecognizer:tap];
+    
+}
+
+
+
+//单击手势响应事件
+-(void)tapClick:(UITapGestureRecognizer *)tap{
+    
+    if (tap.state==UIGestureRecognizerStateRecognized) {
+        
+        
+        
+        //拿到长按手势在_activiyTableView中的位置
+        CGPoint location=[tap locationInView:_detailView];
+        //通过上述的点拿到现在_activiyTableView对应的indexPath
+        // NSIndexPath *indexPath=[_DetailView indexPathForRowAtPoint:location];
+        
+        //防范
+        if (_arr1 !=nil && _arr1.count !=0) {
+            // ActivityModel *activity=_arr1[indexPath.row];
+            //设置大图片的位置大小
+            _activityImgView=[[UIImageView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+            //用户交互启用
+            _activityImgView.userInteractionEnabled=YES;
+            _activityImgView.backgroundColor=[UIColor blackColor];
+            //[_activityImgView sd_setImageWithURL:[NSURL URLWithString:_activity.imgUrl] placeholderImage:[UIImage imageNamed:@"aaa"]];
+            //设置图片的内容模式
+            _activityImgView.contentMode = UIViewContentModeScaleAspectFit;
+            //获得窗口实例，并将大图放置到窗口实例上，根据苹果规则，后添加的空间会覆盖前添加的控件
+            [[UIApplication sharedApplication].keyWindow addSubview:_activityImgView];
+            UITapGestureRecognizer *zoomIVtap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomTap:)];
+            [_activityImgView addGestureRecognizer:zoomIVtap];
+        }
+    }
+    
+}
+-(void)zoomTap:(UITapGestureRecognizer *)tap{
+    if (tap.state==UIGestureRecognizerStateRecognized) {
+        //把大图本身的东西扔掉（大图的手势）
+        [_activityImgView removeGestureRecognizer:tap];
+        //把自己从视图上移除
+        [_activityImgView removeFromSuperview];
+        //让图片彻底消失（不会造成内存的滥用)
+        _activityImgView=nil;
+    }
+    
+}
+
 @end
