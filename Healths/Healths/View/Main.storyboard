@@ -95,9 +95,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="udO-bi-Xi9" kind="relationship" relationship="viewControllers" id="xcX-27-Edf"/>
                         <segue destination="PyU-dd-wuL" kind="relationship" relationship="viewControllers" id="CuK-PF-5H8"/>
                         <segue destination="3xc-8y-s6O" kind="relationship" relationship="viewControllers" id="D4A-Zi-35C"/>
-                        <segue destination="udO-bi-Xi9" kind="relationship" relationship="viewControllers" id="xcX-27-Edf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHb-tY-tVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,7 +124,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeCell" rowHeight="283" id="qdD-4v-ggU" customClass="HomeTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="homeCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeCell" rowHeight="283" id="qdD-4v-ggU" customClass="HomeTableViewCell">
                                         <rect key="frame" x="0.0" y="183" width="375" height="283"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdD-4v-ggU" id="F00-Fu-cUs">
@@ -234,10 +234,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="JVD-mJ-946" id="5z4-gs-QzN"/>
-                                    <outlet property="delegate" destination="JVD-mJ-946" id="fum-Fi-A9h"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -259,11 +255,11 @@
             </objects>
             <point key="canvasLocation" x="752.79999999999995" y="-498.80059970014997"/>
         </scene>
-        <!--Item-->
+        <!--首页-->
         <scene sceneID="aVG-jJ-SRX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="udO-bi-Xi9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="aVo-iG-8tw"/>
+                    <tabBarItem key="tabBarItem" title="首页" id="aVo-iG-8tw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9zI-Mo-KBw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		841F0EA21F5A7D26000B57B6 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EA11F5A7D26000B57B6 /* SetUpTableViewCell.m */; };
-		841F0EA51F5A7D8D000B57B6 /* NCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EA41F5A7D8D000B57B6 /* NCViewController.m */; };
-		841F0EA81F5A7DA6000B57B6 /* XBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EA71F5A7DA6000B57B6 /* XBViewController.m */; };
-		841F0EAB1F5A7DCE000B57B6 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EAA1F5A7DCE000B57B6 /* SRViewController.m */; };
-		841F0EAE1F5A7DF0000B57B6 /* SFZHMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EAD1F5A7DF0000B57B6 /* SFZHMViewController.m */; };
 		84C85B091F594D9E00941F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B081F594D9E00941F69 /* main.m */; };
 		84C85B0C1F594D9E00941F69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B0B1F594D9E00941F69 /* AppDelegate.m */; };
 		84C85B151F594D9E00941F69 /* Healths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B131F594D9E00941F69 /* Healths.xcdatamodeld */; };
@@ -97,16 +92,6 @@
 
 /* Begin PBXFileReference section */
 		6FBE97A4BFEF447D0A3919BE /* Pods-Healths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.debug.xcconfig"; sourceTree = "<group>"; };
-		841F0EA01F5A7D26000B57B6 /* SetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpTableViewCell.h; sourceTree = "<group>"; };
-		841F0EA11F5A7D26000B57B6 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
-		841F0EA31F5A7D8D000B57B6 /* NCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCViewController.h; sourceTree = "<group>"; };
-		841F0EA41F5A7D8D000B57B6 /* NCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCViewController.m; sourceTree = "<group>"; };
-		841F0EA61F5A7DA6000B57B6 /* XBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBViewController.h; sourceTree = "<group>"; };
-		841F0EA71F5A7DA6000B57B6 /* XBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBViewController.m; sourceTree = "<group>"; };
-		841F0EA91F5A7DCE000B57B6 /* SRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRViewController.h; sourceTree = "<group>"; };
-		841F0EAA1F5A7DCE000B57B6 /* SRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRViewController.m; sourceTree = "<group>"; };
-		841F0EAC1F5A7DF0000B57B6 /* SFZHMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFZHMViewController.h; sourceTree = "<group>"; };
-		841F0EAD1F5A7DF0000B57B6 /* SFZHMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFZHMViewController.m; sourceTree = "<group>"; };
 		84C85B041F594D9E00941F69 /* Healths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C85B081F594D9E00941F69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84C85B0A1F594D9E00941F69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -543,16 +528,6 @@
 			children = (
 				84C85B901F5950FA00941F69 /* SetUpViewController.h */,
 				84C85B911F5950FA00941F69 /* SetUpViewController.m */,
-				841F0EA01F5A7D26000B57B6 /* SetUpTableViewCell.h */,
-				841F0EA11F5A7D26000B57B6 /* SetUpTableViewCell.m */,
-				841F0EA31F5A7D8D000B57B6 /* NCViewController.h */,
-				841F0EA41F5A7D8D000B57B6 /* NCViewController.m */,
-				841F0EA61F5A7DA6000B57B6 /* XBViewController.h */,
-				841F0EA71F5A7DA6000B57B6 /* XBViewController.m */,
-				841F0EA91F5A7DCE000B57B6 /* SRViewController.h */,
-				841F0EAA1F5A7DCE000B57B6 /* SRViewController.m */,
-				841F0EAC1F5A7DF0000B57B6 /* SFZHMViewController.h */,
-				841F0EAD1F5A7DF0000B57B6 /* SFZHMViewController.m */,
 				84C85B921F5950FA00941F69 /* SignInViewController.h */,
 				84C85B931F5950FA00941F69 /* SignInViewController.m */,
 				84C85B941F5950FA00941F69 /* SignUpViewController.h */,
@@ -790,7 +765,6 @@
 				84C85B761F5950E900941F69 /* RSADataVerifier.m in Sources */,
 				84C85B091F594D9E00941F69 /* main.m in Sources */,
 				84C85B9B1F5950FA00941F69 /* FindViewController.m in Sources */,
-				841F0EA51F5A7D8D000B57B6 /* NCViewController.m in Sources */,
 				84C85B511F5950DB00941F69 /* mask.m in Sources */,
 				84C85B541F5950DB00941F69 /* qrspec.m in Sources */,
 				84C85BBF1F59511800941F69 /* ErrorHandler.m in Sources */,
@@ -799,7 +773,6 @@
 				84C85B6F1F5950E900941F69 /* base64.m in Sources */,
 				84C85B6E1F5950E900941F69 /* GBAlipayManager.m in Sources */,
 				84C85BA41F5950FA00941F69 /* SignInViewController.m in Sources */,
-				841F0EA21F5A7D26000B57B6 /* SetUpTableViewCell.m in Sources */,
 				84C85B701F5950E900941F69 /* DataSigner.m in Sources */,
 				84C85B981F5950FA00941F69 /* AboutUsViewController.m in Sources */,
 				84C85B521F5950DB00941F69 /* qrencode.m in Sources */,
@@ -809,14 +782,11 @@
 				84C85BC11F59511800941F69 /* NSData+Base64.m in Sources */,
 				84C85BA51F5950FA00941F69 /* SignUpViewController.m in Sources */,
 				84C85BA01F5950FA00941F69 /* MyViewController.m in Sources */,
-				841F0EA81F5A7DA6000B57B6 /* XBViewController.m in Sources */,
 				84C85BC51F59511800941F69 /* UIImage+MDQRCode.m in Sources */,
 				84C85BA21F5950FA00941F69 /* SecuritiesDetailViewController.m in Sources */,
 				84C85BBE1F59511800941F69 /* AppAPIClient.m in Sources */,
 				84C85B991F5950FA00941F69 /* ClubDetailViewController.m in Sources */,
 				84C85B9F1F5950FA00941F69 /* MyPromotionViewController.m in Sources */,
-				841F0EAB1F5A7DCE000B57B6 /* SRViewController.m in Sources */,
-				841F0EAE1F5A7DF0000B57B6 /* SFZHMViewController.m in Sources */,
 				84C85B9A1F5950FA00941F69 /* FeedbackViewController.m in Sources */,
 				84C85B9C1F5950FA00941F69 /* HomeViewController.m in Sources */,
 				84C85BA31F5950FA00941F69 /* SetUpViewController.m in Sources */,

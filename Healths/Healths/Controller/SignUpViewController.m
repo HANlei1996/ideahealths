@@ -1,0 +1,119 @@
+//
+//  SignUpViewController.m
+//  Health
+//
+//  Created by admin on 2017/9/1.
+//  Copyright © 2017年 com. All rights reserved.
+//
+
+#import "SignUpViewController.h"
+
+@interface SignUpViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *userTelTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nickName;
+@property (weak, nonatomic) IBOutlet UITextField *passWordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmTextField;
+@property (weak, nonatomic) IBOutlet UITextField *VC;
+@property (weak, nonatomic) IBOutlet UIButton *VCBtn;
+@property (strong,nonatomic) UIActivityIndicatorView *avi;
+- (IBAction)VCBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
+- (IBAction)signUpAction:(UIButton *)sender forEvent:(UIEvent *)event;
+
+@end
+
+@implementation SignUpViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+// 这个方法专门做导航条的控制
+-(void)naviConfig{
+    
+    //设置导航条的颜色（风格颜色）
+    self.navigationController.navigationBar.barTintColor=UIColorFromRGB(20, 100, 255);
+    //设置导航条的标题颜色
+    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor blueColor] };
+    //设置导航条是否隐藏
+    self.navigationController.navigationBar.hidden=NO;
+    //设置导航条上按钮的风格颜色
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    //设置是否需要毛玻璃效果
+    self.navigationController.navigationBar.translucent=YES;
+    //为导航条左上角创建一个按钮
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
+    self.navigationItem.leftBarButtonItem = left;
+}
+
+//用Model的方式返回上一页
+- (void)backAction {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+//键盘收回
+- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //让根视图结束编辑状态达到收起键盘的目的
+    [self.view endEditing:YES];
+}
+//按return收回键盘
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == _userTelTextField || textField == _passWordTextField || textField == _nickName || textField == _confirmTextField || textField == _VC) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+- (IBAction)VCBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+}
+
+- (IBAction)signUpAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    if (_userTelTextField.text.length== 0) {
+        [Utilities popUpAlertViewWithMsg:@"请输入你的手机号" andTitle:nil onView:self];
+        return;
+    }
+    //判断某个字符串中是否每个字符都是数字
+    NSCharacterSet *notDigits=[[NSCharacterSet decimalDigitCharacterSet]invertedSet];
+    if ([_userTelTextField.text rangeOfCharacterFromSet:notDigits].location != NSNotFound || _userTelTextField.text.length != 11) {
+        [Utilities popUpAlertViewWithMsg:@"请输入有效的手机号码" andTitle:nil onView:self];
+        return;
+    }
+    if (_nickName.text.length > 8) {
+        [Utilities popUpAlertViewWithMsg:@"请输入规范的昵称" andTitle:nil onView:self];
+        return;
+    }
+    
+    if (_passWordTextField.text.length==0) {
+        [Utilities popUpAlertViewWithMsg:@"请输入密码" andTitle:nil onView:self];
+        return;
+    }
+    if (_passWordTextField.text.length < 6 || _passWordTextField.text.length > 18) {
+        [Utilities popUpAlertViewWithMsg:@"你输入的密码必须在6~18之间" andTitle:nil onView:self];
+        return;
+    }
+    if ([_passWordTextField.text isEqualToString:_confirmTextField.text]) {
+        // [self request];
+    }else{
+        [Utilities popUpAlertViewWithMsg:@"密码输入不一致，请重新输入" andTitle:@"提示" onView:self];
+        // _passWordTextField.text = @"";
+        _confirmTextField.text = @"";
+    }
+}
+
+
+@end
