@@ -139,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-T8-zNI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-T8-zNI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="hkl-46-mNQ"/>
@@ -164,7 +164,7 @@
                             <constraint firstAttribute="trailing" secondItem="HqO-T8-zNI" secondAttribute="trailing" id="kb7-Uc-0zc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cgV-fq-UPj"/>
+                    <navigationItem key="navigationItem" title="修改性别" id="cgV-fq-UPj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dal-nf-SIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,7 +182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eba-Gc-tdQ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eba-Gc-tdQ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="24u-jx-qOZ"/>
@@ -207,7 +207,7 @@
                             <constraint firstItem="MZH-dq-EGU" firstAttribute="top" secondItem="Hjw-Lq-bl6" secondAttribute="bottom" id="wXb-9b-RfT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uen-JM-eSE"/>
+                    <navigationItem key="navigationItem" title="修改生日" id="uen-JM-eSE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8f-iY-n92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -225,7 +225,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKO-pq-SLe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKO-pq-SLe">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="kUu-wX-P6h"/>
@@ -250,7 +250,7 @@
                             <constraint firstItem="sRN-xB-mYI" firstAttribute="top" secondItem="FKO-pq-SLe" secondAttribute="bottom" id="osc-wH-rJK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3ls-Le-9Ao"/>
+                    <navigationItem key="navigationItem" title="修改身份证号码" id="3ls-Le-9Ao"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1D-Wn-57e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,12 +268,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="阿凡达" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Pfe-Dc-ATM"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
