@@ -97,13 +97,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="MyIdenLabel" destination="C58-VE-m7j" id="LUB-kO-iDa"/>
+                                            <outlet property="MyIdenLable" destination="C58-VE-m7j" id="r5a-8D-9Df"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="gLu-cF-Z99" id="VPJ-Nm-pcy"/>
-                                    <outlet property="delegate" destination="gLu-cF-Z99" id="62z-Dk-4Si"/>
+                                    <outlet property="dataSource" destination="gLu-cF-Z99" id="gPg-Q8-h48"/>
+                                    <outlet property="delegate" destination="gLu-cF-Z99" id="vwi-C7-qxQ"/>
                                 </connections>
                             </tableView>
                         </subviews>

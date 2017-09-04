@@ -8,16 +8,19 @@
 
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
-
+#import "HomeModel.h"
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>{
-    NSInteger detailPageNum;
+    NSInteger homePageNum;
     NSInteger isLastPage;
+    NSInteger cityPageNum;
+    BOOL homeLast;
+    BOOL cityLast;
 }
 @property (weak, nonatomic) IBOutlet UITableView *homeTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
 @property (strong, nonatomic) NSMutableArray *Arr1;
+@property (strong, nonatomic) NSMutableArray *Arr2;
 @property (strong, nonatomic) UIActivityIndicatorView *avi;
-
 @end
 
 @implementation HomeViewController
@@ -59,69 +62,90 @@
 }
 //下拉刷新
 - (void)refreshRequest{
-    detailPageNum = 1;
+    homePageNum = 1;
     
 }
-//- (void)homeRequest{
-//    //获取token请求接口
-//    NSString *token = [[StorageMgr singletonStorageMgr] objectForKey:@"token"];
-//    NSArray *headers = @[[Utilities makeHeaderForToken:token]];
-//    
-//    NSDictionary *para = @{@"pageNum": @(detailPageNum),@"pageSize": @(pageSize),@"taskId":@(_taskModel.taskID)};
-//    
-//    [RequestAPI requestURL:@"/api/task/achieveDetail" withParameters:para andHeader:headers byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-//        
-//        [_avi stopAnimating];
-//        UIRefreshControl *ref = (UIRefreshControl *)[_taskDetailTableView viewWithTag:10004];
-//        [ref endRefreshing];
-//        
-//        NSLog(@"detail: %@", responseObject);
-//        if ([responseObject[@"flag"] isEqualToString:@"success"]) {
-//            NSDictionary *detail = responseObject[@"result"][@"detail"];
-//            NSArray *list = detail[@"list"];
-//            
-//            isLastPage = [detail[@"isLastPage"] boolValue];
-//            
-//            if (detailPageNum == 1) {
-//                
-//                [_detailArr removeAllObjects];
-//            }
-//            
-//            for (NSDictionary *dict in list) {
-//                CustomModel *custom = [[CustomModel alloc] initWithDictForTaskDetail:dict];
-//                [_detailArr addObject:custom];
-//            }
-//            
-//            _taskNameLabel.text = _taskModel.taskName;
-//            _numLabel.text = [NSString stringWithFormat:@"%lu/%ld/%ld", (unsigned long)_detailArr.count, (long)_taskModel.remainingCount, (long)_taskModel.total];
-//            
-//            //当数组没有数据时将图片显示，反之隐藏
-//            if (_detailArr.count == 0) {
-//                _detailNothingImg.hidden = NO;
-//            }else{
-//                _detailNothingImg.hidden = YES;
-//            }
-//            
-//            //让tableview重载数据
-//            [_taskDetailTableView reloadData];
-//        }else{
-//            [Utilities popUpAlertViewWithMsg:@"请求发生了错误，请稍后再试" andTitle:@"提示" onView:self onCompletion:^{
-//            }];
-//        }
-//    } failure:^(NSInteger statusCode, NSError *error) {
-//        [_avi stopAnimating];
-//        UIRefreshControl *ref = (UIRefreshControl *)[_taskDetailTableView viewWithTag:10004];
-//        [ref endRefreshing];
-//        
-//        [Utilities forceLogoutCheck:statusCode fromViewController:self];
-//        
-//    }];
-//}
+- (void)homeRequest{
+    [RequestAPI requestURL:@"/city/hotAndUpgradedList" withParameters:nil andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_homeTableView viewWithTag:10001];
+        [ref endRefreshing];
+        
+        NSLog(@"Object: %@", responseObject);
+        if([responseObject[@"resultFlag"]integerValue] == 8001){
+            //将数据中的result拿出来放到字典中
+            NSDictionary *result = responseObject[@"result"];
+            //将上一步拿到的字典中的list数组提取出来
+            NSArray *list = result[@"list"];
+            homeLast = [result[@"isLastPage"] boolValue];
+            
+            //当页码为1的时候让数据先清空，再重新添加
+            if (homePageNum == 1) {
+                [_Arr1 removeAllObjects];
+            }
+            //遍历list
+            for (NSDictionary *dict in list) {
+                //将遍历得来的字典转换为model
+                HomeModel *homeModel = [[HomeModel alloc] initWithDict:dict];
+                //将model存进全局数组
+                [_Arr1 addObject:homeModel];
+            }
+            //让tableview重载数据
+            [_homeTableView reloadData];
+        }else{
+            [Utilities popUpAlertViewWithMsg:@"请求发生了错误，请稍后再试" andTitle:@"提示" onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_homeTableView viewWithTag:10001];
+        [ref endRefreshing];
+        
+        [Utilities popUpAlertViewWithMsg:@"操作失败" andTitle:@"提示" onView:self];
+    }];
+}
+- (void)cityRequest{
+    [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":@"无锡",@"jing":@31.57,@"wei":@120.3,@"page":@1,@"perPage":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_homeTableView viewWithTag:10002];
+        [ref endRefreshing];
+        
+        NSLog(@"responseObject: %@", responseObject);
+        if([responseObject[@"resultFlag"]integerValue] == 8001){
+            //将数据中的result拿出来放到字典中
+            NSDictionary *result = responseObject[@"result"];
+            //将上一步拿到的字典中的list数组提取出来
+            NSArray *list = result[@"list"];
+            cityLast = [result[@"isLastPage"] boolValue];
+            
+            //当页码为1的时候让数据先清空，再重新添加
+            if (cityPageNum == 1) {
+                [_Arr2 removeAllObjects];
+            }
+            //遍历list
+            for (NSDictionary *dict in list) {
+                //将遍历得来的字典转换为model
+                HomeModel *homeModel = [[HomeModel alloc] initWithDict:dict];
+                //将model存进全局数组
+                [_Arr2 addObject:homeModel];
+            }
+            //让tableview重载数据
+            [_homeTableView reloadData];
+        }else{
+            [Utilities popUpAlertViewWithMsg:@"请求发生了错误，请稍后再试" andTitle:@"提示" onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_homeTableView viewWithTag:10002];
+        [ref endRefreshing];
+        
+        [Utilities popUpAlertViewWithMsg:@"操作失败" andTitle:@"提示" onView:self];
+    }];
+}
 
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _Arr1.count;
-
+    
 }
 
 
@@ -132,8 +156,9 @@
 //每个细胞长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
+    HomeModel *homeModel = _Arr1[indexPath.section];
     
-        return cell;
+    return cell;
 }
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -145,7 +170,7 @@
     if (indexPath.row == _Arr1.count - 1) {
         //当存在下一页的时候，页码自增，请求下一页数据
         if (!isLastPage) {
-            detailPageNum ++;
+            homePageNum ++;
             //[self homeRequest];
         }
     }
@@ -153,13 +178,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
