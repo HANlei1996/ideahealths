@@ -412,6 +412,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JVD-mJ-946" id="ws5-ab-snw"/>
+                                    <outlet property="delegate" destination="JVD-mJ-946" id="r5a-iz-1VI"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
