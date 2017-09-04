@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7947BC7F1F5CE52C00D0638C /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */; };
+		7947BC8C1F5D339500D0638C /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */; };
+		7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */; };
 		841F0EB11F5A86BC000B57B6 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */; };
 		841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB31F5A8785000B57B6 /* NCViewController.m */; };
 		841F0EB71F5A87AE000B57B6 /* XBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB61F5A87AE000B57B6 /* XBViewController.m */; };
@@ -45,7 +47,6 @@
 		84C85B9C1F5950FA00941F69 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B831F5950FA00941F69 /* HomeViewController.m */; };
 		84C85B9D1F5950FA00941F69 /* IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B851F5950FA00941F69 /* IntegralViewController.m */; };
 		84C85B9E1F5950FA00941F69 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B871F5950FA00941F69 /* MyOrderViewController.m */; };
-		84C85B9F1F5950FA00941F69 /* MyPromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B891F5950FA00941F69 /* MyPromotionViewController.m */; };
 		84C85BA01F5950FA00941F69 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B8B1F5950FA00941F69 /* MyViewController.m */; };
 		84C85BA11F5950FA00941F69 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B8D1F5950FA00941F69 /* PayViewController.m */; };
 		84C85BA21F5950FA00941F69 /* SecuritiesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B8F1F5950FA00941F69 /* SecuritiesDetailViewController.m */; };
@@ -101,6 +102,9 @@
 		6FBE97A4BFEF447D0A3919BE /* Pods-Healths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.debug.xcconfig"; sourceTree = "<group>"; };
 		7947BC7D1F5CE52C00D0638C /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		7947BC8A1F5D339500D0638C /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
+		7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
+		7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromotionViewController.m; sourceTree = "<group>"; };
 		841F0EAF1F5A86BC000B57B6 /* SetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpTableViewCell.h; sourceTree = "<group>"; };
 		841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
 		841F0EB21F5A8785000B57B6 /* NCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCViewController.h; sourceTree = "<group>"; };
@@ -179,7 +183,6 @@
 		84C85B861F5950FA00941F69 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
 		84C85B871F5950FA00941F69 /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		84C85B881F5950FA00941F69 /* MyPromotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPromotionViewController.h; sourceTree = "<group>"; };
-		84C85B891F5950FA00941F69 /* MyPromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromotionViewController.m; sourceTree = "<group>"; };
 		84C85B8A1F5950FA00941F69 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		84C85B8B1F5950FA00941F69 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		84C85B8C1F5950FA00941F69 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 			children = (
 				7947BC7D1F5CE52C00D0638C /* MyTableViewCell.h */,
 				7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */,
+				7947BC8A1F5D339500D0638C /* MyOrderTableViewCell.h */,
+				7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */,
 			);
 			name = MyTableViewCell;
 			sourceTree = "<group>";
@@ -551,7 +556,7 @@
 				84C85B861F5950FA00941F69 /* MyOrderViewController.h */,
 				84C85B871F5950FA00941F69 /* MyOrderViewController.m */,
 				84C85B881F5950FA00941F69 /* MyPromotionViewController.h */,
-				84C85B891F5950FA00941F69 /* MyPromotionViewController.m */,
+				7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */,
 				84C85B8A1F5950FA00941F69 /* MyViewController.h */,
 				84C85B8B1F5950FA00941F69 /* MyViewController.m */,
 			);
@@ -812,6 +817,7 @@
 				84C85B091F594D9E00941F69 /* main.m in Sources */,
 				84C85B9B1F5950FA00941F69 /* FindViewController.m in Sources */,
 				84DE7A911F5CE07E00D82DBB /* HomeModel.m in Sources */,
+				7947BC8C1F5D339500D0638C /* MyOrderTableViewCell.m in Sources */,
 				841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */,
 				84C85B511F5950DB00941F69 /* mask.m in Sources */,
 				84C85B541F5950DB00941F69 /* qrspec.m in Sources */,
@@ -825,6 +831,7 @@
 				84C85B701F5950E900941F69 /* DataSigner.m in Sources */,
 				84C85B981F5950FA00941F69 /* AboutUsViewController.m in Sources */,
 				84C85B521F5950DB00941F69 /* qrencode.m in Sources */,
+				7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */,
 				84C85B531F5950DB00941F69 /* qrinput.m in Sources */,
 				84C85B711F5950E900941F69 /* DataVerifier.m in Sources */,
 				84C85BF11F5A496000941F69 /* HomeTableViewCell.m in Sources */,
@@ -836,7 +843,6 @@
 				84C85BA21F5950FA00941F69 /* SecuritiesDetailViewController.m in Sources */,
 				84C85BBE1F59511800941F69 /* AppAPIClient.m in Sources */,
 				84C85B991F5950FA00941F69 /* ClubDetailViewController.m in Sources */,
-				84C85B9F1F5950FA00941F69 /* MyPromotionViewController.m in Sources */,
 				841F0EBA1F5A87CF000B57B6 /* SRViewController.m in Sources */,
 				841F0EBD1F5A87E5000B57B6 /* SFZHMViewController.m in Sources */,
 				84C85B9A1F5950FA00941F69 /* FeedbackViewController.m in Sources */,

@@ -75,7 +75,7 @@
     MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myInfoCell" forIndexPath:indexPath];
     //根据行号拿到数组中对应的数据
     NSDictionary *dict = _myArr[indexPath.section];
-    cell.MyIdenLable.text = dict[@"MyIndenLabel"];
+    cell.MyIdenLable.text = dict[@"myIndenLabel"];
     return cell;
 }
 //设置组的底部视图高度
