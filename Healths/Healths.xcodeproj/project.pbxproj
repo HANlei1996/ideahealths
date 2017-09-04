@@ -76,6 +76,7 @@
 		84C85BE21F5954E100941F69 /* Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BDE1F5954E100941F69 /* Sign.storyboard */; };
 		84C85BE61F59573B00941F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BE51F59573B00941F69 /* Main.storyboard */; };
 		84C85BF11F5A496000941F69 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85BF01F5A496000941F69 /* HomeTableViewCell.m */; };
+		84DE7A911F5CE07E00D82DBB /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DE7A901F5CE07E00D82DBB /* HomeModel.m */; };
 		AAA573C955E9683EDA0BA5ED /* libPods-Healths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80F461B059254101490D702 /* libPods-Healths.a */; };
 /* End PBXBuildFile section */
 
@@ -227,6 +228,8 @@
 		84C85BE51F59573B00941F69 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		84C85BEF1F5A496000941F69 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
 		84C85BF01F5A496000941F69 /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		84DE7A8F1F5CE07E00D82DBB /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		84DE7A901F5CE07E00D82DBB /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
 		A80F461B059254101490D702 /* libPods-Healths.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Healths.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5090B76C3EFACD01F252C81 /* Pods-Healths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.release.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -472,6 +475,8 @@
 				84C85BA91F59511800941F69 /* Order.m */,
 				841F0EBE1F5AA786000B57B6 /* UserModel.h */,
 				841F0EBF1F5AA786000B57B6 /* UserModel.m */,
+				84DE7A8F1F5CE07E00D82DBB /* HomeModel.h */,
+				84DE7A901F5CE07E00D82DBB /* HomeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 				84C85B761F5950E900941F69 /* RSADataVerifier.m in Sources */,
 				84C85B091F594D9E00941F69 /* main.m in Sources */,
 				84C85B9B1F5950FA00941F69 /* FindViewController.m in Sources */,
+				84DE7A911F5CE07E00D82DBB /* HomeModel.m in Sources */,
 				841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */,
 				84C85B511F5950DB00941F69 /* mask.m in Sources */,
 				84C85B541F5950DB00941F69 /* qrspec.m in Sources */,
