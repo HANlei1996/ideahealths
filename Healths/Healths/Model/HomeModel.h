@@ -22,6 +22,15 @@
 @property (strong,nonatomic) NSString *price;//体验券价格
 //@property (strong,nonatomic) NSArray *experience;
 //-(instancetype)initWithdeDictionary:(NSDictionary *)dict;
-
+@property(strong,nonatomic) NSString *clubLogo;
+@property(strong,nonatomic) NSString *clubId;
+@property(strong,nonatomic) NSString *clubName;
+@property(strong,nonatomic) NSString *clubAddressB;
+@property(strong,nonatomic) NSString *clubTel;
+@property(strong,nonatomic) NSString *clubIntroduce;
+@property(strong,nonatomic) NSString *clubTime;
+@property(strong,nonatomic) NSString *clubMember;
+@property(strong,nonatomic) NSString *site;
+-(id)initWithDict:(NSDictionary *)dict;
 -(instancetype)initWithDictionary:(NSDictionary *)dict;
 @end

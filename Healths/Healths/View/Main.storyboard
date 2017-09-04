@@ -409,6 +409,7 @@
                                             <outlet property="smallImageView" destination="30y-63-Dv3" id="oJ0-Dg-Rqu"/>
                                             <outlet property="soldLabel" destination="Z85-Kd-hXG" id="LTl-bc-LcB"/>
                                             <outlet property="volumeLabel" destination="qdA-JB-bzi" id="3Fn-hw-2Ou"/>
+                                            <segue destination="yb1-Jg-wsw" kind="show" identifier="Detail1" id="Oqu-DQ-QRq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -436,6 +437,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfY-yJ-4v3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="752.79999999999995" y="-498.80059970014997"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="G1P-aY-2Ui">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Detail" id="yb1-Jg-wsw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aCF-tw-rPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1526" y="-453"/>
         </scene>
         <!--首页-->
         <scene sceneID="aVG-jJ-SRX">

@@ -196,7 +196,7 @@
     }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"List2Detail"]) {
+    if ([segue.identifier isEqualToString:@"Detail1"]) {
         //当从列表页到详情页的这个跳转要发生的时候
         //1获取要传递到下一页的数据
         NSIndexPath *indexPath=[_homeTableView indexPathForSelectedRow];

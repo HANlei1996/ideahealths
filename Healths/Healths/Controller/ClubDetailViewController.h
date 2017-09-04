@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HomeModel.h"
 @interface ClubDetailViewController : UIViewController
-
+@property (strong,nonatomic) HomeModel *detail;
 @end
