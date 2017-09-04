@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self naviConfig];
     // Do any additional setup after loading the view.
 }
 
@@ -46,8 +47,8 @@
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
     //为导航条左上角创建一个按钮
-    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
-    self.navigationItem.leftBarButtonItem = left;
+    //UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
+    //self.navigationItem.leftBarButtonItem = left;
 }
 
 //用Model的方式返回上一页
@@ -114,6 +115,41 @@
         _confirmTextField.text = @"";
     }
 }
-
+/*- (void)request{
+ _avi = [Utilities getCoverOnView:self.view];
+ 
+ [RequestAPI requestURL:@"/register" withParameters:@{@"userTel":_userTelTextField.text,@"userPwd":_passWordTextField.text,@"nickName":_nickName.text,@"nums":_vC,@"city":,@"deviceType":@7001,@"deviceId":[Utilities uniqueVendor]} andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+ NSLog(@"responseObject:%@", responseObject);
+ if ([responseObject[@"resultFlag"]integerValue]==8001) {
+ //[_avi stopAnimating];
+ 
+ }else{
+ [_avi stopAnimating];
+ NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+ [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+ }
+ } failure:^(NSInteger statusCode, NSError *error) {
+ [_avi stopAnimating];
+ [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+ }];
+ }*/
+/*- (void)VerificationCodeRequest{
+    
+    [RequestAPI requestURL:@"/register/verificationCode" withParameters:@{@"userTel":_userTelTextField.text,@"type":@(1)} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            //[_avi stopAnimating];
+            
+        }else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+}
+*/
 
 @end
