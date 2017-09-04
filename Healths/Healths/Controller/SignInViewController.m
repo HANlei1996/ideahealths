@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordnameTextField;
 @property (strong,nonatomic) UIActivityIndicatorView *avi;
 - (IBAction)signBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UIButton *signBtn;
 
 @end
 
@@ -24,6 +25,18 @@
     [self uiLayout];
 
     // Do any additional setup after loading the view.
+    _signBtn.enabled = NO;
+    _signBtn.backgroundColor = UIColorFromRGB(200, 200, 200);
+    
+    
+   // if (![[Utilities getUserDefaults:@"Username"] isKindOfClass:[NSNull class]] && [Utilities getUserDefaults:@"Username"] != nil) {
+     //   _usernameTextField.text = [Utilities getUserDefaults:@"Username"];
+    //}
+    
+    //添加事件监听当输入框的内容改变时调用textChange:方法
+    [_usernameTextField addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
+    [_passwordnameTextField addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +48,7 @@
     //设置导航条的颜色（风格颜色）
     self.navigationController.navigationBar.barTintColor=UIColorFromRGB(20, 100, 255);
     //设置导航条的标题颜色
-    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor blueColor] };
+    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor whiteColor] };
     //设置导航条是否隐藏
     self.navigationController.navigationBar.hidden=NO;
     //设置导航条上按钮的风格颜色
@@ -43,8 +56,8 @@
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
     //为导航条左上角创建一个按钮
-    //UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
-    //self.navigationItem.leftBarButtonItem = left;
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
+    self.navigationItem.leftBarButtonItem = left;
 }
 
 //用Model的方式返回上一页
@@ -71,6 +84,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)textChange: (UITextField *)textField{
+    //当文本框中的内容改变时判断内容长度是否为0，是：禁用按钮   否：启用按钮
+    if (_usernameTextField.text.length != 0 && textField.text.length != 0) {
+        _signBtn.enabled = YES;
+        _signBtn.backgroundColor = UIColorFromRGB(99, 163, 210);
+    }else{
+        _signBtn.enabled = NO;
+        _signBtn.backgroundColor = UIColorFromRGB(200, 200, 200);
+    }
+}
 
 - (IBAction)signBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
     if (_usernameTextField.text.length==0) {
