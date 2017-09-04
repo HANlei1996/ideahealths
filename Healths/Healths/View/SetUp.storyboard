@@ -114,7 +114,7 @@
                         <outlet property="SetUpTableView" destination="1n9-iU-wdk" id="iwL-mf-ndZ"/>
                         <outlet property="modificationBtn" destination="amA-qc-PsM" id="u3z-hB-Gdi"/>
                         <outlet property="setupImage" destination="7IN-ET-YRa" id="Y4F-Aa-1wS"/>
-                        <segue destination="vx4-1s-MUN" kind="show" identifier="SetUpToNC" id="LJJ-SO-gwK"/>
+                        <segue destination="X7q-LX-7hN" kind="show" identifier="SetUpToNC" id="LJJ-SO-gwK"/>
                         <segue destination="EV6-C1-wwH" kind="show" identifier="SetUpToXB" id="IHI-Hc-qkz"/>
                         <segue destination="QhJ-fw-G6U" kind="show" identifier="SetUpToSR" id="fvw-tZ-gbG"/>
                         <segue destination="mMm-s5-I6A" kind="show" identifier="SetUpToSFZHM" id="9qf-34-1Em"/>
@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="3815.1999999999998" y="-654.42278860569718"/>
         </scene>
-        <!--性别-->
+        <!--修改性别-->
         <scene sceneID="Sd6-Sf-rnd">
             <objects>
-                <viewController title="性别" id="EV6-C1-wwH" customClass="XBViewController" sceneMemberID="viewController">
+                <viewController title="修改性别" id="EV6-C1-wwH" customClass="XBViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MrO-vh-lHC"/>
                         <viewControllerLayoutGuide type="bottom" id="q1b-HI-GTM"/>
@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="3190" y="54"/>
         </scene>
-        <!--生日-->
+        <!--修改生日-->
         <scene sceneID="CB5-o3-VKR">
             <objects>
-                <viewController title="生日" id="QhJ-fw-G6U" customClass="SRViewController" sceneMemberID="viewController">
+                <viewController title="修改生日" id="QhJ-fw-G6U" customClass="SRViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MbU-JA-vHm"/>
                         <viewControllerLayoutGuide type="bottom" id="MZH-dq-EGU"/>
@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="4004" y="54"/>
         </scene>
-        <!--身份证号码-->
+        <!--修改身份证号码-->
         <scene sceneID="kag-cU-4LE">
             <objects>
-                <viewController title="身份证号码" id="mMm-s5-I6A" customClass="SFZHMViewController" sceneMemberID="viewController">
+                <viewController title="修改身份证号码" id="mMm-s5-I6A" customClass="SFZHMViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P4F-R7-GqI"/>
                         <viewControllerLayoutGuide type="bottom" id="J0h-I1-vtR"/>
@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="4705" y="54"/>
         </scene>
-        <!--昵称-->
+        <!--修改昵称-->
         <scene sceneID="AVf-Jg-bNl">
             <objects>
-                <viewController title="昵称" id="vx4-1s-MUN" customClass="NCViewController" sceneMemberID="viewController">
+                <viewController title="修改昵称" id="vx4-1s-MUN" customClass="NCViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BIm-EF-fUH"/>
                         <viewControllerLayoutGuide type="bottom" id="W4Y-Zc-v1C"/>
@@ -189,12 +189,36 @@
                     <view key="view" contentMode="scaleToFill" id="DVq-qh-dYA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
+                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Pfe-Dc-ATM"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iat-IT-KA1">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O9m-or-3is" firstAttribute="leading" secondItem="DVq-qh-dYA" secondAttribute="leading" id="1M1-gI-mOD"/>
+                            <constraint firstItem="O9m-or-3is" firstAttribute="top" secondItem="BIm-EF-fUH" secondAttribute="bottom" id="2IV-DJ-OsQ"/>
+                            <constraint firstAttribute="trailing" secondItem="O9m-or-3is" secondAttribute="trailing" id="fsE-v3-quF"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="修改昵称" id="jsV-O2-azd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sRj-EG-fnY"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcX-Q8-NUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4706" y="-656"/>
+            <point key="canvasLocation" x="5644" y="-656.22188905547227"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RmB-mA-6ev">
@@ -213,6 +237,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dei-JB-QOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2876" y="-654.42278860569718"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="H3b-ZZ-g9F">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X7q-LX-7hN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0bd-71-oEF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vx4-1s-MUN" kind="relationship" relationship="rootViewController" id="qQ9-cH-blC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L50-t3-Ipu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4704.8000000000002" y="-656.22188905547227"/>
         </scene>
     </scenes>
 </document>
