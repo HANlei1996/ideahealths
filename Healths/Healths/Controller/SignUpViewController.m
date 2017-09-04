@@ -114,42 +114,67 @@
         // _passWordTextField.text = @"";
         _confirmTextField.text = @"";
     }
+    [self request];
 }
-/*- (void)request{
- _avi = [Utilities getCoverOnView:self.view];
- 
- [RequestAPI requestURL:@"/register" withParameters:@{@"userTel":_userTelTextField.text,@"userPwd":_passWordTextField.text,@"nickName":_nickName.text,@"nums":_vC,@"city":,@"deviceType":@7001,@"deviceId":[Utilities uniqueVendor]} andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
- NSLog(@"responseObject:%@", responseObject);
- if ([responseObject[@"resultFlag"]integerValue]==8001) {
- //[_avi stopAnimating];
- 
- }else{
- [_avi stopAnimating];
- NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
- [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
- }
- } failure:^(NSInteger statusCode, NSError *error) {
- [_avi stopAnimating];
- [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
- }];
- }*/
-/*- (void)VerificationCodeRequest{
-    
-    [RequestAPI requestURL:@"/register/verificationCode" withParameters:@{@"userTel":_userTelTextField.text,@"type":@(1)} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        NSLog(@"responseObject:%@", responseObject);
-        if ([responseObject[@"resultFlag"]integerValue]==8001) {
-            //[_avi stopAnimating];
-            
+#pragma mark - 网络请求
+//登录注册相关
+- (void)request{
+    NSString *str = [Utilities uniqueVendor];
+    _avi = [Utilities getCoverOnView:self.view];
+    NSDictionary *prarmeter = @{@"deviceType" : @7001, @"deviceId" : str};
+    //开始请求
+    [RequestAPI requestURL:@"/login/getKey" withParameters:prarmeter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        //成功以后要做的事情
+        NSLog(@"responseObject = %@",responseObject);
+        if ([responseObject[@"resultFlag"] integerValue] == 8001) {
+            NSDictionary *result = responseObject[@"result"];
+            NSString *exponent = result[@"exponent"];
+            NSString *modulus = result[@"modulus"];
+            //对内容进行MD5加密
+            NSString *md5Str = [_passWordTextField.text getMD5_32BitString];
+            //用模数与指数对MD5加密过后的密码进行加密
+            NSString *rsaStr = [NSString encryptWithPublicKeyFromModulusAndExponent:md5Str.UTF8String modulus:modulus exponent:exponent];
+            //加密完成执行接口
+            [self signUpWithEncryptPwd:rsaStr];
         }else{
             [_avi stopAnimating];
-            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"resultFlag"] integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
         }
     } failure:^(NSInteger statusCode, NSError *error) {
         [_avi stopAnimating];
-        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+        //失败以后要做的事情
+        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
     }];
 }
-*/
-
+//注册网络请求
+- (void)signUpWithEncryptPwd:(NSString *)encryptPwd {
+    NSString *str = [Utilities uniqueVendor];
+    [RequestAPI requestURL:@"/register" withParameters:@{@"userTel" : _userTelTextField.text, @"userPwd" : encryptPwd,@"nickname" : _nickName.text,@"nums" : _confirmTextField.text, @"deviceType" : @7001, @"deviceId" : str} andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject = %@",responseObject);
+        if ([responseObject[@"resultFlag"] integerValue] == 8001) {
+            //            NSDictionary *result = responseObject[@"result"];
+            //            UserModel *usermodel = [[UserModel alloc]initWhitDictionary:result];
+            //            //将登录获取到的用户信息打包存储到单例化全局变量中
+            //            [[StorageMgr singletonStorageMgr]addKey:@"MemberInfo" andValue:usermodel];
+            //            //单独将用户的ID也存储进单例化全局变量来作为用户是否已经登录的判断依据，同时也方便其它所有页面更快捷地使用ID这个参数
+            //            [[StorageMgr singletonStorageMgr]addKey:@"MemberId" andValue:usermodel.memberId];
+            //            //让根视图结束编辑状态达到收起键盘的目的
+            //            [self.view endEditing:YES];
+            //            //情空密码输入框里的内容
+            //            _pwdTextField.text = @"";
+            //            //记忆用户名
+            //            [Utilities setUserDefaults:@"Username" content:_userTextField.text];
+            //            //用model的方式返回上一页
+            //            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"resultFlag"] integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+    }];
+}
 @end

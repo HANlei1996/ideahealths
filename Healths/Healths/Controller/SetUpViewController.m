@@ -64,7 +64,7 @@
 }
 //设置组的底部视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 0) {
         return 5.f;
     }
     return 1.f;

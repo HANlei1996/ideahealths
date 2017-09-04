@@ -53,7 +53,7 @@
                                 <rect key="frame" x="15" y="149" width="345" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="XCO-uH-Iac" id="e4D-6t-TQ1"/>
                                 </connections>
@@ -87,6 +87,7 @@
                     <navigationItem key="navigationItem" title="登录" id="2uY-Pb-Waj"/>
                     <connections>
                         <outlet property="passwordnameTextField" destination="Arm-Md-bTc" id="4Cn-fg-BGS"/>
+                        <outlet property="signBtn" destination="sY2-mF-TFw" id="F9b-Qy-GST"/>
                         <outlet property="usernameTextField" destination="VNb-Uj-RW5" id="dIK-HB-TQ2"/>
                     </connections>
                 </viewController>
@@ -138,7 +139,7 @@
                                 <rect key="frame" x="15" y="194" width="345" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="XHN-o3-baC" id="MBV-FX-RvL"/>
                                 </connections>
@@ -147,7 +148,7 @@
                                 <rect key="frame" x="15" y="239" width="345" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="XHN-o3-baC" id="hJ6-So-pMv"/>
                                 </connections>
