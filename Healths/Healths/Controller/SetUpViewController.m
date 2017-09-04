@@ -79,7 +79,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
-    if ([Utilities loginCheck]) {
+    
         switch (indexPath.section) {
             case 0:
                 [self performSegueWithIdentifier:@"SetUpToNC" sender:self];
@@ -95,7 +95,7 @@
                 break;
         }
     }
-}
+
 //设置tableview的底部视图
 - (void)setFootViewForTableView{
     
