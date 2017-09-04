@@ -115,7 +115,9 @@
         [Utilities popUpAlertViewWithMsg:@"你输入的密码必须在6~18之间" andTitle:nil onView:self];
         return;
     }
-    
+    //无输入异常的情况，开始正式执行登录接口
+    [self readyForEncoding];
+
     
 }
 //键盘收回
