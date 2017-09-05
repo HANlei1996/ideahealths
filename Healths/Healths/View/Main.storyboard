@@ -53,7 +53,7 @@
                                         </state>
                                         <connections>
                                             <action selector="loginAction:forEvent:" destination="gLu-cF-Z99" eventType="touchUpInside" id="VZP-WC-BvG"/>
-                                            <segue destination="qCL-f0-ZZo" kind="show" id="B3B-u6-tR1"/>
+                                            <segue destination="qCL-f0-ZZo" kind="show" identifier="zhsz" id="B3B-u6-tR1"/>
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游客" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfD-ko-2Mo">
