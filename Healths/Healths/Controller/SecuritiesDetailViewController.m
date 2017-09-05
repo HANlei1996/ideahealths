@@ -8,6 +8,9 @@
 
 #import "SecuritiesDetailViewController.h"
 #import "PayViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "tiyanquanModel.h"
+
 @interface SecuritiesDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *tyjImage;
@@ -22,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *sysjLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sygzLbel;
 @property (weak, nonatomic) IBOutlet UILabel *wstsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *callBtn;
+@property (weak, nonatomic) IBOutlet UILabel *endLabel;
+- (IBAction)callAction:(UIButton *)sender forEvent:(UIEvent *)event;
+
 @end
 
 @implementation SecuritiesDetailViewController
@@ -30,6 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self naviConfig];
+    [self networkRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,25 +76,37 @@
 */
 
 - (IBAction)ljxdBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-     PayViewController *purchaseVC=[Utilities getStoryboardInstanceByIdentity:@"Purchase"];
-    //purchaseVC.activity=_activity;
-    [self.navigationController pushViewController:purchaseVC animated:YES];
+    
+    if([Utilities loginCheck]){
+        PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"Purchase"];
+        purchaseVC.detail=_detail;
+        [self.navigationController pushViewController:purchaseVC animated:YES];
+        
+        
+    }else{
+        UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
+
+        [self presentViewController:signNavi animated:YES completion:nil];
+        
+    }
+
     
 }
 #pragma mark - request
 -(void)networkRequest{
     UIActivityIndicatorView *aiv=[Utilities getCoverOnView:self.view];
-    NSMutableDictionary *parameters=[NSMutableDictionary new];
-    if([Utilities loginCheck]){
-        [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
-        
-    }
-    [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameters andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+       
+    [RequestAPI requestURL:@"/clubController/experienceDetail" withParameters:@{@"experienceId":@64} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
+       
+        NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
-            // NSDictionary *result= responseObject[@"result"];
-            // _activity= [[ActivityModel alloc]initWithDetailDictionary:result];
-            // [self uiLayout];
+            NSDictionary *result= responseObject[@"result"];
+            _detail=[[tiyanquanModel alloc]initWithDictionary:result];
+    
+            [self uiLayout];
+
+            
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
@@ -99,6 +119,37 @@
     }];
     
 }
+-(void)uiLayout{
+    [_tyjImage sd_setImageWithURL:[NSURL URLWithString :_detail.eLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
+    _xjLabel.text=_detail.currentPrice;
+    _yjLabel.text=_detail.orinPrice;
+    _dwLabel.text=_detail.eAddress;
+    _tykLabel.text=_detail.eName;
+    _dmLabel.text=_detail.eClubName;
+    _ysLabel.text=_detail.saleCount;
+    _yxqLabel.text=_detail.beginDate;
+    _endLabel.text=_detail.endDate;
+    _sysjLabel.text=_detail.userDate;
+    _sygzLbel.text=_detail.rules;
+    _wstsLabel.text=_detail.ePromot;
+    [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
 
+}
 
+- (IBAction)callAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *callAction = [UIAlertAction actionWithTitle:_detail.clubTel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [actionSheetController addAction:cancelAction];
+    [actionSheetController addAction:callAction];
+    
+    [self presentViewController:actionSheetController animated:YES completion:nil];
+}
 @end

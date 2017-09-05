@@ -141,5 +141,7 @@
 }
 
 - (IBAction)jiajianAction:(UISegmentedControl *)sender forEvent:(UIEvent *)event {
+    
+    
 }
 @end

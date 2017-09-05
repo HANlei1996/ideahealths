@@ -10,6 +10,7 @@
 		7947BC7F1F5CE52C00D0638C /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */; };
 		7947BC8C1F5D339500D0638C /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */; };
 		7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */; };
+		840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */; };
 		841F0EB11F5A86BC000B57B6 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */; };
 		841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB31F5A8785000B57B6 /* NCViewController.m */; };
 		841F0EB71F5A87AE000B57B6 /* XBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB61F5A87AE000B57B6 /* XBViewController.m */; };
@@ -106,6 +107,8 @@
 		7947BC8A1F5D339500D0638C /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
 		7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
 		7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromotionViewController.m; sourceTree = "<group>"; };
+		840D28F21F5E2F8900E8E260 /* tiyanquanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiyanquanModel.h; sourceTree = "<group>"; };
+		840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tiyanquanModel.m; sourceTree = "<group>"; };
 		841F0EAF1F5A86BC000B57B6 /* SetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpTableViewCell.h; sourceTree = "<group>"; };
 		841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
 		841F0EB21F5A8785000B57B6 /* NCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCViewController.h; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				84DE7A901F5CE07E00D82DBB /* HomeModel.m */,
 				84D3B06E1F5D58CE0036F458 /* ClubDetailModel.h */,
 				84D3B06F1F5D58CE0036F458 /* ClubDetailModel.m */,
+				840D28F21F5E2F8900E8E260 /* tiyanquanModel.h */,
+				840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				84C85B981F5950FA00941F69 /* AboutUsViewController.m in Sources */,
 				84C85B521F5950DB00941F69 /* qrencode.m in Sources */,
 				7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */,
+				840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */,
 				84C85B531F5950DB00941F69 /* qrinput.m in Sources */,
 				84C85B711F5950E900941F69 /* DataVerifier.m in Sources */,
 				84C85BF11F5A496000941F69 /* HomeTableViewCell.m in Sources */,
