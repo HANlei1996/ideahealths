@@ -9,12 +9,14 @@
 #import "SetUpViewController.h"
 #import "SetUpTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UserModel.h"
 @interface SetUpViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *setupImage;
 @property (weak, nonatomic) IBOutlet UIButton *modificationBtn;
 - (IBAction)modBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet UITableView *SetUpTableView;
 @property (strong, nonatomic) NSArray *setupArr;
+@property (strong,nonatomic) UIActivityIndicatorView *avi;
 @end
 
 @implementation SetUpViewController
@@ -25,6 +27,7 @@
     // Do any additional setup after loading the view.
     _setupArr = @[@{@"nicknameLabel":@"昵称",@"infoLabel":@"阿凡达"},@{@"nicknameLabel":@"性别",@"infoLabel":@"男"},@{@"nicknameLabel":@"生日",@"infoLabel":@"2046-12-25"},@{@"nicknameLabel":@"身份证号码",@"infoLabel":@"320203204612256666"}];
     _SetUpTableView.tableFooterView = [UIView new];
+    [self setFootViewForTableView];
     
 }
 
@@ -129,7 +132,7 @@
     [exitBtn setTitle:@"退出" forState:UIControlStateNormal];
     //设置按钮标题的字体大小
     exitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
-    [exitBtn setTitleColor:UIColorFromRGB(221.f, 129.f, 116.f) forState:UIControlStateNormal];
+    [exitBtn setTitleColor:UIColorFromRGB(225.f, 0.f, 0.f) forState:UIControlStateNormal];
     exitBtn.backgroundColor = [UIColor whiteColor];
     [exitBtn addTarget:self action:@selector(exitAction:) forControlEvents:UIControlEventTouchUpInside];
     
