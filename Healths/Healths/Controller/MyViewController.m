@@ -8,15 +8,18 @@
 
 #import "MyViewController.h"
 #import "MyTableViewCell.h"
+#import "UserModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *MyTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *touxiangImage;
 @property (weak, nonatomic) IBOutlet UILabel *userLaber;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *loginAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingUpBtn;
 - (IBAction)settingAction:(UIBarButtonItem *)sender;
+- (IBAction)loginAction:(UIButton *)sender forEvent:(UIEvent *)event;
+
 
 @property (strong, nonatomic) NSArray *myArr;
 
@@ -30,6 +33,26 @@
     _myArr = @[@{@"myIndenLabel":@"我的订单"},@{@"myIndenLabel":@"我的推广"},@{@"myIndenLabel":@"积分中心"},@{@"myIndenLabel":@"意见反馈"},@{@"myIndenLabel":@"关于我们"}];
     [self naviConfig];
     _MyTableView.tableFooterView = [UIView new];
+}
+//每次将要来都这个页面的时候
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([Utilities loginCheck]) {
+        //已登录
+        _loginBtn.hidden=YES;
+        _userLaber.hidden=NO;
+        UserModel *user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+        [_touxiangImage sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
+        _userLaber.text= user.nickname;
+        
+    }else{
+        //未登录
+        _loginBtn.hidden=NO;
+        _userLaber.hidden=YES;
+        _touxiangImage.image=[UIImage imageNamed:@"ic_user_head"];
+        _userLaber.text=@"游客";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,14 +76,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 //设置表格视图一共有多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _myArr.count;
@@ -93,25 +116,54 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消细胞的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            switch (indexPath.section) {
-            case 0:
-                [self performSegueWithIdentifier:@"wdjd" sender:self];
-                break;
-            case 1:
-                [self performSegueWithIdentifier:@"wdhk" sender:self];
-                break;
-            case 2:
-                [self performSegueWithIdentifier:@"wdxx" sender:self];
-                break;
-            case 3:
-                [self performSegueWithIdentifier:@"aaaa" sender:self];
-                break;
-            default:
-                [self performSegueWithIdentifier:@"lxkf" sender:self];
-                break;
+    if (indexPath.section == 0) {
+        if ([Utilities loginCheck]) {
+            switch (indexPath.row) {
+                case 0:
+                    [self performSegueWithIdentifier:@"wdjd" sender:self];
+                    break;
+                case 1:
+                    [self performSegueWithIdentifier:@"wdhk" sender:self];
+                    break;
+                case 2:
+                    [self performSegueWithIdentifier:@"wdxx" sender:self];
+                    break;
+                case 3:
+                    [self performSegueWithIdentifier:@"aaaa" sender:self];
+                    break;
+                default:
+                    [self performSegueWithIdentifier:@"lxkf" sender:self];
+                    break;
+            }
+        }else{
+            
+            UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
+            [self presentViewController:signNavi animated:YES completion:nil];
+            
         }
     }
+    
+    
+}
+
 
 - (IBAction)settingAction:(UIBarButtonItem *)sender {
+    if ([Utilities loginCheck]) {
+        
+    }else{
+        
+        UINavigationController *SetUpNavi=[Utilities getStoryboardInstance:@"SetUp" byIdentity:@"SetUpNavi"];
+        [self presentViewController:SetUpNavi animated:YES completion:nil];    }
+    
+}
+
+- (IBAction)loginAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    //获取要跳转过去的那个页面
+    //1、获得要跳转的页面的实例
+    UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
+    [self presentViewController:signNavi animated:YES completion:nil];
+    //执行跳转
+    
+    
 }
 @end
