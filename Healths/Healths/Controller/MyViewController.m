@@ -116,9 +116,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //取消细胞的选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
         if ([Utilities loginCheck]) {
-            switch (indexPath.row) {
+            switch (indexPath.section) {
                 case 0:
                     [self performSegueWithIdentifier:@"wdjd" sender:self];
                     break;
@@ -144,7 +143,7 @@
     }
     
     
-}
+
 
 
 - (IBAction)settingAction:(UIBarButtonItem *)sender {
@@ -158,11 +157,8 @@
 }
 
 - (IBAction)loginAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    //获取要跳转过去的那个页面
-    //1、获得要跳转的页面的实例
-    UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
-    [self presentViewController:signNavi animated:YES completion:nil];
-    //执行跳转
+    [self performSegueWithIdentifier:@"zhsz" sender:self];
+
     
     
 }
