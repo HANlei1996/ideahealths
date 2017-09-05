@@ -76,7 +76,7 @@
 */
 
 - (IBAction)ljxdBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-<<<<<<< HEAD
+
     
     if([Utilities loginCheck]){
         PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"Purchase"];
@@ -91,12 +91,6 @@
         
     }
 
-=======
-     PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Pay" byIdentity:@"Purchase"];
-    //purchaseVC.activity=_activity;
-    [self.navigationController pushViewController:purchaseVC animated:YES];
->>>>>>> 6a70787de7396a1d297199b6f668e557c885f6dc
-    
 }
 #pragma mark - request
 -(void)networkRequest{

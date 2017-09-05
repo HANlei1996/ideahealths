@@ -14,8 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *djLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jgLabel;
 @property (weak, nonatomic) IBOutlet UIView *numLabel;
-- (IBAction)jiajianAction:(UISegmentedControl *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSArray * arr;
+- (IBAction)jiajianBtn:(UIStepper *)sender forEvent:(UIEvent *)event;
 @end
 
 @implementation PayViewController
@@ -24,8 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self naviConfig];
-  //  [self uiLayout];
+    [self uiLayout];
     [self dataInitialize];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(purchaseResultAction:) name:@"AlipayResult" object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +44,20 @@
     self.navigationItem.rightBarButtonItem = right;
     
 }
+-(void)uiLayout{
+    _tykLabel.text=_detail.eName;
+    _dmLabel.text=_detail.eClubName;
+    _djLabel.text=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
+    _jgLabel.text=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
+    
+    self.tableView.tableFooterView=[UIView new];
+    //将表格视图设置为“细胞中”
+    self.tableView.editing=YES;
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    //用代码来选中表格视图中的某个细胞
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:(UITableViewScrollPositionNone)];
+}
+
 /*-(void)uiLayout{
     _nameLabel.text=_activity.name;
     _contentLabel.text=_activity.content;
@@ -57,6 +74,27 @@
     _arr=@[@"支付宝支付",@"微信支付",@"银联支付"];
     
 }
+-(void)payAction{
+    switch(self.tableView.indexPathForSelectedRow.row){
+        case 0:{
+            NSString *tradeNo=[GBAlipayManager generateTradeNO];
+            [GBAlipayManager alipayWithProductName:_detail.eName amount:_detail.currentPrice tradeNO:tradeNo notifyURL:nil productDescription:[NSString stringWithFormat:@"%@的活动报名费",_detail.eName] itBPay:@"30"];
+        }
+            break;
+        case 1:{
+            
+        }
+            break;
+        case 2:{
+            
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
 /*-(void)payAction{
     switch(self.tableView.indexPathForSelectedRow.row){
         case 0:{
@@ -76,8 +114,8 @@
             break;
     }
     
-}
- */
+}*/
+
 -(void)purchaseResultAction:(NSNotification *)note{
     NSString *result=note.object;
     if([result isEqualToString:@"9000"]) {
@@ -140,8 +178,7 @@
     }
 }
 
-- (IBAction)jiajianAction:(UISegmentedControl *)sender forEvent:(UIEvent *)event {
-    
-    
+
+- (IBAction)jiajianBtn:(UIStepper *)sender forEvent:(UIEvent *)event {
 }
 @end
