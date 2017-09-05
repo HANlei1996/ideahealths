@@ -12,7 +12,7 @@
         <!--Pay View Controller-->
         <scene sceneID="ese-4w-MyN">
             <objects>
-                <viewController id="Buj-ai-C1n" customClass="PayViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Purchase" id="Buj-ai-C1n" customClass="PayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vvx-Zw-fId"/>
                         <viewControllerLayoutGuide type="bottom" id="TaD-NY-m9z"/>
@@ -546,7 +546,6 @@
                                                 <state key="normal" title="   立即下单   "/>
                                                 <connections>
                                                     <action selector="ljxdBtnAction:forEvent:" destination="qOE-eq-jtS" eventType="touchUpInside" id="znC-uA-t7t"/>
-                                                    <segue destination="Buj-ai-C1n" kind="show" id="HvL-KR-8ek"/>
                                                 </connections>
                                             </button>
                                         </subviews>

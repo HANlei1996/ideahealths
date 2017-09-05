@@ -7,7 +7,7 @@
 //
 
 #import "SecuritiesDetailViewController.h"
-
+#import "PayViewController.h"
 @interface SecuritiesDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *tyjImage;
@@ -68,7 +68,9 @@
 */
 
 - (IBAction)ljxdBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    
+     PayViewController *purchaseVC=[Utilities getStoryboardInstanceByIdentity:@"Purchase"];
+    //purchaseVC.activity=_activity;
+    [self.navigationController pushViewController:purchaseVC animated:YES];
     
 }
 #pragma mark - request
