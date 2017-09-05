@@ -52,15 +52,12 @@
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
+                                            <action selector="loginAction:forEvent:" destination="gLu-cF-Z99" eventType="touchUpInside" id="VZP-WC-BvG"/>
                                             <segue destination="qCL-f0-ZZo" kind="show" id="B3B-u6-tR1"/>
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游客" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfD-ko-2Mo">
-                                        <rect key="frame" x="178" y="105" width="35" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="JjY-ac-8p4"/>
-                                            <constraint firstAttribute="width" constant="35" id="exa-7o-iwi"/>
-                                        </constraints>
+                                        <rect key="frame" x="178" y="105" width="35" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -135,7 +132,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="MyTableView" destination="0yF-Ma-0BZ" id="neo-PL-EKr"/>
-                        <outlet property="loginAction" destination="a5T-UJ-Z4Z" id="PUR-sa-gc6"/>
                         <outlet property="loginBtn" destination="a5T-UJ-Z4Z" id="oOQ-WR-tau"/>
                         <outlet property="settingUpBtn" destination="3fD-o7-jFr" id="EPV-Qs-7nJ"/>
                         <outlet property="touxiangImage" destination="oXF-Yx-8kY" id="Wr4-MH-Ze8"/>

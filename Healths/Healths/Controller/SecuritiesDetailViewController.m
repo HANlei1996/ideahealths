@@ -68,7 +68,7 @@
 */
 
 - (IBAction)ljxdBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-     PayViewController *purchaseVC=[Utilities getStoryboardInstanceByIdentity:@"Purchase"];
+     PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Pay" byIdentity:@"Purchase"];
     //purchaseVC.activity=_activity;
     [self.navigationController pushViewController:purchaseVC animated:YES];
     
