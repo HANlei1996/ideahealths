@@ -567,10 +567,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owo-hT-Afp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认图" translatesAutoresizingMaskIntoConstraints="NO" id="RRd-bg-fC4">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -578,12 +578,12 @@
                                             <constraint firstItem="RRd-bg-fC4" firstAttribute="top" secondItem="Owo-hT-Afp" secondAttribute="top" id="7E9-3U-dNt"/>
                                             <constraint firstAttribute="trailing" secondItem="RRd-bg-fC4" secondAttribute="trailing" id="dv0-KE-x4H"/>
                                             <constraint firstAttribute="bottom" secondItem="RRd-bg-fC4" secondAttribute="bottom" id="gB8-Zo-ZZi"/>
-                                            <constraint firstAttribute="height" constant="180" id="mcm-f1-VSp"/>
+                                            <constraint firstAttribute="height" constant="225" id="mcm-f1-VSp"/>
                                             <constraint firstItem="RRd-bg-fC4" firstAttribute="leading" secondItem="Owo-hT-Afp" secondAttribute="leading" id="qde-bg-Cwv"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXZ-Sx-59h">
-                                        <rect key="frame" x="0.0" y="180" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="225" width="375" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="莫梵瑜伽-体验卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jj-F5-n9N">
                                                 <rect key="frame" x="15" y="10" width="106.5" height="17"/>
@@ -643,7 +643,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIc-Ma-jSB">
-                                        <rect key="frame" x="0.0" y="250" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="295" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会所地图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLK-qj-tre">
                                                 <rect key="frame" x="15" y="4" width="45" height="13.5"/>
@@ -660,7 +660,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WP-gN-3PC">
-                                        <rect key="frame" x="0.0" y="270" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="315" width="375" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="莫梵瑜伽（阳光店）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaS-R7-OMd">
                                                 <rect key="frame" x="15" y="10" width="129" height="20"/>
@@ -682,6 +682,9 @@
                                                     <constraint firstAttribute="height" constant="20" id="V44-a1-bPy"/>
                                                 </constraints>
                                                 <state key="normal" image="通话"/>
+                                                <connections>
+                                                    <action selector="callAction:forEvent:" destination="NcG-dO-MWP" eventType="touchUpInside" id="qQY-Or-XzD"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位" translatesAutoresizingMaskIntoConstraints="NO" id="Ir5-1p-DSB">
                                                 <rect key="frame" x="15" y="40" width="20" height="20"/>
@@ -707,7 +710,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0P-bb-Nmi">
-                                        <rect key="frame" x="0.0" y="340" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="385" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验券信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgS-yj-L6h">
                                                 <rect key="frame" x="15" y="4" width="56.5" height="13.5"/>
@@ -724,7 +727,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WC9-r3-p5L">
-                                        <rect key="frame" x="0.0" y="360" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="405" width="375" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q4-xV-49M">
                                                 <rect key="frame" x="15" y="10" width="28.5" height="15"/>
@@ -766,7 +769,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK3-Wk-Lbr">
-                                        <rect key="frame" x="0.0" y="440" width="375" height="105"/>
+                                        <rect key="frame" x="0.0" y="485" width="375" height="250"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效期:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6r-5K-CQT">
                                                 <rect key="frame" x="15" y="10" width="40.5" height="14.5"/>
@@ -774,8 +777,8 @@
                                                 <color key="textColor" red="0.2464469628" green="0.50946320580000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-05-18至2016-05-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlB-Lj-ESs">
-                                                <rect key="frame" x="15" y="26.5" width="136.5" height="13.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-05-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlB-Lj-ESs">
+                                                <rect key="frame" x="15" y="26.5" width="62.5" height="13.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -804,28 +807,44 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="至" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKN-SM-NkQ">
+                                                <rect key="frame" x="82.5" y="26" width="11.5" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-05-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o56-e3-mvs">
+                                                <rect key="frame" x="99" y="26.5" width="62.5" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="E6r-5K-CQT" firstAttribute="leading" secondItem="IK3-Wk-Lbr" secondAttribute="leading" constant="15" id="3ck-0Q-cZu"/>
                                             <constraint firstItem="hbT-Fe-RVp" firstAttribute="leading" secondItem="Ps4-0d-dL0" secondAttribute="leading" id="44m-bt-rSz"/>
                                             <constraint firstItem="h6I-0U-uoZ" firstAttribute="leading" secondItem="Ps4-0d-dL0" secondAttribute="leading" id="88C-fm-lex"/>
+                                            <constraint firstItem="o56-e3-mvs" firstAttribute="bottom" secondItem="mlB-Lj-ESs" secondAttribute="bottom" id="AG9-rC-SPE"/>
                                             <constraint firstItem="E6r-5K-CQT" firstAttribute="top" secondItem="IK3-Wk-Lbr" secondAttribute="top" constant="10" id="Jac-a3-ENV"/>
                                             <constraint firstItem="Apb-Xh-h5g" firstAttribute="leading" secondItem="Ps4-0d-dL0" secondAttribute="leading" id="PdQ-JT-S1z"/>
-                                            <constraint firstAttribute="height" constant="105" id="PfE-Rm-pno"/>
+                                            <constraint firstAttribute="height" constant="250" id="PfE-Rm-pno"/>
                                             <constraint firstItem="hbT-Fe-RVp" firstAttribute="top" secondItem="Ps4-0d-dL0" secondAttribute="bottom" constant="2" id="TBx-up-eOi"/>
+                                            <constraint firstItem="o56-e3-mvs" firstAttribute="leading" secondItem="FKN-SM-NkQ" secondAttribute="trailing" constant="5" id="UfC-9z-iMj"/>
+                                            <constraint firstItem="FKN-SM-NkQ" firstAttribute="leading" secondItem="mlB-Lj-ESs" secondAttribute="trailing" constant="5" id="VBk-zH-ugz"/>
                                             <constraint firstItem="hbT-Fe-RVp" firstAttribute="leading" secondItem="E6r-5K-CQT" secondAttribute="leading" id="XSt-au-mFY"/>
                                             <constraint firstItem="mlB-Lj-ESs" firstAttribute="leading" secondItem="E6r-5K-CQT" secondAttribute="leading" id="cip-JK-McW"/>
                                             <constraint firstItem="Apb-Xh-h5g" firstAttribute="top" secondItem="hbT-Fe-RVp" secondAttribute="bottom" constant="2" id="dQZ-0j-3Wm"/>
                                             <constraint firstItem="Ps4-0d-dL0" firstAttribute="top" secondItem="mlB-Lj-ESs" secondAttribute="bottom" constant="2" id="hsS-tR-pKc"/>
                                             <constraint firstItem="h6I-0U-uoZ" firstAttribute="leading" secondItem="Apb-Xh-h5g" secondAttribute="leading" id="iKh-lX-3QJ"/>
+                                            <constraint firstItem="FKN-SM-NkQ" firstAttribute="bottom" secondItem="mlB-Lj-ESs" secondAttribute="bottom" id="ny9-ij-H48"/>
                                             <constraint firstItem="h6I-0U-uoZ" firstAttribute="top" secondItem="Apb-Xh-h5g" secondAttribute="bottom" constant="2" id="qi9-7l-O3w"/>
                                             <constraint firstItem="mlB-Lj-ESs" firstAttribute="top" secondItem="E6r-5K-CQT" secondAttribute="bottom" constant="2" id="r69-b5-goN"/>
                                             <constraint firstItem="Ps4-0d-dL0" firstAttribute="leading" secondItem="E6r-5K-CQT" secondAttribute="leading" id="z2M-Y1-76X"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brn-sQ-bjx">
-                                        <rect key="frame" x="0.0" y="545" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="735" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-mQ-kd5">
                                                 <rect key="frame" x="15" y="4" width="45" height="13.5"/>
@@ -842,7 +861,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xx5-rB-JnF">
-                                        <rect key="frame" x="0.0" y="565" width="375" height="38"/>
+                                        <rect key="frame" x="0.0" y="755" width="375" height="38"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVL-4z-a3W">
                                                 <rect key="frame" x="15" y="10" width="25" height="14.5"/>
@@ -859,7 +878,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBQ-lW-IXN">
-                                        <rect key="frame" x="0.0" y="420" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="465" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验券使用须知 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIh-pT-j6k">
                                                 <rect key="frame" x="15" y="4" width="82" height="13.5"/>
@@ -923,8 +942,10 @@
                     <navigationItem key="navigationItem" id="o12-Rt-Xev"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="callBtn" destination="aHC-ne-nAS" id="C2S-5b-voR"/>
                         <outlet property="dmLabel" destination="LaS-R7-OMd" id="d1r-rX-nRB"/>
                         <outlet property="dwLabel" destination="S6T-Le-Mz2" id="XZc-h6-d51"/>
+                        <outlet property="endLabel" destination="o56-e3-mvs" id="Rcs-TG-UJR"/>
                         <outlet property="sygzLbel" destination="h6I-0U-uoZ" id="p5b-Vn-PDk"/>
                         <outlet property="sysjLabel" destination="hbT-Fe-RVp" id="pbZ-RX-cXk"/>
                         <outlet property="tyjImage" destination="RRd-bg-fC4" id="a8b-v7-2mz"/>
@@ -938,7 +959,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za1-WY-6y9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="869"/>
+            <point key="canvasLocation" x="997.60000000000002" y="868.51574212893559"/>
         </scene>
         <!--会所详情-->
         <scene sceneID="Bt6-Nv-oBF">

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "tiyanquanModel.h"
 @interface SecuritiesDetailViewController : UIViewController
-
+@property (strong,nonatomic) tiyanquanModel *detail;
 @end
