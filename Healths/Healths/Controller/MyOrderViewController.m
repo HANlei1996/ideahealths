@@ -8,12 +8,21 @@
 
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
-
+#import "OrderModel.h"
 @interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger flag;
+    
     NSInteger pageNum;
+    NSInteger pageSize;
+    
+    BOOL isLastPage;
+
 }
 @property (weak, nonatomic) IBOutlet UITableView *MyOrderTableViewCell;
 @property (strong, nonatomic) UIActivityIndicatorView *avi;
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) NSMutableArray *orderArr;
+
 @end
 
 @implementation MyOrderViewController
@@ -21,25 +30,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //初始化可变数组！！！
+    _orderArr = [NSMutableArray new];
+    pageNum = 1;
+    pageSize = 20;
     //去掉tableview底部多余的线
     _MyOrderTableViewCell.tableFooterView = [UIView new];
     UIRefreshControl *ref = [UIRefreshControl new];
     [ref addTarget:self action:@selector(refreshPage) forControlEvents:UIControlEventValueChanged];
     ref.tag = 10005;
     [_MyOrderTableViewCell addSubview:ref];
-    [self request];
+    //没有数据时显示的图片
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((UI_SCREEN_W - 100) / 2,_MyOrderTableViewCell.frame.origin.y + 100, 100, 100)];
+    _imageView.image = [UIImage imageNamed:@"no_things"];
+    [self.view addSubview:_imageView];
     
+    //调用网络请求
+    [self initializeData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//当前页面将要显示的时候，显示导航栏
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 - (void)refreshPage{
     pageNum = 1;
     [self request];
 }
 
+#pragma mark - request
+
+- (void)initializeData{
+    _avi = [Utilities getCoverOnView:self.view];
+    [self refreshPage];
+}
 //网络请求
 - (void)request{
     [_avi stopAnimating];
@@ -51,13 +81,32 @@
         UIRefreshControl *ref = [_MyOrderTableViewCell viewWithTag:10005];
         [ref endRefreshing];
         NSLog(@"order: %@", responseObject);
-        if ([responseObject[@"flag"] isEqualToString:@"result"]) {
+        if ([responseObject[@"resultFlag"] integerValue] == 8001) {
+            NSDictionary *result = responseObject[@"result"];
+            NSArray *list = result[@"list"];
+            
+            isLastPage = [result[@"isLastPage"] boolValue];
+            
+            if (pageNum == 1) {
+                [_orderArr removeAllObjects];
+            }
+            
+            for (NSDictionary *dict in list) {
+                OrderModel *history = [[OrderModel alloc] initWithDict:dict];
+                [_orderArr addObject:history];
+            }
+            
+            if (_orderArr.count == 0) {
+                _imageView.hidden = NO;
+            }else{
+                _imageView.hidden = YES;
+            }
             
             
             
             [_MyOrderTableViewCell reloadData];
         }else{
-            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"result"]integerValue]];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:@"提示" onView:self];
         }
         
@@ -83,7 +132,7 @@
 }
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return _orderArr.count;
 }
 //细胞长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -101,7 +150,12 @@
 }
 //细胞将要出现时调用
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self request];
+    if (indexPath.row == _orderArr.count - 1) {
+        if (!isLastPage) {
+            pageNum ++;
+            [self request];
+        }
+    }
 }
 
 @end
