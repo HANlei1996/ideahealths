@@ -9,6 +9,10 @@
 #import "FeedbackViewController.h"
 
 @interface FeedbackViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *feedBackTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *feedBackBarBtn;
+- (IBAction)feedBackAction:(UIBarButtonItem *)sender;
+
 
 @end
 
@@ -25,13 +29,15 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)feedBackAction:(UIBarButtonItem *)sender {
 }
-*/
-
 @end

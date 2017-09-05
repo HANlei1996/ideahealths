@@ -8,6 +8,8 @@
 
 #import "ClubDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "HomeModel.h"
+
 @interface ClubDetailViewController ()<UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UILabel *soldCount;
 @property(strong,nonatomic)NSMutableArray *arr1;
+@property(strong,nonatomic)UIImageView *image;
 
 @end
 
@@ -38,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self networkRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,20 +62,44 @@
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
+    //实例化一个button 类型为UIButtonTypeSystem
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    //设置位置大小
+    leftBtn.frame = CGRectMake(0, 0, 20, 20);
+    //设置其背景图片为返回图片
+    [leftBtn setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
+    //给按钮添加事件
+    [leftBtn addTarget:self action:@selector(leftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    
 }
+
+//自定的返回按钮的事件
+- (void)leftButtonAction: (UIButton *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//键盘收回
+- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //让根视图结束编辑状态达到收起键盘的目的
+    [self.view endEditing:YES];
+}
+
 -(void)networkRequest{
     UIActivityIndicatorView *aiv=[Utilities getCoverOnView:self.view];
-    NSMutableDictionary *parameters=[NSMutableDictionary new];
-    if([Utilities loginCheck]){
-        [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
-        
-    }
-    [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameters andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    /*if([Utilities loginCheck]){
+     [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
+     
+     }*/
+    NSDictionary *parameter=@{@"clubKeyId":@64};
+    [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
+        NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
-           // NSDictionary *result= responseObject[@"result"];
-           // _activity= [[ActivityModel alloc]initWithDetailDictionary:result];
-           // [self uiLayout];
+            NSDictionary *result= responseObject[@"result"];
+            _detail= [[HomeModel alloc]initWithDict:result];
+            [self uiLayout];
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
@@ -84,34 +112,31 @@
     }];
     
 }
-
+-(void)uiLayout{
+    [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"Image"]];
+    //[self addTapGestureRecognizer:_DetailView]
+    _clubName.text = _detail.clubName;
+    _clubAddress.text = _detail.clubAddressB;
+    
+    [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
+    _contentTextView.text = _detail.clubIntroduce;
+    _time.text = _detail.clubTime;
+    _membersCount.text = _detail.clubMember;
+    _citeCount.text = _detail.site;
+    
+}
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
-- (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"12365436789" otherButtonTitles:nil];
-    sheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [sheet showInView:self.view];
-}
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex ==0){
-        //配置“电话”APP的路径，并将要拨打的号码组合到路径中
-        //NSString *targetAppStr=[NSString stringWithFormat:@"telprompt://%@",_activity.phone];
-        
-        //NSURL *targetAppUrl=[NSURL URLWithString:targetAppStr];
-        //从当前APP跳转到其他指定的APP中
-        //[[UIApplication sharedApplication] openURL:targetAppUrl];
 
-    }
-    return;
-}
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
     
     
@@ -131,56 +156,76 @@
 
 
 
-//添加单击手势事件
--(void)addTap:(id)any{
-    //初始化一个单击手势，设置响应事件为tapClick
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+//添加一个单击手势事件
+- (void)addTapGestureRecognizer: (id)any{
+    //初始化一个单击手势，设置它的响应事件为tapClick:
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+    //用户交互启用
+    _activityImgView.userInteractionEnabled = YES;
+    //将手势添加给入参
     [any addGestureRecognizer:tap];
-    
+}
+//小图单击手势响应事件
+- (void)tapClick: (UITapGestureRecognizer *)tap{
+    if (tap.state == UIGestureRecognizerStateRecognized){
+        NSLog(@"你单击了");
+        //拿到单击手势在_activityTableView中的位置
+        //CGPoint location = [tap locationInView:_activityImageView];
+        //通过上述的点拿到在_activityTableView对应的indexPath
+        //NSIndexPath *indexPath = [_activityTableView indexPathForRowAtPoint:location];
+        //防范式编程
+        // if (_arr !=nil && _arr.count != 0){
+        //根据行号拿到数组中对应的数据
+        //  ActivityModel *activity = _arr[indexPath.row];
+        //设置大图片的位置大小
+        _image = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+        //用户交互启用
+        _image.userInteractionEnabled = YES;
+        //设置大图背景颜色
+        _image.backgroundColor = [UIColor blackColor];
+        //_image.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_activity.imgUrl]]];
+        //将http请求的字符串转换为nsurl
+        NSURL *URL = [NSURL URLWithString:_detail.clubLogo];
+        //依靠SDWebImage来异步地下载一张远程路径中的图片并三级缓存在项目中，同时为下载的时间周期过程中设置一张临时占位图
+        [_image sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@"01"]];
+        //设置图片地内容模式
+        _image.contentMode = UIViewContentModeScaleAspectFit;
+        //[UIApplication sharedApplication].keyWindow获得窗口实例，并将大图放置到窗口实例上，根据苹果规则，后添加的控件会盖住前面添加的控件
+        [[UIApplication sharedApplication].keyWindow addSubview:_image];
+        UITapGestureRecognizer *zoomIVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomTap:)];
+        [_image addGestureRecognizer:zoomIVTap];
+        
+        // }
+    }
+}//大图的单击手势响应事件
+- (void)zoomTap: (UITapGestureRecognizer *)tap{
+    if (tap.state == UIGestureRecognizerStateRecognized) {
+        //把大图的本身东西扔掉
+        [_image removeGestureRecognizer:tap];
+        //把自己从父级视图中移除
+        [_image removeFromSuperview];
+        //彻底消失（这样就不会让内存滥用）
+        _image = nil;
+    }
 }
 
 
 
-//单击手势响应事件
--(void)tapClick:(UITapGestureRecognizer *)tap{
+- (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    if (tap.state==UIGestureRecognizerStateRecognized) {
+    UIAlertAction *callAction = [UIAlertAction actionWithTitle:_detail.clubTel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        
-        
-        //拿到长按手势在_activiyTableView中的位置
-        CGPoint location=[tap locationInView:_detailView];
-        //通过上述的点拿到现在_activiyTableView对应的indexPath
-        // NSIndexPath *indexPath=[_DetailView indexPathForRowAtPoint:location];
-        
-        //防范
-        if (_arr1 !=nil && _arr1.count !=0) {
-            // ActivityModel *activity=_arr1[indexPath.row];
-            //设置大图片的位置大小
-            _activityImgView=[[UIImageView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-            //用户交互启用
-            _activityImgView.userInteractionEnabled=YES;
-            _activityImgView.backgroundColor=[UIColor blackColor];
-            //[_activityImgView sd_setImageWithURL:[NSURL URLWithString:_activity.imgUrl] placeholderImage:[UIImage imageNamed:@"aaa"]];
-            //设置图片的内容模式
-            _activityImgView.contentMode = UIViewContentModeScaleAspectFit;
-            //获得窗口实例，并将大图放置到窗口实例上，根据苹果规则，后添加的空间会覆盖前添加的控件
-            [[UIApplication sharedApplication].keyWindow addSubview:_activityImgView];
-            UITapGestureRecognizer *zoomIVtap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomTap:)];
-            [_activityImgView addGestureRecognizer:zoomIVtap];
-        }
-    }
+    }];
     
-}
--(void)zoomTap:(UITapGestureRecognizer *)tap{
-    if (tap.state==UIGestureRecognizerStateRecognized) {
-        //把大图本身的东西扔掉（大图的手势）
-        [_activityImgView removeGestureRecognizer:tap];
-        //把自己从视图上移除
-        [_activityImgView removeFromSuperview];
-        //让图片彻底消失（不会造成内存的滥用)
-        _activityImgView=nil;
-    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [actionSheetController addAction:cancelAction];
+    [actionSheetController addAction:callAction];
+    
+    [self presentViewController:actionSheetController animated:YES completion:nil];
     
 }
 
