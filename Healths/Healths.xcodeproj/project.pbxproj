@@ -28,6 +28,7 @@
 		84392D1D1F5E67B5000FCB01 /* QZFilterDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392D101F5E67B5000FCB01 /* QZFilterDataTableView.m */; };
 		84392D1E1F5E67B5000FCB01 /* QZSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392D121F5E67B5000FCB01 /* QZSortCell.m */; };
 		84392D1F1F5E67B5000FCB01 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392D141F5E67B5000FCB01 /* UIView+Extension.m */; };
+		849784251F5FAA0B006AF704 /* CardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849784241F5FAA0B006AF704 /* CardTableViewCell.m */; };
 		84C85B091F594D9E00941F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B081F594D9E00941F69 /* main.m */; };
 		84C85B0C1F594D9E00941F69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B0B1F594D9E00941F69 /* AppDelegate.m */; };
 		84C85B151F594D9E00941F69 /* Healths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84C85B131F594D9E00941F69 /* Healths.xcdatamodeld */; };
@@ -150,6 +151,8 @@
 		84392D121F5E67B5000FCB01 /* QZSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSortCell.m; sourceTree = "<group>"; };
 		84392D131F5E67B5000FCB01 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		84392D141F5E67B5000FCB01 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		849784231F5FAA0B006AF704 /* CardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTableViewCell.h; sourceTree = "<group>"; };
+		849784241F5FAA0B006AF704 /* CardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTableViewCell.m; sourceTree = "<group>"; };
 		84C85B041F594D9E00941F69 /* Healths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C85B081F594D9E00941F69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84C85B0A1F594D9E00941F69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -685,6 +688,8 @@
 			children = (
 				84C85BEF1F5A496000941F69 /* HomeTableViewCell.h */,
 				84C85BF01F5A496000941F69 /* HomeTableViewCell.m */,
+				849784231F5FAA0B006AF704 /* CardTableViewCell.h */,
+				849784241F5FAA0B006AF704 /* CardTableViewCell.m */,
 			);
 			name = HomeCell;
 			sourceTree = "<group>";
@@ -923,6 +928,7 @@
 				84C85B521F5950DB00941F69 /* qrencode.m in Sources */,
 				7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */,
 				84392D151F5E67B5000FCB01 /* CzCollectionViewCell.m in Sources */,
+				849784251F5FAA0B006AF704 /* CardTableViewCell.m in Sources */,
 				840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */,
 				84C85B531F5950DB00941F69 /* qrinput.m in Sources */,
 				84C85B711F5950E900941F69 /* DataVerifier.m in Sources */,

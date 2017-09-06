@@ -92,7 +92,7 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-    NSDictionary *parameter=@{@"clubKeyId":@64};
+    NSDictionary *parameter=@{@"clubKeyId":_detail.clubid};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
@@ -122,7 +122,7 @@
     _contentTextView.text = _detail.clubIntroduce;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
-    _citeCount.text = _detail.site;
+    _citeCount.text = _detail.clubSite;
     
 }
 /*

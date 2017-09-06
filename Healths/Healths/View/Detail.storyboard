@@ -1005,7 +1005,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无锡市新区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idi-xp-66e">
-                                                <rect key="frame" x="50" y="42" width="76.5" height="18"/>
+                                                <rect key="frame" x="50" y="42" width="290" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1032,6 +1032,7 @@
                                             <constraint firstItem="Idi-xp-66e" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="ZyM-P0-lnI"/>
                                             <constraint firstItem="8Az-A2-iMj" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="fn2-Xc-IrD"/>
                                             <constraint firstAttribute="height" constant="70" id="iWJ-hw-Uo0"/>
+                                            <constraint firstItem="8Az-A2-iMj" firstAttribute="leading" secondItem="Idi-xp-66e" secondAttribute="trailing" id="pjM-iu-mPN"/>
                                             <constraint firstItem="Fcw-V1-da1" firstAttribute="leading" secondItem="aQF-jh-qhP" secondAttribute="leading" constant="15" id="qmP-Do-7yU"/>
                                         </constraints>
                                     </view>

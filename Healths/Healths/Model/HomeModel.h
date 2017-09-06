@@ -20,8 +20,10 @@
 @property (strong,nonatomic) NSString *securitiesname;//体验券名称
 @property (strong,nonatomic) NSString *categoryName;//体验券类型名称
 @property (strong,nonatomic) NSString *price;//体验券价格
-//@property (strong,nonatomic) NSArray *experience;
-//-(instancetype)initWithdeDictionary:(NSDictionary *)dict;
+@property (strong,nonatomic) NSString *sellNumber;
+
+@property (strong,nonatomic) NSArray *experience;
+
 @property(strong,nonatomic) NSString *clubLogo;
 @property(strong,nonatomic) NSString *clubId;
 @property(strong,nonatomic) NSString *clubName;
@@ -30,7 +32,13 @@
 @property(strong,nonatomic) NSString *clubIntroduce;
 @property(strong,nonatomic) NSString *clubTime;
 @property(strong,nonatomic) NSString *clubMember;
-@property(strong,nonatomic) NSString *site;
+@property(strong,nonatomic) NSString *clubSite;
+@property(strong,nonatomic) NSString *eId;
+@property(strong,nonatomic) NSString *eLogo;
+@property(strong,nonatomic) NSString *eName;
+@property(strong,nonatomic) NSString *orginPrice;
+@property(strong,nonatomic) NSString *saleCount;
+
 -(id)initWithDict:(NSDictionary *)dict;
 -(instancetype)initWithDictionary:(NSDictionary *)dict;
 @end

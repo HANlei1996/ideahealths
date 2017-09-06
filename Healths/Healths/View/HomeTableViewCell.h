@@ -13,10 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *clubIdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *smallImageView;
-@property (weak, nonatomic) IBOutlet UILabel *clubCardLabel;
-@property (weak, nonatomic) IBOutlet UILabel *volumeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
-@property (weak, nonatomic) IBOutlet UILabel *soldLabel;
 
 @end
