@@ -11,7 +11,6 @@
 		7947BC8C1F5D339500D0638C /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */; };
 		7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */; };
 		840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */; };
-		841F0EB11F5A86BC000B57B6 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */; };
 		841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB31F5A8785000B57B6 /* NCViewController.m */; };
 		841F0EB71F5A87AE000B57B6 /* XBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB61F5A87AE000B57B6 /* XBViewController.m */; };
 		841F0EBA1F5A87CF000B57B6 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB91F5A87CF000B57B6 /* SRViewController.m */; };
@@ -120,8 +119,6 @@
 		7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromotionViewController.m; sourceTree = "<group>"; };
 		840D28F21F5E2F8900E8E260 /* tiyanquanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiyanquanModel.h; sourceTree = "<group>"; };
 		840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tiyanquanModel.m; sourceTree = "<group>"; };
-		841F0EAF1F5A86BC000B57B6 /* SetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpTableViewCell.h; sourceTree = "<group>"; };
-		841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
 		841F0EB21F5A8785000B57B6 /* NCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCViewController.h; sourceTree = "<group>"; };
 		841F0EB31F5A8785000B57B6 /* NCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCViewController.m; sourceTree = "<group>"; };
 		841F0EB51F5A87AE000B57B6 /* XBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBViewController.h; sourceTree = "<group>"; };
@@ -649,8 +646,6 @@
 			children = (
 				84C85B901F5950FA00941F69 /* SetUpViewController.h */,
 				84C85B911F5950FA00941F69 /* SetUpViewController.m */,
-				841F0EAF1F5A86BC000B57B6 /* SetUpTableViewCell.h */,
-				841F0EB01F5A86BC000B57B6 /* SetUpTableViewCell.m */,
 				841F0EB21F5A8785000B57B6 /* NCViewController.h */,
 				841F0EB31F5A8785000B57B6 /* NCViewController.m */,
 				841F0EB51F5A87AE000B57B6 /* XBViewController.h */,
@@ -916,7 +911,6 @@
 				84C85B6E1F5950E900941F69 /* GBAlipayManager.m in Sources */,
 				84C85BA41F5950FA00941F69 /* SignInViewController.m in Sources */,
 				84392D1E1F5E67B5000FCB01 /* QZSortCell.m in Sources */,
-				841F0EB11F5A86BC000B57B6 /* SetUpTableViewCell.m in Sources */,
 				84C85B701F5950E900941F69 /* DataSigner.m in Sources */,
 				84D3B0701F5D58CE0036F458 /* ClubDetailModel.m in Sources */,
 				84C85B981F5950FA00941F69 /* AboutUsViewController.m in Sources */,
