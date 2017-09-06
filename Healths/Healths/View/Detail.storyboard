@@ -12,7 +12,7 @@
         <!--Pay-->
         <scene sceneID="ese-4w-MyN">
             <objects>
-                <viewController storyboardIdentifier="Purchase" title="Pay" id="Buj-ai-C1n" customClass="PayViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Purchase" title="Pay" hidesBottomBarWhenPushed="YES" id="Buj-ai-C1n" customClass="PayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vvx-Zw-fId"/>
                         <viewControllerLayoutGuide type="bottom" id="TaD-NY-m9z"/>
@@ -960,7 +960,7 @@
         <!--会所详情-->
         <scene sceneID="Bt6-Nv-oBF">
             <objects>
-                <viewController title="会所详情" id="EHy-sp-NRC" customClass="ClubDetailViewController" sceneMemberID="viewController">
+                <viewController title="会所详情" hidesBottomBarWhenPushed="YES" id="EHy-sp-NRC" customClass="ClubDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SKf-9c-l4h"/>
                         <viewControllerLayoutGuide type="bottom" id="Ex1-Io-AQe"/>

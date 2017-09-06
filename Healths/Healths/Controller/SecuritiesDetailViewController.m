@@ -79,11 +79,21 @@
 
     
     if([Utilities loginCheck]){
+        if ([_xjLabel.text isEqualToString:@"0"]) {
+            UIAlertController *alertView=[UIAlertController alertControllerWithTitle:@"支付成功" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *okAction=[UIAlertAction actionWithTitle:@"知道了" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }];
+            [alertView addAction:okAction];
+         [self presentViewController:alertView animated:YES completion:nil];
+            
+            
+        }else{
         PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"Purchase"];
         purchaseVC.detail=_detail;
         [self.navigationController pushViewController:purchaseVC animated:YES];
-        
-        
+        }
     }else{
         UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
 
