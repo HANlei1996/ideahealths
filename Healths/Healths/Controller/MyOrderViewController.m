@@ -9,6 +9,7 @@
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
 #import "OrderModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSInteger flag;
     
@@ -75,7 +76,7 @@
     [_avi stopAnimating];
     UIRefreshControl *ref = [_MyOrderTableViewCell viewWithTag:10005];
     [ref endRefreshing];
-    NSDictionary *para = @{@"memberId":@1,@"type":@0};
+    NSDictionary *para = @{@"memberId":@2,@"type":@0};
     [RequestAPI requestURL:@"/orderController/orderList" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [_avi stopAnimating];
         UIRefreshControl *ref = [_MyOrderTableViewCell viewWithTag:10005];
@@ -83,7 +84,7 @@
         NSLog(@"order: %@", responseObject);
         if ([responseObject[@"resultFlag"] integerValue] == 8001) {
             NSDictionary *result = responseObject[@"result"];
-            NSArray *list = result[@"list"];
+            NSArray *list = result[@"orderList"];
             
             isLastPage = [result[@"isLastPage"] boolValue];
             
@@ -137,7 +138,15 @@
 //细胞长什么样
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderCell" forIndexPath:indexPath];
+    OrderModel *order = _orderArr[indexPath.row];
+    NSURL *url = [NSURL URLWithString:order.image];
+    [cell.pictureImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认图"]];
+    cell.orderNumLabel.text =[NSString stringWithFormat:@"订单号:%@",order.dingdanNum];
+    cell.tiyanLabel.text = order.tiyan;
+    cell.dianmingLabel.text = order.mingzi;
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%ld元",(long)order.yuan];
     return cell;
+
 }
 //设置每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

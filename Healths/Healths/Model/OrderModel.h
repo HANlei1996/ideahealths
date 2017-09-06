@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface OrderModel : NSObject
-@property (nonatomic) NSTimeInterval dingdanNum;
+@property (strong,nonatomic) NSString *dingdanNum;
 @property (strong, nonatomic) NSString *image;
 @property (strong, nonatomic) NSString *tiyan;
 @property (strong, nonatomic) NSString *mingzi;
-@property (nonatomic) NSInteger *yuan;
+@property (nonatomic) NSInteger yuan;
+
 
 - (instancetype)initWithDict: (NSDictionary *)dict;
 

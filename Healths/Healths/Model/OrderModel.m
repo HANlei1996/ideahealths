@@ -12,11 +12,11 @@
 - (instancetype)initWithDict: (NSDictionary *)dict{
     self = [super init];
     if (self) {
-        self.dingdanNum = [[Utilities nullAndNilCheck:dict[@"dingdanNum"] replaceBy:0] integerValue];
-        self.tiyan = [Utilities nullAndNilCheck:dict[@"tiyan"] replaceBy:@""];
-        self.image = [Utilities nullAndNilCheck:dict[@"image"] replaceBy:@""];
-        self.mingzi = [Utilities nullAndNilCheck:dict[@"mingzi"] replaceBy:@""];
-        self.yuan = [[Utilities nullAndNilCheck:dict[@"yuan"] replaceBy:0]integerValue];
+        self.dingdanNum = [Utilities nullAndNilCheck:dict[@"orderNum"] replaceBy:0];
+        self.tiyan = [Utilities nullAndNilCheck:dict[@"productName"] replaceBy:@""];
+        self.image = [Utilities nullAndNilCheck:dict[@"imgUrl"] replaceBy:@""];
+        self.mingzi = [Utilities nullAndNilCheck:dict[@"clubName"] replaceBy:@""];
+        self.yuan = [[Utilities nullAndNilCheck:dict[@"donepay"] replaceBy:0]integerValue];
     }
     return self;
     

@@ -125,7 +125,7 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="settingAction:" destination="gLu-cF-Z99" id="Ef1-JC-Etp"/>
-                                <segue destination="7FZ-vJ-bky" kind="show" id="y8J-p6-kbb"/>
+                                <segue destination="7FZ-vJ-bky" kind="show" identifier="jjjj" id="y8J-p6-kbb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -529,7 +529,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="968B5007-FCBE-4E67-B4C8-CC833ABAA5C1" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-Bt-Ubs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认图" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-Bt-Ubs">
                                                     <rect key="frame" x="18" y="40" width="85" height="42.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="bYl-Bt-Ubs" secondAttribute="height" multiplier="2:1" id="yVO-JR-29m"/>
@@ -745,9 +745,9 @@
     </scenes>
     <resources>
         <image name="01" width="622" height="1148"/>
-        <image name="968B5007-FCBE-4E67-B4C8-CC833ABAA5C1" width="16" height="16"/>
         <image name="app_logo" width="960" height="367"/>
         <image name="ic_user_head" width="100" height="100"/>
         <image name="设置" width="40" height="40"/>
+        <image name="默认图" width="138" height="92"/>
     </resources>
 </document>
