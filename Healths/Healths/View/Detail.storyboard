@@ -161,7 +161,7 @@
         <!--体验券信息-->
         <scene sceneID="qDg-Wb-yx1">
             <objects>
-                <viewController title="体验券信息" id="qOE-eq-jtS" customClass="SecuritiesDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="secur" title="体验券信息" id="qOE-eq-jtS" customClass="SecuritiesDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IV3-gc-yUx"/>
                         <viewControllerLayoutGuide type="bottom" id="wgU-XK-WlS"/>
