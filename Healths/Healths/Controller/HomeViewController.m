@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "ClubDetailViewController.h"
 #import "CardTableViewCell.h"
+#import "SecuritiesDetailViewController.h"
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSInteger homePageNum;
     NSInteger isLastPage;
@@ -256,6 +257,9 @@
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
+    //purchaseVC.detail=_detail;
+    [self.navigationController pushViewController:purchaseVC animated:YES];
 }
 //细胞将要出现时调用
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
