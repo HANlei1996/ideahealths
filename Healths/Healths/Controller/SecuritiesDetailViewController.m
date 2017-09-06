@@ -91,12 +91,9 @@
         
     }
 
-
-     PayViewController *purchaseVC=[Utilities getStoryboardInstance:@"Pay" byIdentity:@"Purchase"];
-    //purchaseVC.activity=_activity;
-    [self.navigationController pushViewController:purchaseVC animated:YES];
-
+     
     
+
 }
 #pragma mark - request
 -(void)networkRequest{
