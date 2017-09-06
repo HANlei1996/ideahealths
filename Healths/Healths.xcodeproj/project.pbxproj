@@ -91,6 +91,7 @@
 		84C85BE61F59573B00941F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C85BE51F59573B00941F69 /* Main.storyboard */; };
 		84C85BF11F5A496000941F69 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C85BF01F5A496000941F69 /* HomeTableViewCell.m */; };
 		84D3B0701F5D58CE0036F458 /* ClubDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3B06F1F5D58CE0036F458 /* ClubDetailModel.m */; };
+		84DC833D1F5FF7690051D384 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC833C1F5FF7690051D384 /* SetUpTableViewCell.m */; };
 		84DE7A911F5CE07E00D82DBB /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DE7A901F5CE07E00D82DBB /* HomeModel.m */; };
 		AAA573C955E9683EDA0BA5ED /* libPods-Healths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80F461B059254101490D702 /* libPods-Healths.a */; };
 /* End PBXBuildFile section */
@@ -269,6 +270,8 @@
 		84C85BF01F5A496000941F69 /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
 		84D3B06E1F5D58CE0036F458 /* ClubDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubDetailModel.h; sourceTree = "<group>"; };
 		84D3B06F1F5D58CE0036F458 /* ClubDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubDetailModel.m; sourceTree = "<group>"; };
+		84DC833B1F5FF7690051D384 /* SetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpTableViewCell.h; sourceTree = "<group>"; };
+		84DC833C1F5FF7690051D384 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
 		84DE7A8F1F5CE07E00D82DBB /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		84DE7A901F5CE07E00D82DBB /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
 		A80F461B059254101490D702 /* libPods-Healths.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Healths.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -654,6 +657,8 @@
 			children = (
 				84C85B901F5950FA00941F69 /* SetUpViewController.h */,
 				84C85B911F5950FA00941F69 /* SetUpViewController.m */,
+				84DC833B1F5FF7690051D384 /* SetUpTableViewCell.h */,
+				84DC833C1F5FF7690051D384 /* SetUpTableViewCell.m */,
 				841F0EB21F5A8785000B57B6 /* NCViewController.h */,
 				841F0EB31F5A8785000B57B6 /* NCViewController.m */,
 				841F0EB51F5A87AE000B57B6 /* XBViewController.h */,
@@ -897,6 +902,7 @@
 				84C85B741F5950E900941F69 /* openssl_wrapper.m in Sources */,
 				84C85B501F5950DB00941F69 /* bitstream.m in Sources */,
 				7947BC7F1F5CE52C00D0638C /* MyTableViewCell.m in Sources */,
+				84DC833D1F5FF7690051D384 /* SetUpTableViewCell.m in Sources */,
 				84C85BC01F59511800941F69 /* JSONS.m in Sources */,
 				84C85BBD1F59511800941F69 /* Order.m in Sources */,
 				84C85B571F5950DB00941F69 /* BasicEncodingRules.m in Sources */,
