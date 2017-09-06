@@ -62,37 +62,29 @@
                                 <rect key="frame" x="0.0" y="204" width="375" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SetUpTableViewCell" id="U8Y-tA-JC4" customClass="SetUpTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SetUpTableViewCell" textLabel="XCQ-83-8QD" detailTextLabel="wcQ-yz-OYh" style="IBUITableViewCellStyleValue1" id="U8Y-tA-JC4" customClass="SetUpTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U8Y-tA-JC4" id="Ws1-bx-OnX">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZt-PU-LGo">
-                                                    <rect key="frame" x="15" y="10" width="31" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XCQ-83-8QD">
+                                                    <rect key="frame" x="15" y="13" width="31" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阿凡达" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngd-je-8v6">
-                                                    <rect key="frame" x="291" y="10.5" width="46" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="阿凡达" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wcQ-yz-OYh">
+                                                    <rect key="frame" x="294" y="13" width="46" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="eZt-PU-LGo" firstAttribute="leading" secondItem="Ws1-bx-OnX" secondAttribute="leading" constant="15" id="5Ny-tb-lIH"/>
-                                                <constraint firstItem="eZt-PU-LGo" firstAttribute="top" secondItem="Ws1-bx-OnX" secondAttribute="top" constant="10" id="7LD-vh-HCK"/>
-                                                <constraint firstItem="ngd-je-8v6" firstAttribute="centerY" secondItem="eZt-PU-LGo" secondAttribute="centerY" id="JmF-CO-fVO"/>
-                                                <constraint firstAttribute="trailing" secondItem="ngd-je-8v6" secondAttribute="trailing" constant="5" id="afy-F0-6qP"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="infoLabel" destination="ngd-je-8v6" id="MoJ-Vi-V7J"/>
-                                            <outlet property="nicknameLabel" destination="eZt-PU-LGo" id="Lc8-Iz-p7n"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
