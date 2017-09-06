@@ -58,18 +58,6 @@
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:(UITableViewScrollPositionNone)];
 }
 
-/*-(void)uiLayout{
-    _nameLabel.text=_activity.name;
-    _contentLabel.text=_activity.content;
-    _priceLabel.text=[NSString stringWithFormat:@"%@元",_activity.applyFee]
-    ;
-    self.tableView.tableFooterView=[UIView new];
-    //将表格视图设置为“细胞中”
-    self.tableView.editing=YES;
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-    //用代码来选中表格视图中的某个细胞
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:(UITableViewScrollPositionNone)];
-}*/
 -(void)dataInitialize{
     _arr=@[@"支付宝支付",@"微信支付",@"银联支付"];
     
@@ -95,30 +83,11 @@
     
 }
 
-/*-(void)payAction{
-    switch(self.tableView.indexPathForSelectedRow.row){
-        case 0:{
-            NSString *tradeNo=[GBAlipayManager generateTradeNO];
-            [GBAlipayManager alipayWithProductName:_activity.name amount:_activity.applyFee tradeNO:tradeNo notifyURL:nil productDescription:[NSString stringWithFormat:@"%@的活动报名费",_activity.name] itBPay:@"30"];
-        }
-            break;
-        case 1:{
-            
-        }
-            break;
-        case 2:{
-            
-        }
-            break;
-        default:
-            break;
-    }
-    
-}*/
 
 -(void)purchaseResultAction:(NSNotification *)note{
     NSString *result=note.object;
     if([result isEqualToString:@"9000"]) {
+        NSLog(@"成功");
         //成功
         UIAlertController *alertView=[UIAlertController alertControllerWithTitle:@"支付成功" message:@"恭喜你，你成功完成报名" preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction=[UIAlertAction actionWithTitle:@"知道了" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
@@ -128,6 +97,7 @@
         [alertView addAction:okAction];
         [self presentViewController:alertView animated:YES completion:nil];
     }else{
+        NSLog(@"失败");
         //失败
         [Utilities popUpAlertViewWithMsg:[result isEqualToString:@"4000"] ? @"未能成功支付，请确保账户余额充足": @"你已取消订单" andTitle:@"支付失败:" onView:self];
     }

@@ -7,7 +7,7 @@
 //
 
 #import "SetUpViewController.h"
-#import "SetUpTableViewCell.h"
+
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UserModel.h"
 @interface SetUpViewController ()
@@ -25,7 +25,7 @@
     [super viewDidLoad];
     [self naviConfig];
     // Do any additional setup after loading the view.
-    _setupArr = @[@{@"nicknameLabel":@"昵称",@"infoLabel":@"阿凡达"},@{@"nicknameLabel":@"性别",@"infoLabel":@"男"},@{@"nicknameLabel":@"生日",@"infoLabel":@"2046-12-25"},@{@"nicknameLabel":@"身份证号码",@"infoLabel":@"320203204612256666"}];
+    _setupArr = @[@{@"nicknameLabel":@"昵称",@"infoLabel":@"未知"},@{@"nicknameLabel":@"性别",@"infoLabel":@"未知"},@{@"nicknameLabel":@"生日",@"infoLabel":@"未知"},@{@"nicknameLabel":@"身份证号码",@"infoLabel":@"未知"}];
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
     
@@ -82,10 +82,10 @@
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SetUpTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"SetUpTableViewCell" forIndexPath:indexPath];
-    NSDictionary *dict = _setupArr[indexPath.section];
-    cell.nicknameLabel.text=dict[@"nicknameLabel"];
-    cell.infoLabel.text = dict[@"infoLabel"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetUpTableViewCell" forIndexPath:indexPath];
+    NSDictionary *dict =_setupArr[indexPath.section];
+    cell.textLabel.text = dict[@"nicknameLabel"];
+    cell.detailTextLabel.text = dict[@"infoLabel"];
     return cell;
 }
 //设置组的底部视图高度
@@ -155,6 +155,8 @@
 
 - (void)exit{
     [self dismissViewControllerAnimated:YES completion:nil];
+    /*UINavigationController *SignNavi=[Utilities getStoryboardInstance:@"SetUp" byIdentity:@"SignNavi"];
+    [self presentViewController:SignNavi animated:YES completion:nil];*/
 }
 
 //设置组的底部视图颜色为透明
