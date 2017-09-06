@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "tiyanquanModel.h"
+#import "HomeModel.h"
 @interface SecuritiesDetailViewController : UIViewController
 @property (strong,nonatomic) tiyanquanModel *detail;
+@property (strong,nonatomic) HomeModel *deta;
 @end

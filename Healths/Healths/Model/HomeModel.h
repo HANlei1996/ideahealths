@@ -23,7 +23,7 @@
 @property (strong,nonatomic) NSString *sellNumber;
 
 @property (strong,nonatomic) NSArray *experience;
-
+@property (strong,nonatomic) NSArray *experienceInfos;
 @property(strong,nonatomic) NSString *clubLogo;
 @property(strong,nonatomic) NSString *clubId;
 @property(strong,nonatomic) NSString *clubName;
@@ -33,6 +33,7 @@
 @property(strong,nonatomic) NSString *clubTime;
 @property(strong,nonatomic) NSString *clubMember;
 @property(strong,nonatomic) NSString *clubSite;
+@property(strong,nonatomic) NSString *clubPerson;
 @property(strong,nonatomic) NSString *eId;
 @property(strong,nonatomic) NSString *eLogo;
 @property(strong,nonatomic) NSString *eName;
