@@ -92,6 +92,7 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
+    NSLog(@"mum=%@",_detail.clubid);
     NSDictionary *parameter=@{@"clubKeyId":_detail.clubid};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
