@@ -12,4 +12,8 @@
 @interface SecuritiesDetailViewController : UIViewController
 @property (strong,nonatomic) tiyanquanModel *detail;
 @property (strong,nonatomic) HomeModel *deta;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 329708ce3761197939d4f764b1500264f2a5d452
 @end
