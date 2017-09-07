@@ -107,9 +107,10 @@
 }
 #pragma mark - request
 -(void)networkRequest{
+    
     UIActivityIndicatorView *aiv=[Utilities getCoverOnView:self.view];
-       
-    [RequestAPI requestURL:@"/clubController/experienceDetail" withParameters:@{@"experienceId":@64} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+       NSLog(@"mum=%@",[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]);
+    [RequestAPI requestURL:@"/clubController/experienceDetail" withParameters:@{@"experienceId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
        
         NSLog(@"responseObject:%@",responseObject);
