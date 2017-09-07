@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HomeModel.h"
 #import "DetailCardTableViewCell.h"
+#import "SecuritiesDetailViewController.h"
 
 
 @interface ClubDetailViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
@@ -182,11 +183,27 @@
 
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row ==0) {
+        SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
+        
+        //purchaseVC.detail=_detail;
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
+        HomeModel *model = _arr1[indexPath.section];
+        //NSDictionary *dict = model.experienceInfos[indexPath.row];
+        
+        [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.eId];
+        
+        [self.navigationController pushViewController:purchaseVC animated:YES];
+        return;
+
+    }
+ 
+        
     
 }
 //细胞将要出现时调用
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    //[self networkRequest];
+ 
 }
 /*
  #pragma mark - Navigation

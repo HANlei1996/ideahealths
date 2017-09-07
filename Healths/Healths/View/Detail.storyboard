@@ -1206,36 +1206,36 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sd-Za-Kdk">
-                                                                    <rect key="frame" x="317" y="60.5" width="43" height="16"/>
+                                                                    <rect key="frame" x="317" y="71" width="43" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="综合卷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1Y-pd-3kT">
-                                                                    <rect key="frame" x="179" y="36" width="40" height="16"/>
+                                                                    <rect key="frame" x="179" y="40.5" width="40" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX0-WH-W4j">
-                                                                    <rect key="frame" x="179" y="62" width="29.5" height="16"/>
+                                                                    <rect key="frame" x="179" y="71" width="29.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="5Sd-Za-Kdk" secondAttribute="bottom" constant="20" id="26O-tE-ifh"/>
+                                                                <constraint firstItem="cX0-WH-W4j" firstAttribute="bottom" secondItem="DIT-br-WyZ" secondAttribute="bottom" id="AE4-eI-gbQ"/>
                                                                 <constraint firstItem="U1Y-pd-3kT" firstAttribute="leading" secondItem="DIT-br-WyZ" secondAttribute="trailing" constant="15" id="Dex-3q-96I"/>
-                                                                <constraint firstItem="cX0-WH-W4j" firstAttribute="top" secondItem="U1Y-pd-3kT" secondAttribute="bottom" constant="10" id="HjU-nA-NeL"/>
                                                                 <constraint firstAttribute="trailing" secondItem="5Sd-Za-Kdk" secondAttribute="trailing" constant="15" id="L1x-Rh-mbq"/>
-                                                                <constraint firstItem="U1Y-pd-3kT" firstAttribute="top" secondItem="jjo-l1-ghB" secondAttribute="bottom" constant="10" id="P5j-CA-Q8E"/>
                                                                 <constraint firstItem="jjo-l1-ghB" firstAttribute="top" secondItem="DIT-br-WyZ" secondAttribute="top" id="RE0-He-LkJ"/>
+                                                                <constraint firstItem="U1Y-pd-3kT" firstAttribute="centerY" secondItem="DIT-br-WyZ" secondAttribute="centerY" id="cCd-23-gRh"/>
                                                                 <constraint firstItem="jjo-l1-ghB" firstAttribute="leading" secondItem="DIT-br-WyZ" secondAttribute="trailing" constant="15" id="fuG-Ik-61b"/>
                                                                 <constraint firstItem="DIT-br-WyZ" firstAttribute="leading" secondItem="mIB-qH-z2b" secondAttribute="leading" constant="10" id="ije-pi-bfv"/>
                                                                 <constraint firstItem="DIT-br-WyZ" firstAttribute="top" secondItem="mIB-qH-z2b" secondAttribute="top" constant="10" id="m0T-Pf-UBj"/>
                                                                 <constraint firstAttribute="bottom" secondItem="DIT-br-WyZ" secondAttribute="bottom" constant="10" id="nEA-Lv-gdj"/>
                                                                 <constraint firstItem="cX0-WH-W4j" firstAttribute="leading" secondItem="DIT-br-WyZ" secondAttribute="trailing" constant="15" id="w9U-os-bJI"/>
+                                                                <constraint firstItem="5Sd-Za-Kdk" firstAttribute="bottom" secondItem="DIT-br-WyZ" secondAttribute="bottom" id="yAE-9a-44n"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
