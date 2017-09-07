@@ -11,7 +11,7 @@
 
 @interface MyPromotionViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *erweimaImage;
-
+@property (strong, nonatomic) UIActivityIndicatorView *avi;
 @end
 
 @implementation MyPromotionViewController
@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self requst];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,5 +77,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)requst{
+    _avi = [Utilities getCoverOnView:self.view];
+    
+    [RequestAPI requestURL:@"/mySelfController/getInvitationCode" withParameters:@{@"memberId":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"mypromotion:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            //NSDictionary *result = responseObject[@"result"];
+            [_avi stopAnimating];
+        }
+        else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+    
+    
+}
 
 @end

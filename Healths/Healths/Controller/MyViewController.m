@@ -125,7 +125,6 @@
                     [self performSegueWithIdentifier:@"wdhk" sender:self];
                     break;
                 case 2:
-                    [self performSegueWithIdentifier:@"wdxx" sender:self];
                     break;
                 case 3:
                     [self performSegueWithIdentifier:@"aaaa" sender:self];
@@ -140,24 +139,32 @@
             [self presentViewController:signNavi animated:YES completion:nil];
             
         }
+    if (indexPath.section == 2){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前积分:2534" message:@"积分商城即将登陆，准备好了吗，亲？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //        [self exit];
+            
+        }];
+        [alert addAction:actionA];
+        [self presentViewController:alert animated:YES completion:nil];
+
     }
-    
+}
     
 
 
 
 - (IBAction)settingAction:(UIBarButtonItem *)sender {
     if ([Utilities loginCheck]) {
+      [self performSegueWithIdentifier:@"setup" sender:self];
         
     }else{
         
-        UINavigationController *SetUpNavi=[Utilities getStoryboardInstance:@"SetUp" byIdentity:@"SetUpNavi"];
-        [self presentViewController:SetUpNavi animated:YES completion:nil];    }
-    
+        [self performSegueWithIdentifier:@"sign" sender:self];
 }
-
+}
 - (IBAction)loginAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    [self performSegueWithIdentifier:@"zhsz" sender:self];
+    [self performSegueWithIdentifier:@"sign" sender:self];
 
     
     
