@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="80"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_head" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-ET-YRa">
-                                        <rect key="frame" x="30" y="10" width="60" height="60"/>
+                                        <rect key="frame" x="15" y="10" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="7IN-ET-YRa" secondAttribute="height" multiplier="1:1" id="Dnr-OT-EuL"/>
                                             <constraint firstAttribute="height" constant="60" id="IPa-Wt-aJ6"/>
@@ -51,7 +51,7 @@
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95548136510000004" blue="0.93440169240000004" alpha="0.58085402399999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7IN-ET-YRa" secondAttribute="bottom" constant="10" id="6hO-5C-iWM"/>
-                                    <constraint firstItem="7IN-ET-YRa" firstAttribute="leading" secondItem="swv-lJ-RgT" secondAttribute="leading" constant="30" id="Ibg-GV-kdx"/>
+                                    <constraint firstItem="7IN-ET-YRa" firstAttribute="leading" secondItem="swv-lJ-RgT" secondAttribute="leading" constant="15" id="Ibg-GV-kdx"/>
                                     <constraint firstItem="7IN-ET-YRa" firstAttribute="top" secondItem="swv-lJ-RgT" secondAttribute="top" constant="10" id="J84-Zb-Jnt"/>
                                     <constraint firstItem="amA-qc-PsM" firstAttribute="centerY" secondItem="7IN-ET-YRa" secondAttribute="centerY" id="KvV-IG-eOW"/>
                                     <constraint firstAttribute="trailing" secondItem="amA-qc-PsM" secondAttribute="trailing" constant="15" id="cfz-KR-FiU"/>
