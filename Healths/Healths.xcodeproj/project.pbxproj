@@ -93,6 +93,7 @@
 		84D3B0701F5D58CE0036F458 /* ClubDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3B06F1F5D58CE0036F458 /* ClubDetailModel.m */; };
 		84DC833D1F5FF7690051D384 /* SetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC833C1F5FF7690051D384 /* SetUpTableViewCell.m */; };
 		84DE7A911F5CE07E00D82DBB /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DE7A901F5CE07E00D82DBB /* HomeModel.m */; };
+		84F3D83C1F613121008819CF /* DetailCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3D83B1F613121008819CF /* DetailCardTableViewCell.m */; };
 		AAA573C955E9683EDA0BA5ED /* libPods-Healths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80F461B059254101490D702 /* libPods-Healths.a */; };
 /* End PBXBuildFile section */
 
@@ -274,6 +275,8 @@
 		84DC833C1F5FF7690051D384 /* SetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpTableViewCell.m; sourceTree = "<group>"; };
 		84DE7A8F1F5CE07E00D82DBB /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		84DE7A901F5CE07E00D82DBB /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		84F3D83A1F613121008819CF /* DetailCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCardTableViewCell.h; sourceTree = "<group>"; };
+		84F3D83B1F613121008819CF /* DetailCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCardTableViewCell.m; sourceTree = "<group>"; };
 		A80F461B059254101490D702 /* libPods-Healths.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Healths.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5090B76C3EFACD01F252C81 /* Pods-Healths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.release.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -604,6 +607,7 @@
 		84C85BDA1F5954E100941F69 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84F3D8391F6130F4008819CF /* Card1 */,
 				84392CEA1F5E663A000FCB01 /* New Group */,
 				7947BC7C1F5CE50100D0638C /* MyTableViewCell */,
 				84C85BEE1F5A491C00941F69 /* HomeCell */,
@@ -697,6 +701,15 @@
 				849784241F5FAA0B006AF704 /* CardTableViewCell.m */,
 			);
 			name = HomeCell;
+			sourceTree = "<group>";
+		};
+		84F3D8391F6130F4008819CF /* Card1 */ = {
+			isa = PBXGroup;
+			children = (
+				84F3D83A1F613121008819CF /* DetailCardTableViewCell.h */,
+				84F3D83B1F613121008819CF /* DetailCardTableViewCell.m */,
+			);
+			name = Card1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -932,6 +945,7 @@
 				84D3B0701F5D58CE0036F458 /* ClubDetailModel.m in Sources */,
 				84C85B981F5950FA00941F69 /* AboutUsViewController.m in Sources */,
 				84C85B521F5950DB00941F69 /* qrencode.m in Sources */,
+				84F3D83C1F613121008819CF /* DetailCardTableViewCell.m in Sources */,
 				7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */,
 				84392D151F5E67B5000FCB01 /* CzCollectionViewCell.m in Sources */,
 				849784251F5FAA0B006AF704 /* CardTableViewCell.m in Sources */,
