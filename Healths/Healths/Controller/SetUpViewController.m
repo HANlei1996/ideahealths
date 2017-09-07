@@ -26,6 +26,21 @@
     [super viewDidLoad];
     [self naviConfig];
   //  _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+    if ([Utilities loginCheck]) {
+        //已登录
+        
+        _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+        NSLog(@"东东是：%@",_user.dob);
+        _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+        [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
+        
+        
+        
+        
+    }else{
+        _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
+        
+    }
   
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
@@ -42,21 +57,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    if ([Utilities loginCheck]) {
-        //已登录
-        
-       _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
-         NSLog(@"东东是：%@",_user.dob);
-         _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
-        [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
-        
-        
-        
-        
-    }else{
-        _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
-        
-    }
     
 }
 
