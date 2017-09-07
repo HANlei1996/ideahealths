@@ -293,7 +293,7 @@
         NSIndexPath *indexPath=[_homeTableView indexPathForSelectedRow];
 
         
-        HomeModel *activity=_Arr2[indexPath.row];
+        HomeModel *activity=_Arr2[indexPath.section];
         //2获取下一页的这个实例
         ClubDetailViewController *detailVC= segue.destinationViewController;
         //3吧数据 给下一页预备好的接收容器
