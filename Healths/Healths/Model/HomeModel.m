@@ -53,11 +53,13 @@
         _clubTime = [Utilities nullAndNilCheck:dict[@"clubTime"] replaceBy:@""];
         _clubMember = [Utilities nullAndNilCheck:dict[@"clubMember"] replaceBy:@""];
         _clubSite = [Utilities nullAndNilCheck:dict[@"clubSite"] replaceBy:@""];
+        _clubPerson = [Utilities nullAndNilCheck:dict[@"clubPerson"] replaceBy:@""];
         _eId = [Utilities nullAndNilCheck:dict[@"eId"] replaceBy:@""];
         _eLogo = [Utilities nullAndNilCheck:dict[@"eLogo"] replaceBy:@""];
         _eName = [Utilities nullAndNilCheck:dict[@"eName"] replaceBy:@""];
         _orginPrice = [Utilities nullAndNilCheck:dict[@"orginPrice"] replaceBy:@""];
         _saleCount = [Utilities nullAndNilCheck:dict[@"saleCount"] replaceBy:@""];
+        self.experienceInfos =[dict[@"experienceInfos"] isKindOfClass:[NSNull class]] ?@[ ]:      dict[@"experienceInfos"];
         
     }
     return self;

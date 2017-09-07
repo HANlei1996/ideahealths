@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
-#import "HomeModel.h"
+
 #import "UIImageView+WebCache.h"
 #import "ClubDetailViewController.h"
 #import "CardTableViewCell.h"
@@ -262,12 +262,16 @@
     }
     if (indexPath.row >=1) {
         SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
+<<<<<<< HEAD
         //purchaseVC.detail=_detail;
         [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
         HomeModel *model = _Arr2[indexPath.section];
         NSDictionary *dict = model.experience[indexPath.row-1];
         
         [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:dict[@"id"]];
+=======
+        purchaseVC.deta=_deta;
+>>>>>>> bc8a9530205050a0e9c138f60b966d3288622838
         [self.navigationController pushViewController:purchaseVC animated:YES];
         return;
     }
@@ -289,8 +293,12 @@
         //当从列表页到详情页的这个跳转要发生的时候
         //1获取要传递到下一页的数据
         NSIndexPath *indexPath=[_homeTableView indexPathForSelectedRow];
+<<<<<<< HEAD
         
         HomeModel *activity=_Arr2[indexPath.row];
+=======
+        HomeModel *activity=_Arr2[indexPath.section];
+>>>>>>> bc8a9530205050a0e9c138f60b966d3288622838
         //2获取下一页的这个实例
         ClubDetailViewController *detailVC= segue.destinationViewController;
         //3吧数据 给下一页预备好的接收容器

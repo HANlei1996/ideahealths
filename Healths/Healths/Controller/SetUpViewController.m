@@ -7,7 +7,7 @@
 //
 
 #import "SetUpViewController.h"
-
+#import "SetUpTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UserModel.h"
 @interface SetUpViewController ()
@@ -15,8 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *modificationBtn;
 - (IBAction)modBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet UITableView *SetUpTableView;
-@property (strong, nonatomic) NSArray *setupArr;
+@property (strong, nonatomic) NSMutableArray *setupArr;
 @property (strong,nonatomic) UIActivityIndicatorView *avi;
+@property (strong,nonatomic)UserModel *user;
 @end
 
 @implementation SetUpViewController
@@ -24,8 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self naviConfig];
-    // Do any additional setup after loading the view.
-    _setupArr = @[@{@"nicknameLabel":@"昵称",@"infoLabel":@"未知"},@{@"nicknameLabel":@"性别",@"infoLabel":@"未知"},@{@"nicknameLabel":@"生日",@"infoLabel":@"未知"},@{@"nicknameLabel":@"身份证号码",@"infoLabel":@"未知"}];
+  //  _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+  
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
     
@@ -37,6 +38,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//当前页面将要显示的时候，显示导航栏
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    if ([Utilities loginCheck]) {
+        //已登录
+        
+       _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+         NSLog(@"东东是：%@",_user.dob);
+         _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+        [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
+        
+        
+        
+        
+    }else{
+        _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
+        
+    }
+    
+}
+
+
 -(void)naviConfig{
     
     //设置导航条的颜色（风格颜色）
@@ -82,12 +106,15 @@
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetUpTableViewCell" forIndexPath:indexPath];
-    NSDictionary *dict =_setupArr[indexPath.section];
-    cell.textLabel.text = dict[@"nicknameLabel"];
-    cell.detailTextLabel.text = dict[@"infoLabel"];
+    SetUpTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetUpTableViewCell" forIndexPath:indexPath];
+    //根据行号拿到数组中对应的数据
+    NSDictionary *dict = _setupArr[indexPath.section];
+    
+    cell.nicknameLabel.text = dict[@"nicknameLabel"];
+    cell.infoLabel.text = dict[@"infoLabel"];
     return cell;
 }
+
 //设置组的底部视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 0) {

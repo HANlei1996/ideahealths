@@ -13,4 +13,6 @@
 @property (strong,nonatomic) tiyanquanModel *detail;
 @property (strong,nonatomic) HomeModel *deta;
 
+
+
 @end

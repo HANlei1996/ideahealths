@@ -92,7 +92,7 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-    NSLog(@"mum=%@",_detail.clubid);
+
     NSDictionary *parameter=@{@"clubKeyId":_detail.clubid};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
@@ -101,6 +101,7 @@
             NSDictionary *result= responseObject[@"result"];
             _detail= [[HomeModel alloc]initWithDict:result];
             [self uiLayout];
+            
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
@@ -113,18 +114,26 @@
     }];
     
 }
+
 -(void)uiLayout{
-    [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"Image"]];
+    [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
+   
     //[self addTapGestureRecognizer:_DetailView]
     _clubName.text = _detail.clubName;
     _clubAddress.text = _detail.clubAddressB;
-    
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
+    _contentTextView.editable = NO;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
+    _coachCount.text = _detail.clubPerson;
+//    NSArray *experienceInfos = _detail.experienceInfos;
+//    for (NSDictionary *dict in experienceInfos) {
+//        NSLog(@"dict = %@",dict.allValues);
+//    }
     
+    //NSDictionary *experienceInfos = experienceInfos[];
 }
 /*
  #pragma mark - Navigation
@@ -136,13 +145,7 @@
  }
  */
 
-
-
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    
-    
-    
-    
 }
 
 -(void)addlongPress:(UITableView *)cell{
@@ -154,8 +157,6 @@
     [cell addGestureRecognizer:longPress];
     
 }
-
-
 
 //添加一个单击手势事件
 - (void)addTapGestureRecognizer: (id)any{
