@@ -9,10 +9,16 @@
 #import "ClubDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HomeModel.h"
+#import "DetailCardTableViewCell.h"
 
-@interface ClubDetailViewController ()<UIActionSheetDelegate>
+
+@interface ClubDetailViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
+    BOOL isLastPage;
+    NSInteger homePageNum;
+}
 @property (strong, nonatomic) IBOutlet UIView *detailView;
 
+@property (weak, nonatomic) IBOutlet UITableView *experienceCardTableView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *activityImgView;
 
@@ -25,12 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *citeCount;
 @property (weak, nonatomic) IBOutlet UILabel *coachCount;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn;
-- (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
-@property (weak, nonatomic) IBOutlet UILabel *experienceCard;
-@property (weak, nonatomic) IBOutlet UILabel *cardType;
-@property (weak, nonatomic) IBOutlet UILabel *price;
-@property (weak, nonatomic) IBOutlet UILabel *soldCount;
 @property(strong,nonatomic)NSMutableArray *arr1;
 @property(strong,nonatomic)UIImageView *image;
 
@@ -40,6 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    _arr1 = [NSMutableArray new];
     // Do any additional setup after loading the view.
     [self networkRequest];
 }
@@ -92,16 +95,22 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-
+    NSLog(@"club id = %@",_detail.clubid);
     NSDictionary *parameter=@{@"clubKeyId":_detail.clubid};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
-            NSDictionary *result= responseObject[@"result"];
+            NSDictionary *result = responseObject[@"result"];
+            NSArray *experienceInfos = result[@"experienceInfos"];
+            for(NSDictionary *dict in experienceInfos){
+                HomeModel *homeModel = [[HomeModel alloc]initWithDict:dict];
+                [_arr1 addObject:homeModel];
+            }
             _detail= [[HomeModel alloc]initWithDict:result];
-            [self uiLayout];
             
+            [self uiLayout];
+            [_experienceCardTableView reloadData];
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
@@ -117,7 +126,7 @@
 
 -(void)uiLayout{
     [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
-   
+    
     //[self addTapGestureRecognizer:_DetailView]
     _clubName.text = _detail.clubName;
     _clubAddress.text = _detail.clubAddressB;
@@ -128,12 +137,56 @@
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
     _coachCount.text = _detail.clubPerson;
-//    NSArray *experienceInfos = _detail.experienceInfos;
-//    for (NSDictionary *dict in experienceInfos) {
-//        NSLog(@"dict = %@",dict.allValues);
-//    }
+    //    NSArray *experienceInfos = _detail.experienceInfos;
+    //    for (NSDictionary *dict in experienceInfos) {
+    //        NSLog(@"dict = %@",dict.allValues);
+    //    }
     
     //NSDictionary *experienceInfos = experienceInfos[];
+    
+}
+//一共多少组
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return _arr1.count;
+    
+}
+//每组多少行
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 1;
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HomeModel*model = _arr1[indexPath.section];
+    DetailCardTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"card1cell" forIndexPath:indexPath];
+    NSLog(@"%@,%@,%@,%@",model.orginPrice,model.eName,model.saleCount,model.eLogo);
+   
+        
+        cell.experienceCard.text = model.eName;
+        cell.price.text = model.orginPrice;
+        cell.cardType.text = @"综合卷";
+        cell.soldCount.text = model.saleCount;
+        NSURL *URL2=[NSURL URLWithString:model.eLogo];
+        [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
+        
+    
+    
+    return cell;
+}
+//设置每行高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 120.f;
+}
+
+//细胞选中后调用
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+//细胞将要出现时调用
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    //[self networkRequest];
 }
 /*
  #pragma mark - Navigation
@@ -230,5 +283,4 @@
     [self presentViewController:actionSheetController animated:YES completion:nil];
     
 }
-
 @end
