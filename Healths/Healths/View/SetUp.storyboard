@@ -139,32 +139,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-T8-zNI">
-                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmB-qt-ZVi">
+                                <rect key="frame" x="0.0" y="226" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="EV6-C1-wwH" id="Lt1-XA-Bvc"/>
+                                    <outlet property="delegate" destination="EV6-C1-wwH" id="jya-v6-hAJ"/>
+                                </connections>
+                            </pickerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-ao-l3N">
+                                <rect key="frame" x="0.0" y="140" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="ODw-Ig-IlU">
+                                        <connections>
+                                            <action selector="CancelAction:" destination="EV6-C1-wwH" id="rl4-RB-HJP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6kx-B6-JUa"/>
+                                    <barButtonItem title="Done" id="yZu-L4-NU0">
+                                        <connections>
+                                            <action selector="DoneAction:" destination="EV6-C1-wwH" id="EKV-95-ZB8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-9N-CUc">
+                                <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="hkl-46-mNQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="eiH-f0-MXg"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="XBTextAction:forEvent:" destination="EV6-C1-wwH" eventType="editingDidEnd" id="6H9-aq-KcF"/>
+                                </connections>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-Vc-rFs">
-                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="bNd-Vc-rFs" secondAttribute="trailing" id="4O5-yk-9Pu"/>
-                            <constraint firstItem="q1b-HI-GTM" firstAttribute="top" secondItem="bNd-Vc-rFs" secondAttribute="bottom" id="Dds-5F-fDb"/>
-                            <constraint firstItem="HqO-T8-zNI" firstAttribute="top" secondItem="MrO-vh-lHC" secondAttribute="bottom" id="Gcj-OC-w8I"/>
-                            <constraint firstItem="HqO-T8-zNI" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="IeZ-L9-7Yh"/>
-                            <constraint firstItem="bNd-Vc-rFs" firstAttribute="top" secondItem="HqO-T8-zNI" secondAttribute="bottom" id="TRc-rK-RmL"/>
-                            <constraint firstItem="bNd-Vc-rFs" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="UpJ-n4-KfN"/>
-                            <constraint firstAttribute="trailing" secondItem="HqO-T8-zNI" secondAttribute="trailing" id="kb7-Uc-0zc"/>
+                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="A4S-MX-kba"/>
+                            <constraint firstItem="Yvy-9N-CUc" firstAttribute="top" secondItem="MrO-vh-lHC" secondAttribute="bottom" constant="30" id="GKD-yW-AIS"/>
+                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="centerY" secondItem="CqS-Ax-MBB" secondAttribute="centerY" id="OdL-3m-ieV"/>
+                            <constraint firstItem="Yvy-9N-CUc" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="Pt6-Fg-MYD"/>
+                            <constraint firstAttribute="trailing" secondItem="Yvy-9N-CUc" secondAttribute="trailing" id="Q7y-c6-3ry"/>
+                            <constraint firstAttribute="trailing" secondItem="rmB-qt-ZVi" secondAttribute="trailing" id="tR8-zi-a7I"/>
+                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="centerX" secondItem="CqS-Ax-MBB" secondAttribute="centerX" id="xoM-Uy-Rjr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="修改性别" id="cgV-fq-UPj"/>
+                    <navigationItem key="navigationItem" title="修改性别" id="cgV-fq-UPj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZgZ-U7-tK8">
+                            <connections>
+                                <action selector="XBSaveAction:" destination="EV6-C1-wwH" id="wFN-Xq-cbg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="XBSave" destination="ZgZ-U7-tK8" id="CVJ-4h-4UT"/>
+                        <outlet property="XBTextField" destination="Yvy-9N-CUc" id="iVN-mL-2Jm"/>
+                        <outlet property="pickerView" destination="rmB-qt-ZVi" id="eEj-Q0-taz"/>
+                        <outlet property="toolBar" destination="CzK-ao-l3N" id="aKb-z8-dVs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dal-nf-SIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,32 +217,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eba-Gc-tdQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-MV-Osd">
+                                <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="24u-jx-qOZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="3Us-hX-jUN"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="SRAction:forEvent:" destination="QhJ-fw-G6U" eventType="editingDidEnd" id="zlY-0k-oSt"/>
+                                </connections>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjw-Lq-bl6">
-                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-rF-zPq">
+                                <rect key="frame" x="0.0" y="134" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="hwe-bZ-rrR"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Rmx-mN-OcL"/>
+                                    <barButtonItem title="Done" id="riu-8j-6hG"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="QhJ-fw-G6U" id="BUX-TS-bts"/>
+                                </connections>
+                            </toolbar>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-TL-OzH">
+                                <rect key="frame" x="0.0" y="178" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="526552725.61865699">
+                                    <!--2017-09-08 08:38:45 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="eba-Gc-tdQ" secondAttribute="trailing" id="07w-L0-ykt"/>
-                            <constraint firstItem="Hjw-Lq-bl6" firstAttribute="top" secondItem="eba-Gc-tdQ" secondAttribute="bottom" id="Ino-pt-L39"/>
-                            <constraint firstItem="eba-Gc-tdQ" firstAttribute="top" secondItem="MbU-JA-vHm" secondAttribute="bottom" id="LtB-NF-7Vx"/>
-                            <constraint firstAttribute="trailing" secondItem="Hjw-Lq-bl6" secondAttribute="trailing" id="Qn8-x1-ehc"/>
-                            <constraint firstItem="eba-Gc-tdQ" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="fIP-QJ-8Aq"/>
-                            <constraint firstItem="Hjw-Lq-bl6" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="i7q-wl-ZID"/>
-                            <constraint firstItem="MZH-dq-EGU" firstAttribute="top" secondItem="Hjw-Lq-bl6" secondAttribute="bottom" id="wXb-9b-RfT"/>
+                            <constraint firstItem="LM8-MV-Osd" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="597-fz-OPH"/>
+                            <constraint firstAttribute="trailing" secondItem="LM8-MV-Osd" secondAttribute="trailing" id="Xxu-lh-22h"/>
+                            <constraint firstItem="LM8-MV-Osd" firstAttribute="top" secondItem="MbU-JA-vHm" secondAttribute="bottom" constant="30" id="gZa-X7-WSd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="修改生日" id="uen-JM-eSE"/>
+                    <navigationItem key="navigationItem" title="修改生日" id="uen-JM-eSE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="FUo-d9-cuB">
+                            <connections>
+                                <action selector="SRSaveAction:" destination="QhJ-fw-G6U" id="BM6-iR-hKk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="CancelAction" destination="hwe-bZ-rrR" id="NaW-Wh-UX3"/>
+                        <outlet property="DoneAction" destination="riu-8j-6hG" id="Apj-Oa-h20"/>
+                        <outlet property="SRtextField" destination="LM8-MV-Osd" id="KUQ-io-xbk"/>
+                        <outlet property="pickerView" destination="jH7-TL-OzH" id="9qC-ia-o1b"/>
+                        <outlet property="toolBar" destination="0gj-rF-zPq" id="e9z-SZ-YMA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i8f-iY-n92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -250,7 +312,16 @@
                             <constraint firstItem="sRN-xB-mYI" firstAttribute="top" secondItem="FKO-pq-SLe" secondAttribute="bottom" id="osc-wH-rJK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="修改身份证号码" id="3ls-Le-9Ao"/>
+                    <navigationItem key="navigationItem" title="修改身份证号码" id="3ls-Le-9Ao">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EHi-pP-rA2">
+                            <connections>
+                                <action selector="SFZHMSaveAction:" destination="mMm-s5-I6A" id="rUx-UM-fhC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="SFZHMTextField" destination="FKO-pq-SLe" id="fw8-t5-zEY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1D-Wn-57e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,7 +339,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="阿凡达" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Pfe-Dc-ATM"/>
@@ -294,8 +365,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="修改昵称" id="jsV-O2-azd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sRj-EG-fnY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sRj-EG-fnY">
+                            <connections>
+                                <action selector="NCSaveAction:" destination="vx4-1s-MUN" id="7Xm-NU-vcZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="NCSave" destination="sRj-EG-fnY" id="GWu-jv-af0"/>
+                        <outlet property="NCTextField" destination="O9m-or-3is" id="TrN-ju-bns"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcX-Q8-NUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

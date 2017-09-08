@@ -30,7 +30,7 @@
         //已登录
         
         _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
-        NSLog(@"东东是：%@",_user.dob);
+        //NSLog(@"东东是：%@",_user.dob);
         _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
         [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
         
@@ -44,6 +44,9 @@
   
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
+    [_SetUpTableView reloadData];
+    [self networkRequest];
+
     
 }
 
@@ -181,7 +184,10 @@
 }
 
 - (void)exit{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
+    [self presentViewController:signNavi animated:YES completion:nil];
+
+    //[self dismissViewControllerAnimated:YES completion:nil];
     /*UINavigationController *SignNavi=[Utilities getStoryboardInstance:@"SetUp" byIdentity:@"SignNavi"];
     [self presentViewController:SignNavi animated:YES completion:nil];*/
 }
@@ -196,5 +202,36 @@
 
 - (IBAction)modBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
+-(void)networkRequest{
+ _avi=[Utilities getCoverOnView:self.view];
+ 
+ //NSLog(@"%@",_user.nickname);
+ 
+ NSDictionary *para = @{@"memberId":_user.memberId,@"name":_user.nickname};
+ [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+ [_avi stopAnimating];
+ NSLog(@"responseObject:%@",responseObject);
+ if([responseObject[@"resultFlag"]integerValue] == 8001){
+ //NSDictionary *result= responseObject[@"result"];
+     
+ 
+ 
+ 
+ [_SetUpTableView reloadData];
+ 
+ }else{
+ NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+ [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+ 
+ }
+ } failure:^(NSInteger statusCode, NSError *error) {
+ [_avi stopAnimating];
+ //业务逻辑失败的情况下
+ [Utilities popUpAlertViewWithMsg:@"网络请求失败😂" andTitle:nil onView:self];
+ }];
+ 
+ }
+ 
+
 
 @end

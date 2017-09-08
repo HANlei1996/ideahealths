@@ -7,8 +7,20 @@
 //
 
 #import "SRViewController.h"
-
+#import "UserModel.h"
+#import "SetUpTableViewCell.h"
+#import "SetUpViewController.h"
 @interface SRViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *SRtextField;
+- (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *CancelAction;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *DoneAction;
+@property (weak, nonatomic) IBOutlet UIDatePicker *pickerView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+- (IBAction)SRSaveAction:(UIBarButtonItem *)sender;
+@property(strong,nonatomic)NSArray *pickerArr;
+@property (strong,nonatomic)UserModel *user;
+@property (strong,nonatomic) UIActivityIndicatorView *avi;
 
 @end
 
@@ -18,6 +30,10 @@
     [super viewDidLoad];
     [self naviConfig];
     // Do any additional setup after loading the view.
+    _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+    _SRtextField.text=_user.dob;
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,4 +79,8 @@
 }
 */
 
+- (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event {
+}
+- (IBAction)SRSaveAction:(UIBarButtonItem *)sender {
+}
 @end
