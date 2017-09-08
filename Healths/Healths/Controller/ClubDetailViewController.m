@@ -165,20 +165,18 @@
     NSLog(@"%@,%@,%@,%@",model.orginPrice,model.eName,model.saleCount,model.eLogo);
    
         
-        cell.experienceCard.text = model.eName;
-        cell.price.text = model.orginPrice;
+    cell.experienceCard.text = model.eName;
+    cell.price.text = [NSString stringWithFormat:@"%@ 元",model.orginPrice];
         cell.cardType.text = @"综合卷";
-        cell.soldCount.text = model.saleCount;
-        NSURL *URL2=[NSURL URLWithString:model.eLogo];
-        [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
-        
-    
+    cell.soldCount.text = [NSString stringWithFormat:@"已售:%@",model.saleCount];
+    NSURL *URL2=[NSURL URLWithString:model.eLogo];
+    [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
     
     return cell;
 }
 //设置每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120.f;
+    return 80.f;
 }
 
 //细胞选中后调用
