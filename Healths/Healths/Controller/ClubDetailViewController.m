@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HomeModel.h"
 #import "DetailCardTableViewCell.h"
+#import "SecuritiesDetailViewController.h"
 
 
 @interface ClubDetailViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property(strong,nonatomic)NSMutableArray *arr1;
 @property(strong,nonatomic)UIImageView *image;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textviewH;
 
 @end
 
@@ -43,8 +45,10 @@
     
     
     _arr1 = [NSMutableArray new];
+    _experienceCardTableView.tableFooterView = [UIView new];
     // Do any additional setup after loading the view.
     [self networkRequest];
+    [self naviConfig];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,9 +58,9 @@
 // 这个方法专门做导航条的控制
 -(void)naviConfig{
     //设置导航条标题文字
-    self.navigationItem.title=@"会所信息";
+    self.navigationItem.title=@"体验卡信息";
     //设置导航条的颜色（风格颜色）
-    self.navigationController.navigationBar.barTintColor=[UIColor brownColor];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:100/255.0 blue:255.0 alpha:1.0]];
     //设置导航条的标题颜色
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor whiteColor] };
     //设置导航条是否隐藏
@@ -65,23 +69,8 @@
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
-    //实例化一个button 类型为UIButtonTypeSystem
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    //设置位置大小
-    leftBtn.frame = CGRectMake(0, 0, 20, 20);
-    //设置其背景图片为返回图片
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-    //给按钮添加事件
-    [leftBtn addTarget:self action:@selector(leftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    
 }
 
-//自定的返回按钮的事件
-- (void)leftButtonAction: (UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 //键盘收回
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -133,16 +122,12 @@
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
     _contentTextView.editable = NO;
+    _textviewH.constant = self.contentTextView.contentSize.height;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
     _coachCount.text = _detail.clubPerson;
-    //    NSArray *experienceInfos = _detail.experienceInfos;
-    //    for (NSDictionary *dict in experienceInfos) {
-    //        NSLog(@"dict = %@",dict.allValues);
-    //    }
     
-    //NSDictionary *experienceInfos = experienceInfos[];
     
 }
 //一共多少组
@@ -164,29 +149,44 @@
     NSLog(@"%@,%@,%@,%@",model.orginPrice,model.eName,model.saleCount,model.eLogo);
    
         
-        cell.experienceCard.text = model.eName;
-        cell.price.text = model.orginPrice;
+    cell.experienceCard.text = model.eName;
+    cell.price.text = [NSString stringWithFormat:@"%@ 元",model.orginPrice];
         cell.cardType.text = @"综合卷";
-        cell.soldCount.text = model.saleCount;
-        NSURL *URL2=[NSURL URLWithString:model.eLogo];
-        [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
-        
-    
+    cell.soldCount.text = [NSString stringWithFormat:@"已售:%@",model.saleCount];
+    NSURL *URL2=[NSURL URLWithString:model.eLogo];
+    [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
     
     return cell;
 }
 //设置每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120.f;
+    return 80.f;
 }
 
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row ==0) {
+        SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
+        
+        //purchaseVC.detail=_detail;
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
+        HomeModel *model = _arr1[indexPath.section];
+        //NSDictionary *dict = model.experienceInfos[indexPath.row];
+        
+        [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.eId];
+        
+        [self.navigationController pushViewController:purchaseVC animated:YES];
+        [_experienceCardTableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+
+    }
+ 
+        
     
 }
 //细胞将要出现时调用
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    //[self networkRequest];
+ 
 }
 /*
  #pragma mark - Navigation
@@ -201,15 +201,6 @@
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
 
--(void)addlongPress:(UITableView *)cell{
-    //初始化一个长按手势，设置响应的事件为choose
-    UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(choose:)];
-    //设置长按手势响应的时间
-    longPress.minimumPressDuration=1.0;
-    //将手势添加给cell
-    [cell addGestureRecognizer:longPress];
-    
-}
 
 //添加一个单击手势事件
 - (void)addTapGestureRecognizer: (id)any{
@@ -224,14 +215,6 @@
 - (void)tapClick: (UITapGestureRecognizer *)tap{
     if (tap.state == UIGestureRecognizerStateRecognized){
         NSLog(@"你单击了");
-        //拿到单击手势在_activityTableView中的位置
-        //CGPoint location = [tap locationInView:_activityImageView];
-        //通过上述的点拿到在_activityTableView对应的indexPath
-        //NSIndexPath *indexPath = [_activityTableView indexPathForRowAtPoint:location];
-        //防范式编程
-        // if (_arr !=nil && _arr.count != 0){
-        //根据行号拿到数组中对应的数据
-        //  ActivityModel *activity = _arr[indexPath.row];
         //设置大图片的位置大小
         _image = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
         //用户交互启用
@@ -263,8 +246,6 @@
         _image = nil;
     }
 }
-
-
 
 - (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
     UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];

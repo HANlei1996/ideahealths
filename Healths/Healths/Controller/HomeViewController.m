@@ -42,7 +42,12 @@
     [self initializeData];
     //刷新指示器
     [self setRefreshControl];
-    
+    UIImage *img1=[UIImage imageNamed:@"AdDefault"];
+    UIImage *img2=[UIImage imageNamed:@"Default"];
+    UIImage *img3=[UIImage imageNamed:@"app_logo"];
+    _logoImage.animationImages=[NSArray arrayWithObjects:img1,img2,img3, nil];
+    _logoImage.animationDuration=5;
+    [_logoImage startAnimating];//动画开始
     //    //创建一个刷新指示器放在tableview中
     //    UIRefreshControl *ref = [UIRefreshControl new];
     //    [ref addTarget:self action:@selector(refreshRequest) forControlEvents:UIControlEventValueChanged];
@@ -84,11 +89,10 @@
 -(void)naviConfig{
     //设置导航条标题文字
     self.navigationItem.title=@"首页";
-    //设置导航条的颜色（风格颜色）
-    self.navigationController.navigationBar.barTintColor=[UIColor blueColor];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:100/255.0 blue:255.0 alpha:1.0]];
     //设置导航条的标题颜色
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor whiteColor] };
-    //设置导航条是否隐藏
+        //设置导航条是否隐藏
     self.navigationController.navigationBar.hidden=NO;
     
     
@@ -117,7 +121,7 @@
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             
             
-            [_avi stopAnimating];
+           
             
             //将数据中的result拿出来放到字典中
             NSDictionary *result = responseObject[@"result"];
@@ -243,13 +247,13 @@
 //每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 200.f;
+        return 260.f;
     }else{
         CardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cardcell"];
         HomeModel *homemodel = _Arr2[indexPath.section];
         CGSize maxSize = CGSizeMake(UI_SCREEN_W - 30, 1000);
         CGSize contentSize = [homemodel.securitiesname boundingRectWithSize:maxSize options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:cell.clubCardLabel.font} context:nil].size;
-        return contentSize.height + 70;
+        return contentSize.height + 80;
     }
     
 }

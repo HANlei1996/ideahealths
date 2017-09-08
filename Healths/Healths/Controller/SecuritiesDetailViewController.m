@@ -154,6 +154,9 @@
     UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *callAction = [UIAlertAction actionWithTitle:_detail.clubTel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //通话跳转
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"%@", _detail.clubTel];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }];
     
