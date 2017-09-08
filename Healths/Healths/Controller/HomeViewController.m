@@ -122,7 +122,7 @@
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             
             
-            [_avi stopAnimating];
+           
             
             //将数据中的result拿出来放到字典中
             NSDictionary *result = responseObject[@"result"];
