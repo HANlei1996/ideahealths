@@ -42,7 +42,12 @@
     [self initializeData];
     //刷新指示器
     [self setRefreshControl];
-    
+    UIImage *img1=[UIImage imageNamed:@"AdDefault"];
+    UIImage *img2=[UIImage imageNamed:@"Default"];
+    UIImage *img3=[UIImage imageNamed:@"app_logo"];
+    _logoImage.animationImages=[NSArray arrayWithObjects:img1,img2,img3, nil];
+    _logoImage.animationDuration=5;
+    [_logoImage startAnimating];//动画开始
     //    //创建一个刷新指示器放在tableview中
     //    UIRefreshControl *ref = [UIRefreshControl new];
     //    [ref addTarget:self action:@selector(refreshRequest) forControlEvents:UIControlEventValueChanged];
@@ -243,13 +248,13 @@
 //每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 200.f;
+        return 260.f;
     }else{
         CardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cardcell"];
         HomeModel *homemodel = _Arr2[indexPath.section];
         CGSize maxSize = CGSizeMake(UI_SCREEN_W - 30, 1000);
         CGSize contentSize = [homemodel.securitiesname boundingRectWithSize:maxSize options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:cell.clubCardLabel.font} context:nil].size;
-        return contentSize.height + 70;
+        return contentSize.height + 80;
     }
     
 }
