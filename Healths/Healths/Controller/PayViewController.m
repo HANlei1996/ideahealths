@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jgLabel;
 @property (weak, nonatomic) IBOutlet UIView *numLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *slLabel;
 @property(strong,nonatomic)NSArray * arr;
 - (IBAction)jiajianBtn:(UIStepper *)sender forEvent:(UIEvent *)event;
 @end
@@ -150,5 +151,18 @@
 
 
 - (IBAction)jiajianBtn:(UIStepper *)sender forEvent:(UIEvent *)event {
+    self.slLabel.text=[NSString stringWithFormat:@"%g",sender.value];
+    //self.djLabel.text=sender.value *
+    //NSLog(@"%@",self.djLabel.text);
+    NSString *a=[NSString stringWithFormat:@"%g",sender.value];
+    NSInteger i=[a integerValue];
+    NSString *b=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
+    float j=[b floatValue];
+        j=i*j;
+    _djLabel.text=[NSString stringWithFormat:@"%0.1f元",j];
+    _jgLabel.text=_djLabel.text;
+    //NSLog(@"%@",self.djLabel.text);
+    //NSLog(@"%@",self.jgLabel.text);
+    //_jgLabel.text=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
 }
 @end

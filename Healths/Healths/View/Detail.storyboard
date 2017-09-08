@@ -72,7 +72,7 @@
                                         <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4Nl-wo-wXk">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Nl-wo-wXk">
                                         <rect key="frame" x="76.5" y="106.5" width="94" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="ZUP-rb-cYT"/>
@@ -150,6 +150,7 @@
                         <outlet property="dmLabel" destination="L1h-Kh-YXg" id="Muq-dB-sMr"/>
                         <outlet property="jgLabel" destination="y3h-9D-HPr" id="Zvr-TQ-yLr"/>
                         <outlet property="numLabel" destination="742-7I-1CE" id="dAH-RI-qaw"/>
+                        <outlet property="slLabel" destination="rvt-oV-60X" id="qiR-ob-6Ze"/>
                         <outlet property="tableView" destination="80N-0O-s0m" id="OKF-Rb-zuB"/>
                         <outlet property="tykLabel" destination="QUU-Ox-ZGu" id="S5r-cP-IDK"/>
                     </connections>
@@ -161,7 +162,7 @@
         <!--体验券信息-->
         <scene sceneID="5lL-AK-RCC">
             <objects>
-                <viewController storyboardIdentifier="secur" title="体验券信息" id="NcG-dO-MWP" customClass="SecuritiesDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="secur" title="体验券信息" hidesBottomBarWhenPushed="YES" id="NcG-dO-MWP" customClass="SecuritiesDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cgw-iX-MdN"/>
                         <viewControllerLayoutGuide type="bottom" id="Y1t-eL-tCx"/>
