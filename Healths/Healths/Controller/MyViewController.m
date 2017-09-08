@@ -20,7 +20,7 @@
 - (IBAction)settingAction:(UIBarButtonItem *)sender;
 - (IBAction)loginAction:(UIButton *)sender forEvent:(UIEvent *)event;
 
-
+@property (strong, nonatomic) UIActivityIndicatorView *avi;
 @property (strong, nonatomic) NSArray *myArr;
 
 @end
@@ -147,10 +147,34 @@
         }];
         [alert addAction:actionA];
         [self presentViewController:alert animated:YES completion:nil];
-
+        [self requst];
     }
 }
     
+-(void)requst{
+    _avi = [Utilities getCoverOnView:self.view];
+    
+    [RequestAPI requestURL:@"/score/memberScore" withParameters:@{@"memberId":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"mypromotion:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            NSDictionary *result =responseObject[@"2543"];
+            UserModel *user=[[UserModel alloc]initWithDictionary:result];
+            [[StorageMgr singletonStorageMgr]addKey:@"MemberInfo" andValue:user];
+            [[StorageMgr singletonStorageMgr ]addKey:@"MemberId" andValue:user.credit];
+        }
+        else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+    
+    
+}
 
 
 
