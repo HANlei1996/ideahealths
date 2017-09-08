@@ -48,6 +48,7 @@
     _experienceCardTableView.tableFooterView = [UIView new];
     // Do any additional setup after loading the view.
     [self networkRequest];
+    [self naviConfig];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,37 +71,6 @@
     self.navigationController.navigationBar.translucent=YES;
 }
 
-// 这个方法专门做导航条的控制
--(void)naviConfiga{
-    //设置导航条标题文字
-    self.navigationItem.title=@"会所信息";
-    //设置导航条的颜色（风格颜色）
-    self.navigationController.navigationBar.barTintColor=[UIColor brownColor];
-    //设置导航条的标题颜色
-    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor whiteColor] };
-    //设置导航条是否隐藏
-    self.navigationController.navigationBar.hidden=NO;
-    //设置导航条上按钮的风格颜色
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    //设置是否需要毛玻璃效果
-    self.navigationController.navigationBar.translucent=YES;
-    //实例化一个button 类型为UIButtonTypeSystem
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    //设置位置大小
-    leftBtn.frame = CGRectMake(0, 0, 20, 20);
-    //设置其背景图片为返回图片
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-    //给按钮添加事件
-    [leftBtn addTarget:self action:@selector(leftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    
-}
-
-//自定的返回按钮的事件
-- (void)leftButtonAction: (UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 //键盘收回
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
