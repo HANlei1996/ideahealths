@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property(strong,nonatomic)NSMutableArray *arr1;
 @property(strong,nonatomic)UIImageView *image;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textviewH;
 
 @end
 
@@ -44,6 +45,7 @@
     
     
     _arr1 = [NSMutableArray new];
+    _experienceCardTableView.tableFooterView = [UIView new];
     // Do any additional setup after loading the view.
     [self networkRequest];
 }
@@ -134,16 +136,12 @@
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
     _contentTextView.editable = NO;
+    _textviewH.constant = self.contentTextView.contentSize.height;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
     _coachCount.text = _detail.clubPerson;
-    //    NSArray *experienceInfos = _detail.experienceInfos;
-    //    for (NSDictionary *dict in experienceInfos) {
-    //        NSLog(@"dict = %@",dict.allValues);
-    //    }
     
-    //NSDictionary *experienceInfos = experienceInfos[];
     
 }
 //一共多少组
@@ -192,6 +190,7 @@
         [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.eId];
         
         [self.navigationController pushViewController:purchaseVC animated:YES];
+        [_experienceCardTableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
 
     }
@@ -216,15 +215,6 @@
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
 
--(void)addlongPress:(UITableView *)cell{
-    //初始化一个长按手势，设置响应的事件为choose
-    UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(choose:)];
-    //设置长按手势响应的时间
-    longPress.minimumPressDuration=1.0;
-    //将手势添加给cell
-    [cell addGestureRecognizer:longPress];
-    
-}
 
 //添加一个单击手势事件
 - (void)addTapGestureRecognizer: (id)any{
@@ -239,14 +229,6 @@
 - (void)tapClick: (UITapGestureRecognizer *)tap{
     if (tap.state == UIGestureRecognizerStateRecognized){
         NSLog(@"你单击了");
-        //拿到单击手势在_activityTableView中的位置
-        //CGPoint location = [tap locationInView:_activityImageView];
-        //通过上述的点拿到在_activityTableView对应的indexPath
-        //NSIndexPath *indexPath = [_activityTableView indexPathForRowAtPoint:location];
-        //防范式编程
-        // if (_arr !=nil && _arr.count != 0){
-        //根据行号拿到数组中对应的数据
-        //  ActivityModel *activity = _arr[indexPath.row];
         //设置大图片的位置大小
         _image = [[UIImageView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
         //用户交互启用
@@ -278,8 +260,6 @@
         _image = nil;
     }
 }
-
-
 
 - (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
     UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
