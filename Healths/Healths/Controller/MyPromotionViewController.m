@@ -34,7 +34,7 @@
     [filter setDefaults];
     
     // 3.给过滤器添加数据(正则表达式/帐号和密码) -- 通过KVC设置过滤器,只能设置NSData类型
-    NSString *dataString = @"http://www.baidu.com";
+    NSString *dataString = @"ETumE";
     NSData *data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     [filter setValue:data forKeyPath:@"inputMessage"];
     
@@ -81,11 +81,13 @@
     _avi = [Utilities getCoverOnView:self.view];
     
     [RequestAPI requestURL:@"/mySelfController/getInvitationCode" withParameters:@{@"memberId":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [_avi stopAnimating];
         NSLog(@"mypromotion:%@", responseObject);
         if ([responseObject[@"resultFlag"]integerValue]==8001) {
-            //NSDictionary *result = responseObject[@"result"];
-            [_avi stopAnimating];
-        }
+            NSDictionary *result = responseObject[@"ETumE"];
+            NSString *list = result[@"result"];
+            [[StorageMgr singletonStorageMgr] removeObjectForKey:@"result"];
+            [[StorageMgr singletonStorageMgr] addKey:@"result" andValue:list];        }
         else{
             [_avi stopAnimating];
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
