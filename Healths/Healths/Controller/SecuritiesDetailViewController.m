@@ -112,8 +112,8 @@
 -(void)networkRequest{
     
     UIActivityIndicatorView *aiv=[Utilities getCoverOnView:self.view];
-       NSLog(@"mum=%@",[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]);
-    [RequestAPI requestURL:@"/clubController/experienceDetail" withParameters:@{@"experienceId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+       NSLog(@"mum=%@",[[StorageMgr singletonStorageMgr] objectForKey:@"expId2"]);
+    [RequestAPI requestURL:@"/clubController/experienceDetail" withParameters:@{@"experienceId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId2"]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
        
         NSLog(@"responseObject:%@",responseObject);

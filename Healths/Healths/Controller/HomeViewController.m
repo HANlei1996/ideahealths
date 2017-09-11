@@ -261,18 +261,28 @@
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+       // ClubDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"clubdetail"];
+        
+        //purchaseVC.detail=_detail;
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
+        HomeModel *model = _Arr2[indexPath.section];
+        //NSDictionary *dict = model.experience[indexPath.row-1];
+        
+        [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.clubid];
+        
+        //[self.navigationController pushViewController:purchaseVC animated:YES];
         return;
+
     }
     if (indexPath.row >=1) {
         SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
 
         //purchaseVC.detail=_detail;
-        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId2"];
         HomeModel *model = _Arr2[indexPath.section];
         NSDictionary *dict = model.experience[indexPath.row-1];
         
-        [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:dict[@"id"]];
+        [[StorageMgr singletonStorageMgr] addKey:@"expId2" andValue:dict[@"id"]];
 
         [self.navigationController pushViewController:purchaseVC animated:YES];
         return;
@@ -290,26 +300,26 @@
         }
     }
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"Detail1"]) {
-        //当从列表页到详情页的这个跳转要发生的时候
-        //1获取要传递到下一页的数据
-        NSIndexPath *indexPath=[_homeTableView indexPathForSelectedRow];
-
-        
-        HomeModel *activity=_Arr2[indexPath.section];
-        //2获取下一页的这个实例
-        ClubDetailViewController *detailVC= segue.destinationViewController;
-        //3吧数据 给下一页预备好的接收容器
-        detailVC.detail=activity;
-        
-//     NSIndexPath *indexp=[_homeTableView indexPathForSelectedRow];
-//        HomeModel *activi=_Arr2[indexp.row];
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if ([segue.identifier isEqualToString:@"Detail1"]) {
+//        //当从列表页到详情页的这个跳转要发生的时候
+//        //1获取要传递到下一页的数据
+//        NSIndexPath *indexPath=[_homeTableView indexPathForSelectedRow];
+//
+//        
+//        HomeModel *activity=_Arr2[indexPath.section];
 //        //2获取下一页的这个实例
-//        SecuritiesDetailViewController *detail= segue.destinationViewController;
+//        ClubDetailViewController *detailVC= segue.destinationViewController;
 //        //3吧数据 给下一页预备好的接收容器
-//        detail.deta=activi;
-
-    }
-}
+//        detailVC.detail=activity;
+//        
+////     NSIndexPath *indexp=[_homeTableView indexPathForSelectedRow];
+////        HomeModel *activi=_Arr2[indexp.row];
+////        //2获取下一页的这个实例
+////        SecuritiesDetailViewController *detail= segue.destinationViewController;
+////        //3吧数据 给下一页预备好的接收容器
+////        detail.deta=activi;
+//
+//    }
+//}
 @end
