@@ -142,7 +142,7 @@
             [self presentViewController:signNavi animated:YES completion:nil];
             
         }
-    if (indexPath.section == 2){
+    if (indexPath.section == 3){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前积分:2534" message:@"积分商城即将登陆，准备好了吗，亲？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //        [self exit];
