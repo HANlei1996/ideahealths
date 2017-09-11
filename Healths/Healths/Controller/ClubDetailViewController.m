@@ -11,7 +11,7 @@
 #import "HomeModel.h"
 #import "DetailCardTableViewCell.h"
 #import "SecuritiesDetailViewController.h"
-
+#import "AddressViewController.h"
 
 @interface ClubDetailViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
     BOOL isLastPage;
@@ -35,6 +35,8 @@
 @property(strong,nonatomic)NSMutableArray *arr1;
 @property(strong,nonatomic)UIImageView *image;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textviewH;
+@property (weak, nonatomic) IBOutlet UIButton *addressBtn;
+- (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 
 @end
 
@@ -118,7 +120,8 @@
     
     //[self addTapGestureRecognizer:_DetailView]
     _clubName.text = _detail.clubName;
-    _clubAddress.text = _detail.clubAddressB;
+    //_clubAddress.text = _detail.clubAddressB;
+    [_addressBtn setTitle:_detail.clubAddressB forState:UIControlStateNormal];
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
     _contentTextView.editable = NO;
@@ -263,5 +266,9 @@
     
     [self presentViewController:actionSheetController animated:YES completion:nil];
     
+}
+- (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    AddressViewController *address=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"address"];
+    [self.navigationController pushViewController:address animated:YES];
 }
 @end

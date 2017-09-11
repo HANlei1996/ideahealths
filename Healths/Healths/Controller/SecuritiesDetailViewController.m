@@ -10,6 +10,7 @@
 #import "PayViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "tiyanquanModel.h"
+#import "AddressViewController.h"
 
 @interface SecuritiesDetailViewController ()
 
@@ -28,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *callBtn;
 @property (weak, nonatomic) IBOutlet UILabel *endLabel;
 - (IBAction)callAction:(UIButton *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet UIButton *addressBtn;
+- (IBAction)addressAction:(UIButton *)sender forEvent:(UIEvent *)event;
 
 @end
 
@@ -137,7 +140,8 @@
     [_tyjImage sd_setImageWithURL:[NSURL URLWithString :_detail.eLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
     _xjLabel.text=_detail.currentPrice;
     _yjLabel.text=_detail.orinPrice;
-    _dwLabel.text=_detail.eAddress;
+    [_addressBtn setTitle:_detail.eAddress forState:UIControlStateNormal];
+    //_addressBtn.titleLabel.text=_detail.eAddress;
     _tykLabel.text=_detail.eName;
     _dmLabel.text=_detail.eClubName;
     _ysLabel.text=_detail.saleCount;
@@ -168,5 +172,12 @@
     [actionSheetController addAction:callAction];
     
     [self presentViewController:actionSheetController animated:YES completion:nil];
+}
+- (IBAction)addressAction:(UIButton *)sender forEvent:(UIEvent *)event {
+   //_addressBtn.titleLabel.text=_detail.eAddress;
+    AddressViewController *address=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"address"];
+    [self.navigationController pushViewController:address animated:YES];
+    //_addressBtn.titleLabel.text=_detail.eAddress;
+    
 }
 @end

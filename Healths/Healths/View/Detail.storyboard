@@ -276,12 +276,6 @@
                                                 <color key="textColor" white="0.0" alpha="0.89888317949999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="无锡市南长区阳光城市花园B区76号1楼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-Le-Mz2">
-                                                <rect key="frame" x="45" y="45.5" width="295" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-ne-nAS">
                                                 <rect key="frame" x="340" y="40" width="20" height="20"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -302,20 +296,30 @@
                                                     <constraint firstAttribute="height" constant="20" id="gSk-hL-3YR"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="w3n-uK-zmf">
+                                                <rect key="frame" x="45" y="36.5" width="285" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="无锡市南长区阳光城市花园B区76号1楼">
+                                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addressAction:forEvent:" destination="NcG-dO-MWP" eventType="touchUpInside" id="zZO-gQ-p2e"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="0b4-jv-CxN"/>
-                                            <constraint firstItem="S6T-Le-Mz2" firstAttribute="bottom" secondItem="Ir5-1p-DSB" secondAttribute="bottom" id="1vL-Mr-TXT"/>
-                                            <constraint firstItem="S6T-Le-Mz2" firstAttribute="leading" secondItem="Ir5-1p-DSB" secondAttribute="trailing" constant="10" id="Es8-Ox-EUd"/>
                                             <constraint firstItem="LaS-R7-OMd" firstAttribute="top" secondItem="0WP-gN-3PC" secondAttribute="top" constant="10" id="FLt-vL-rkq"/>
                                             <constraint firstItem="Ir5-1p-DSB" firstAttribute="top" secondItem="LaS-R7-OMd" secondAttribute="bottom" constant="10" id="Kdn-v9-UP4"/>
-                                            <constraint firstItem="aHC-ne-nAS" firstAttribute="bottom" secondItem="S6T-Le-Mz2" secondAttribute="bottom" id="S24-Zn-zs2"/>
+                                            <constraint firstItem="w3n-uK-zmf" firstAttribute="centerY" secondItem="Ir5-1p-DSB" secondAttribute="centerY" id="RWa-RB-RQq"/>
                                             <constraint firstItem="Ir5-1p-DSB" firstAttribute="leading" secondItem="LaS-R7-OMd" secondAttribute="leading" id="SdH-14-UiR"/>
                                             <constraint firstAttribute="bottom" secondItem="Ir5-1p-DSB" secondAttribute="bottom" constant="10" id="aKP-dT-EvD"/>
-                                            <constraint firstItem="aHC-ne-nAS" firstAttribute="leading" secondItem="S6T-Le-Mz2" secondAttribute="trailing" id="h3i-Lc-GXa"/>
+                                            <constraint firstItem="w3n-uK-zmf" firstAttribute="leading" secondItem="Ir5-1p-DSB" secondAttribute="trailing" constant="10" id="d2w-AS-dn9"/>
                                             <constraint firstAttribute="trailing" secondItem="aHC-ne-nAS" secondAttribute="trailing" constant="15" id="leZ-L7-0pk"/>
+                                            <constraint firstItem="aHC-ne-nAS" firstAttribute="leading" secondItem="w3n-uK-zmf" secondAttribute="trailing" constant="10" id="nCw-Dp-s7u"/>
                                             <constraint firstItem="LaS-R7-OMd" firstAttribute="leading" secondItem="0WP-gN-3PC" secondAttribute="leading" constant="15" id="re9-Oc-rgB"/>
+                                            <constraint firstItem="aHC-ne-nAS" firstAttribute="bottom" secondItem="Ir5-1p-DSB" secondAttribute="bottom" id="wNi-eI-1oI"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0P-bb-Nmi">
@@ -551,9 +555,9 @@
                     <navigationItem key="navigationItem" id="o12-Rt-Xev"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="addressBtn" destination="w3n-uK-zmf" id="TC5-5c-NcZ"/>
                         <outlet property="callBtn" destination="aHC-ne-nAS" id="C2S-5b-voR"/>
                         <outlet property="dmLabel" destination="LaS-R7-OMd" id="d1r-rX-nRB"/>
-                        <outlet property="dwLabel" destination="S6T-Le-Mz2" id="XZc-h6-d51"/>
                         <outlet property="endLabel" destination="o56-e3-mvs" id="Rcs-TG-UJR"/>
                         <outlet property="sygzLbel" destination="h6I-0U-uoZ" id="p5b-Vn-PDk"/>
                         <outlet property="sysjLabel" destination="hbT-Fe-RVp" id="pbZ-RX-cXk"/>
@@ -568,7 +572,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Za1-WY-6y9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969" y="802"/>
+            <point key="canvasLocation" x="968.79999999999995" y="801.94902548725645"/>
+        </scene>
+        <!--Address View Controller-->
+        <scene sceneID="h3H-Fy-NFd">
+            <objects>
+                <viewController storyboardIdentifier="address" id="kCx-t2-Vhw" customClass="AddressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aPI-Yb-PTt"/>
+                        <viewControllerLayoutGuide type="bottom" id="Paa-wM-10h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="APC-CX-BUf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yhw-ty-iBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="969" y="1460"/>
         </scene>
         <!--会所详情-->
         <scene sceneID="Bt6-Nv-oBF">
@@ -617,12 +639,6 @@
                                                     <constraint firstAttribute="width" secondItem="Fcw-V1-da1" secondAttribute="height" multiplier="1:1" id="YDc-ih-h9d"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无锡市新区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idi-xp-66e">
-                                                <rect key="frame" x="50" y="44" width="290" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Az-A2-iMj">
                                                 <rect key="frame" x="340" y="41" width="20" height="20"/>
                                                 <constraints>
@@ -634,18 +650,28 @@
                                                     <action selector="callBtnAction:forEvent:" destination="EHy-sp-NRC" eventType="touchUpInside" id="nd5-KY-krf"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uQG-rR-u2X">
+                                                <rect key="frame" x="50" y="37.5" width="290" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="无锡市南长区阳光城市花园B区76号1楼">
+                                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addressBtnAction:forEvent:" destination="EHy-sp-NRC" eventType="touchUpInside" id="sE8-a2-2dt"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="8Az-A2-iMj" secondAttribute="trailing" constant="15" id="2va-3S-WQD"/>
                                             <constraint firstItem="inE-9b-ThN" firstAttribute="leading" secondItem="aQF-jh-qhP" secondAttribute="leading" constant="15" id="4mg-7N-D0R"/>
-                                            <constraint firstItem="Idi-xp-66e" firstAttribute="leading" secondItem="Fcw-V1-da1" secondAttribute="trailing" constant="15" id="6lh-Gm-iGY"/>
                                             <constraint firstItem="inE-9b-ThN" firstAttribute="top" secondItem="aQF-jh-qhP" secondAttribute="top" constant="10" id="DCm-gl-Lbz"/>
                                             <constraint firstItem="Fcw-V1-da1" firstAttribute="top" secondItem="inE-9b-ThN" secondAttribute="bottom" constant="10" id="K30-Jf-Sy4"/>
-                                            <constraint firstItem="Idi-xp-66e" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="ZyM-P0-lnI"/>
+                                            <constraint firstItem="8Az-A2-iMj" firstAttribute="leading" secondItem="uQG-rR-u2X" secondAttribute="trailing" id="Svc-Br-l0r"/>
+                                            <constraint firstItem="uQG-rR-u2X" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="WSd-U4-xTv"/>
+                                            <constraint firstItem="uQG-rR-u2X" firstAttribute="leading" secondItem="Fcw-V1-da1" secondAttribute="trailing" constant="15" id="cfL-9d-bri"/>
                                             <constraint firstItem="8Az-A2-iMj" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="fn2-Xc-IrD"/>
                                             <constraint firstAttribute="height" constant="70" id="iWJ-hw-Uo0"/>
-                                            <constraint firstItem="8Az-A2-iMj" firstAttribute="leading" secondItem="Idi-xp-66e" secondAttribute="trailing" id="pjM-iu-mPN"/>
                                             <constraint firstItem="Fcw-V1-da1" firstAttribute="leading" secondItem="aQF-jh-qhP" secondAttribute="leading" constant="15" id="qmP-Do-7yU"/>
                                         </constraints>
                                     </view>
@@ -925,9 +951,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="activityImgView" destination="Wol-B9-ZcQ" id="Skb-7L-8i1"/>
+                        <outlet property="addressBtn" destination="uQG-rR-u2X" id="uXl-70-taE"/>
                         <outlet property="callBtn" destination="8Az-A2-iMj" id="EUh-bg-2lf"/>
                         <outlet property="citeCount" destination="3lI-IZ-V8U" id="A67-LY-WXy"/>
-                        <outlet property="clubAddress" destination="Idi-xp-66e" id="RUa-xt-5Yn"/>
                         <outlet property="clubName" destination="inE-9b-ThN" id="N1j-LU-zz5"/>
                         <outlet property="coachCount" destination="AKq-03-9F8" id="wVx-NA-a5l"/>
                         <outlet property="contentTextView" destination="qQ1-Kl-KeF" id="Plm-dg-lxO"/>
@@ -946,7 +972,7 @@
     </scenes>
     <resources>
         <image name="Call" width="48" height="48"/>
-        <image name="定位" width="96" height="96"/>
+        <image name="定位" width="48" height="48"/>
         <image name="红点" width="15" height="15"/>
         <image name="通话" width="48" height="48"/>
         <image name="默认图" width="138" height="92"/>

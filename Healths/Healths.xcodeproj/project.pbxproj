@@ -105,6 +105,8 @@
 		84F0125E1F629B87004533B4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F0125C1F629B87004533B4 /* Utilities.m */; };
 		84F012601F629D95004533B4 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84F0125F1F629D95004533B4 /* Cities.plist */; };
 		84F3D83C1F613121008819CF /* DetailCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3D83B1F613121008819CF /* DetailCardTableViewCell.m */; };
+		84FDAE6C1F662288001B276E /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FDAE6B1F662288001B276E /* Annotation.m */; };
+		84FDAE6F1F6625C9001B276E /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FDAE6E1F6625C9001B276E /* AddressViewController.m */; };
 		AAA573C955E9683EDA0BA5ED /* libPods-Healths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A80F461B059254101490D702 /* libPods-Healths.a */; };
 /* End PBXBuildFile section */
 
@@ -308,6 +310,10 @@
 		84F0125F1F629D95004533B4 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 		84F3D83A1F613121008819CF /* DetailCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCardTableViewCell.h; sourceTree = "<group>"; };
 		84F3D83B1F613121008819CF /* DetailCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCardTableViewCell.m; sourceTree = "<group>"; };
+		84FDAE6A1F662288001B276E /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		84FDAE6B1F662288001B276E /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		84FDAE6D1F6625C9001B276E /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		84FDAE6E1F6625C9001B276E /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 		A80F461B059254101490D702 /* libPods-Healths.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Healths.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5090B76C3EFACD01F252C81 /* Pods-Healths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Healths.release.xcconfig"; path = "Pods/Target Support Files/Pods-Healths/Pods-Healths.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -728,6 +734,10 @@
 				84C85B8D1F5950FA00941F69 /* PayViewController.m */,
 				84C85B8E1F5950FA00941F69 /* SecuritiesDetailViewController.h */,
 				84C85B8F1F5950FA00941F69 /* SecuritiesDetailViewController.m */,
+				84FDAE6A1F662288001B276E /* Annotation.h */,
+				84FDAE6B1F662288001B276E /* Annotation.m */,
+				84FDAE6D1F6625C9001B276E /* AddressViewController.h */,
+				84FDAE6E1F6625C9001B276E /* AddressViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -974,6 +984,7 @@
 				84C85BA11F5950FA00941F69 /* PayViewController.m in Sources */,
 				84F012551F629A49004533B4 /* ActivityModel.m in Sources */,
 				841F0EC01F5AA786000B57B6 /* UserModel.m in Sources */,
+				84FDAE6C1F662288001B276E /* Annotation.m in Sources */,
 				84C85B741F5950E900941F69 /* openssl_wrapper.m in Sources */,
 				84C85B501F5950DB00941F69 /* bitstream.m in Sources */,
 				7947BC7F1F5CE52C00D0638C /* MyTableViewCell.m in Sources */,
@@ -999,6 +1010,7 @@
 				84F012581F629AA3004533B4 /* ActivityTableViewCell.m in Sources */,
 				84F012451F6298F7004533B4 /* ListViewController.m in Sources */,
 				84392D1F1F5E67B5000FCB01 /* UIView+Extension.m in Sources */,
+				84FDAE6F1F6625C9001B276E /* AddressViewController.m in Sources */,
 				841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */,
 				84C85B511F5950DB00941F69 /* mask.m in Sources */,
 				84F012501F629989004533B4 /* NSDateFormatter+Category.m in Sources */,
