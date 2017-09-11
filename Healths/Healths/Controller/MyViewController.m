@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _myArr = @[@{@"myIndenLabel":@"我的订单"},@{@"myIndenLabel":@"我的推广"},@{@"myIndenLabel":@"积分中心"},@{@"myIndenLabel":@"意见反馈"},@{@"myIndenLabel":@"关于我们"}];
+    _myArr = @[@{@"myIndenLabel":@"我的订单"},@{@"myIndenLabel":@"我的活动"},@{@"myIndenLabel":@"我的推广"},@{@"myIndenLabel":@"积分中心"},@{@"myIndenLabel":@"意见反馈"},@{@"myIndenLabel":@"关于我们"}];
     [self naviConfig];
     _MyTableView.tableFooterView = [UIView new];
 }
@@ -122,11 +122,14 @@
                     [self performSegueWithIdentifier:@"wdjd" sender:self];
                     break;
                 case 1:
-                    [self performSegueWithIdentifier:@"wdhk" sender:self];
+                    [self performSegueWithIdentifier:@"hd" sender:self];
                     break;
                 case 2:
+                    [self performSegueWithIdentifier:@"wdhk" sender:self];
                     break;
                 case 3:
+                    break;
+                case 4:
                     [self performSegueWithIdentifier:@"aaaa" sender:self];
                     break;
                 default:

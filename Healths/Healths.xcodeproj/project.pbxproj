@@ -10,6 +10,8 @@
 		7947BC7F1F5CE52C00D0638C /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */; };
 		7947BC8C1F5D339500D0638C /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */; };
 		7947BC8E1F5D36FA00D0638C /* MyPromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */; };
+		79A876491F664CDD00837F37 /* MyActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A876481F664CDD00837F37 /* MyActivityViewController.m */; };
+		79A8764C1F664CF300837F37 /* MyActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A8764B1F664CF300837F37 /* MyActivityTableViewCell.m */; };
 		79C0C7301F5E74FA009358AE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C0C72F1F5E74FA009358AE /* OrderModel.m */; };
 		840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D28F31F5E2F8900E8E260 /* tiyanquanModel.m */; };
 		841F0EB41F5A8785000B57B6 /* NCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841F0EB31F5A8785000B57B6 /* NCViewController.m */; };
@@ -134,6 +136,10 @@
 		7947BC8A1F5D339500D0638C /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
 		7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
 		7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPromotionViewController.m; sourceTree = "<group>"; };
+		79A876471F664CDD00837F37 /* MyActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivityViewController.h; sourceTree = "<group>"; };
+		79A876481F664CDD00837F37 /* MyActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivityViewController.m; sourceTree = "<group>"; };
+		79A8764A1F664CF300837F37 /* MyActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivityTableViewCell.h; sourceTree = "<group>"; };
+		79A8764B1F664CF300837F37 /* MyActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivityTableViewCell.m; sourceTree = "<group>"; };
 		79C0C72E1F5E74FA009358AE /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		79C0C72F1F5E74FA009358AE /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		840D28F21F5E2F8900E8E260 /* tiyanquanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiyanquanModel.h; sourceTree = "<group>"; };
@@ -386,6 +392,8 @@
 				7947BC7E1F5CE52C00D0638C /* MyTableViewCell.m */,
 				7947BC8A1F5D339500D0638C /* MyOrderTableViewCell.h */,
 				7947BC8B1F5D339500D0638C /* MyOrderTableViewCell.m */,
+				79A8764A1F664CF300837F37 /* MyActivityTableViewCell.h */,
+				79A8764B1F664CF300837F37 /* MyActivityTableViewCell.m */,
 			);
 			name = MyTableViewCell;
 			sourceTree = "<group>";
@@ -686,18 +694,20 @@
 		84C85BE91F59579200941F69 /* My */ = {
 			isa = PBXGroup;
 			children = (
-				84C85B7A1F5950FA00941F69 /* AboutUsViewController.h */,
-				84C85B7B1F5950FA00941F69 /* AboutUsViewController.m */,
-				84C85B7E1F5950FA00941F69 /* FeedbackViewController.h */,
-				84C85B7F1F5950FA00941F69 /* FeedbackViewController.m */,
-				84C85B841F5950FA00941F69 /* IntegralViewController.h */,
-				84C85B851F5950FA00941F69 /* IntegralViewController.m */,
-				84C85B861F5950FA00941F69 /* MyOrderViewController.h */,
-				84C85B871F5950FA00941F69 /* MyOrderViewController.m */,
-				84C85B881F5950FA00941F69 /* MyPromotionViewController.h */,
-				7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */,
 				84C85B8A1F5950FA00941F69 /* MyViewController.h */,
 				84C85B8B1F5950FA00941F69 /* MyViewController.m */,
+				84C85B861F5950FA00941F69 /* MyOrderViewController.h */,
+				84C85B871F5950FA00941F69 /* MyOrderViewController.m */,
+				79A876471F664CDD00837F37 /* MyActivityViewController.h */,
+				79A876481F664CDD00837F37 /* MyActivityViewController.m */,
+				84C85B881F5950FA00941F69 /* MyPromotionViewController.h */,
+				7947BC8D1F5D36FA00D0638C /* MyPromotionViewController.m */,
+				84C85B841F5950FA00941F69 /* IntegralViewController.h */,
+				84C85B851F5950FA00941F69 /* IntegralViewController.m */,
+				84C85B7E1F5950FA00941F69 /* FeedbackViewController.h */,
+				84C85B7F1F5950FA00941F69 /* FeedbackViewController.m */,
+				84C85B7A1F5950FA00941F69 /* AboutUsViewController.h */,
+				84C85B7B1F5950FA00941F69 /* AboutUsViewController.m */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -975,6 +985,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C85B9D1F5950FA00941F69 /* IntegralViewController.m in Sources */,
+				79A8764C1F664CF300837F37 /* MyActivityTableViewCell.m in Sources */,
 				84C85B561F5950DB00941F69 /* split.m in Sources */,
 				84F012441F6298F7004533B4 /* IssueViewController.m in Sources */,
 				84C85B751F5950E900941F69 /* RSADataSigner.m in Sources */,
@@ -1033,6 +1044,7 @@
 				849784251F5FAA0B006AF704 /* CardTableViewCell.m in Sources */,
 				840D28F41F5E2F8900E8E260 /* tiyanquanModel.m in Sources */,
 				84C85B531F5950DB00941F69 /* qrinput.m in Sources */,
+				79A876491F664CDD00837F37 /* MyActivityViewController.m in Sources */,
 				84C85B711F5950E900941F69 /* DataVerifier.m in Sources */,
 				84C85BF11F5A496000941F69 /* HomeTableViewCell.m in Sources */,
 				84F0125D1F629B87004533B4 /* UIImage+MDQRCode.m in Sources */,
