@@ -87,7 +87,7 @@
 }
 - (IBAction)SRSaveAction:(UIBarButtonItem *)sender {
     NSString *sr=_SRtextField.text;
-    //[[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
+    [[StorageMgr singletonStorageMgr]addKey:@"SR" andValue:sr];
     
     _avi=[Utilities getCoverOnView:self.view];
     
@@ -99,7 +99,8 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             //  NSDictionary *result= responseObject[@"result"];
-            
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSR" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
             [self dismissViewControllerAnimated:YES completion:nil];

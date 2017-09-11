@@ -87,7 +87,8 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             //     NSDictionary *result= responseObject[@"result"];
-            
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSFZHM" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
             [self dismissViewControllerAnimated:YES completion:nil];

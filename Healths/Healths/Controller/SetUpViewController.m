@@ -25,13 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self naviConfig];
+    //监听名为@"refreshHome"的通知，监听到后执行refreshHome方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNick) name:@"refreshNick" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshXB) name:@"refreshXB" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSR) name:@"refreshSR" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSFZHM) name:@"refreshSFZHM" object:nil];
   //  _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
     if ([Utilities loginCheck]) {
         //已登录
         
         _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"昵称",@"nicknameLabel",_user.nickname,@"infoLabel",nil];
+        NSMutableDictionary *dict2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"性别",@"nicknameLabel",_user.gender,@"infoLabel", nil];
+        NSMutableDictionary *dict3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"生日",@"nicknameLabel",_user.dob,@"infoLabel", nil];
+        NSMutableDictionary *dict4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"身份证号码",@"nicknameLabel",_user.idCardNo,@"infoLabel", nil];
+        _setupArr = [[NSMutableArray alloc]initWithObjects:dict1,dict2,dict3,dict4,nil];
         //NSLog(@"东东是：%@",_user.dob);
-        _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+       /* _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];*/
         [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
         
         
@@ -45,7 +55,7 @@
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
     [_SetUpTableView reloadData];
-    [self networkRequest];
+    //[self networkRequest];
 
     
 }
@@ -62,6 +72,40 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     
 }
+-(void)refreshNick{
+    NSMutableDictionary * dict = _setupArr[0];
+    NSLog(@"nsdictionary:%@",dict);
+    NSString *string = [[StorageMgr singletonStorageMgr] objectForKey:@"NC"];
+    NSLog(@"danli:%@",string);
+    [dict setObject: string forKey:@"infoLabel"];
+    [_SetUpTableView reloadData];
+}
+-(void)refreshXB{
+    NSMutableDictionary * dict = _setupArr[1];
+    NSLog(@"nsdictionary:%@",dict);
+    NSString *string2 = [[StorageMgr singletonStorageMgr] objectForKey:@"XB"];
+    NSLog(@"danli:%@",string2);
+    [dict setObject: string2 forKey:@"infoLabel"];
+    [_SetUpTableView reloadData];
+}
+-(void)refreshSR{
+    NSMutableDictionary * dict = _setupArr[2];
+    NSLog(@"nsdictionary:%@",dict);
+    NSString *string3 = [[StorageMgr singletonStorageMgr] objectForKey:@"SR"];
+    NSLog(@"danli:%@",string3);
+    [dict setObject: string3 forKey:@"infoLabel"];
+    [_SetUpTableView reloadData];
+}
+-(void)refreshSFZHM{
+    NSMutableDictionary * dict = _setupArr[3];
+    NSLog(@"nsdictionary:%@",dict);
+    NSString *string4 = [[StorageMgr singletonStorageMgr] objectForKey:@"SFZHM"];
+    NSLog(@"danli:%@",string4);
+    [dict setObject: string4 forKey:@"infoLabel"];
+    [_SetUpTableView reloadData];
+}
+
+
 
 
 -(void)naviConfig{
@@ -155,10 +199,10 @@
 //设置tableview的底部视图
 - (void)setFootViewForTableView{
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_W, 45)];
-    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_W, 300)];
+    view.backgroundColor = UIColorFromRGB(240, 235, 245);
     UIButton *exitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    exitBtn.frame = CGRectMake(0, 5, UI_SCREEN_W, 40.f);
+    exitBtn.frame = CGRectMake(0, 30, UI_SCREEN_W, 40.f);
     [exitBtn setTitle:@"退出" forState:UIControlStateNormal];
     //设置按钮标题的字体大小
     exitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
@@ -169,6 +213,7 @@
     [view addSubview:exitBtn];
     
     [_SetUpTableView setTableFooterView:view];
+
 }
 //按钮的点击事件
 - (void)exitAction: (UIButton *)button{
@@ -202,7 +247,7 @@
 
 - (IBAction)modBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
--(void)networkRequest{
+/*-(void)networkRequest{
  _avi=[Utilities getCoverOnView:self.view];
  
  //NSLog(@"%@",_user.nickname);
@@ -230,7 +275,7 @@
  [Utilities popUpAlertViewWithMsg:@"网络请求失败😂" andTitle:nil onView:self];
  }];
  
- }
+ }*/
  
 
 
