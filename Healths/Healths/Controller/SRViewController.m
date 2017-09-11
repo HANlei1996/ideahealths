@@ -13,8 +13,9 @@
 @interface SRViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *SRtextField;
 - (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *CancelAction;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *DoneAction;
+
+- (IBAction)CancelAction:(UIBarButtonItem *)sender;
+- (IBAction)DoneAction:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UIDatePicker *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 - (IBAction)SRSaveAction:(UIBarButtonItem *)sender;
@@ -32,7 +33,8 @@
     // Do any additional setup after loading the view.
     _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
     _SRtextField.text=_user.dob;
-    
+    _pickerView.minimumDate = [NSDate date];
+    _pickerView.backgroundColor = UIColorFromRGB(235, 235, 241);
 
 }
 
@@ -80,7 +82,54 @@
 */
 
 - (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event {
+    _toolBar.hidden=NO;
+    _pickerView.hidden=NO;
 }
 - (IBAction)SRSaveAction:(UIBarButtonItem *)sender {
+    NSString *sr=_SRtextField.text;
+    //[[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
+    
+    _avi=[Utilities getCoverOnView:self.view];
+    
+    //NSLog(@"%@",_user.nickname);
+    
+    NSDictionary *para = @{@"memberId":_user.memberId,@"birthday":sr};
+    [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject:%@",responseObject);
+        if([responseObject[@"resultFlag"]integerValue] == 8001){
+            //  NSDictionary *result= responseObject[@"result"];
+            
+            
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+            
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        //业务逻辑失败的情况下
+        [Utilities popUpAlertViewWithMsg:@"网络请求失败😂" andTitle:nil onView:self];
+    }];
+    
+
+}
+- (IBAction)CancelAction:(UIBarButtonItem *)sender {
+    _toolBar.hidden = YES;
+    _pickerView.hidden = YES;
+}
+
+- (IBAction)DoneAction:(UIBarButtonItem *)sender {
+    NSDate *date = _pickerView.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    NSString *theDate = [formatter stringFromDate:date];
+    _SRtextField.text = theDate;
+    _toolBar.hidden = YES;
+    _pickerView.hidden = YES;
+
 }
 @end

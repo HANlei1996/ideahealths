@@ -140,15 +140,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmB-qt-ZVi">
-                                <rect key="frame" x="0.0" y="226" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="EV6-C1-wwH" id="Lt1-XA-Bvc"/>
                                     <outlet property="delegate" destination="EV6-C1-wwH" id="jya-v6-hAJ"/>
                                 </connections>
                             </pickerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-ao-l3N">
-                                <rect key="frame" x="0.0" y="140" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-ao-l3N">
+                                <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="ODw-Ig-IlU">
                                         <connections>
@@ -163,7 +162,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-9N-CUc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-9N-CUc">
                                 <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eiH-f0-MXg"/>
@@ -180,11 +179,13 @@
                         <constraints>
                             <constraint firstItem="rmB-qt-ZVi" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="A4S-MX-kba"/>
                             <constraint firstItem="Yvy-9N-CUc" firstAttribute="top" secondItem="MrO-vh-lHC" secondAttribute="bottom" constant="30" id="GKD-yW-AIS"/>
-                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="centerY" secondItem="CqS-Ax-MBB" secondAttribute="centerY" id="OdL-3m-ieV"/>
+                            <constraint firstAttribute="trailing" secondItem="CzK-ao-l3N" secondAttribute="trailing" id="N60-Vy-bLt"/>
+                            <constraint firstItem="q1b-HI-GTM" firstAttribute="top" secondItem="rmB-qt-ZVi" secondAttribute="bottom" id="P3b-Bm-Uf3"/>
                             <constraint firstItem="Yvy-9N-CUc" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="Pt6-Fg-MYD"/>
                             <constraint firstAttribute="trailing" secondItem="Yvy-9N-CUc" secondAttribute="trailing" id="Q7y-c6-3ry"/>
+                            <constraint firstItem="CzK-ao-l3N" firstAttribute="leading" secondItem="CqS-Ax-MBB" secondAttribute="leading" id="SED-7F-3II"/>
+                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="top" secondItem="CzK-ao-l3N" secondAttribute="bottom" id="ToM-VO-zWO"/>
                             <constraint firstAttribute="trailing" secondItem="rmB-qt-ZVi" secondAttribute="trailing" id="tR8-zi-a7I"/>
-                            <constraint firstItem="rmB-qt-ZVi" firstAttribute="centerX" secondItem="CqS-Ax-MBB" secondAttribute="centerX" id="xoM-Uy-Rjr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="修改性别" id="cgV-fq-UPj">
@@ -217,7 +218,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-MV-Osd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-MV-Osd">
                                 <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3Us-hX-jUN"/>
@@ -229,31 +230,44 @@
                                     <action selector="SRAction:forEvent:" destination="QhJ-fw-G6U" eventType="editingDidEnd" id="zlY-0k-oSt"/>
                                 </connections>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-rF-zPq">
-                                <rect key="frame" x="0.0" y="134" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-rF-zPq">
+                                <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem title="Cancel" id="hwe-bZ-rrR"/>
+                                    <barButtonItem title="Cancel" id="hwe-bZ-rrR">
+                                        <connections>
+                                            <action selector="CancelAction:" destination="QhJ-fw-G6U" id="Y1T-Ed-QLE"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Rmx-mN-OcL"/>
-                                    <barButtonItem title="Done" id="riu-8j-6hG"/>
+                                    <barButtonItem title="Done" id="riu-8j-6hG">
+                                        <connections>
+                                            <action selector="DoneAction:" destination="QhJ-fw-G6U" id="FqH-Jd-zH3"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="QhJ-fw-G6U" id="BUX-TS-bts"/>
                                 </connections>
                             </toolbar>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-TL-OzH">
-                                <rect key="frame" x="0.0" y="178" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-TL-OzH">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="526552725.61865699">
                                     <!--2017-09-08 08:38:45 +0000-->
                                 </date>
+                                <locale key="locale" localeIdentifier="zh-Hans"/>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LM8-MV-Osd" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="597-fz-OPH"/>
+                            <constraint firstItem="MZH-dq-EGU" firstAttribute="top" secondItem="jH7-TL-OzH" secondAttribute="bottom" id="Lbu-iK-qls"/>
                             <constraint firstAttribute="trailing" secondItem="LM8-MV-Osd" secondAttribute="trailing" id="Xxu-lh-22h"/>
+                            <constraint firstItem="0gj-rF-zPq" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="g2j-xX-Cu7"/>
                             <constraint firstItem="LM8-MV-Osd" firstAttribute="top" secondItem="MbU-JA-vHm" secondAttribute="bottom" constant="30" id="gZa-X7-WSd"/>
+                            <constraint firstAttribute="trailing" secondItem="jH7-TL-OzH" secondAttribute="trailing" id="gau-2N-uha"/>
+                            <constraint firstItem="jH7-TL-OzH" firstAttribute="leading" secondItem="tTh-4K-xcV" secondAttribute="leading" id="lLA-IN-5Mf"/>
+                            <constraint firstAttribute="trailing" secondItem="0gj-rF-zPq" secondAttribute="trailing" id="ryA-n3-uXe"/>
+                            <constraint firstItem="jH7-TL-OzH" firstAttribute="top" secondItem="0gj-rF-zPq" secondAttribute="bottom" id="zN0-vj-46F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="修改生日" id="uen-JM-eSE">
@@ -264,8 +278,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="CancelAction" destination="hwe-bZ-rrR" id="NaW-Wh-UX3"/>
-                        <outlet property="DoneAction" destination="riu-8j-6hG" id="Apj-Oa-h20"/>
                         <outlet property="SRtextField" destination="LM8-MV-Osd" id="KUQ-io-xbk"/>
                         <outlet property="pickerView" destination="jH7-TL-OzH" id="9qC-ia-o1b"/>
                         <outlet property="toolBar" destination="0gj-rF-zPq" id="e9z-SZ-YMA"/>
@@ -287,7 +299,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKO-pq-SLe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKO-pq-SLe">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="kUu-wX-P6h"/>
@@ -339,7 +351,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-or-3is">
                                 <rect key="frame" x="0.0" y="64" width="375" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Pfe-Dc-ATM"/>
