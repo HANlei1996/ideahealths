@@ -7,9 +7,16 @@
 //
 
 #import "NCViewController.h"
+#import "UserModel.h"
+#import "SetUpTableViewCell.h"
+#import "SetUpViewController.h"
 
 @interface NCViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *NCTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *NCSave;
+- (IBAction)NCSaveAction:(UIBarButtonItem *)sender;
+@property (strong,nonatomic)UserModel *user;
+@property (strong,nonatomic) UIActivityIndicatorView *avi;
 @end
 
 @implementation NCViewController
@@ -18,6 +25,9 @@
     [super viewDidLoad];
     [self naviConfig];
     // Do any additional setup after loading the view.
+    _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+    _NCTextField.text=_user.nickname;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,4 +74,36 @@
 }
 */
 
+- (IBAction)NCSaveAction:(UIBarButtonItem *)sender {
+    NSString * nc  = _NCTextField.text;
+       [[StorageMgr singletonStorageMgr]addKey:@"NC" andValue:nc];
+    
+    _avi=[Utilities getCoverOnView:self.view];
+    
+    //NSLog(@"%@",_user.nickname);
+    
+    NSDictionary *para = @{@"memberId":_user.memberId,@"name":nc};
+    [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject:%@",responseObject);
+        if([responseObject[@"resultFlag"]integerValue] == 8001){
+       //     NSDictionary *result= responseObject[@"result"];
+            
+            
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+            
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        //业务逻辑失败的情况下
+        [Utilities popUpAlertViewWithMsg:@"网络请求失败😂" andTitle:nil onView:self];
+    }];
+    
+
+}
 @end

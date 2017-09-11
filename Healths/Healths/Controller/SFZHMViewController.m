@@ -7,8 +7,15 @@
 //
 
 #import "SFZHMViewController.h"
+#import "UserModel.h"
+#import "SetUpTableViewCell.h"
+#import "SetUpViewController.h"
 
 @interface SFZHMViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *SFZHMTextField;
+- (IBAction)SFZHMSaveAction:(UIBarButtonItem *)sender;
+@property (strong,nonatomic)UserModel *user;
+@property (strong,nonatomic) UIActivityIndicatorView *avi;
 
 @end
 
@@ -18,6 +25,9 @@
     [super viewDidLoad];
     [self naviConfig];
     // Do any additional setup after loading the view.
+    _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+    _SFZHMTextField.text=_user.idCardNo;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,4 +73,36 @@
 }
 */
 
+- (IBAction)SFZHMSaveAction:(UIBarButtonItem *)sender {
+    NSString * sfzhm  = _SFZHMTextField.text;
+    [[StorageMgr singletonStorageMgr]addKey:@"SFZHM" andValue:sfzhm];
+    
+    _avi=[Utilities getCoverOnView:self.view];
+    
+    //NSLog(@"%@",_user.nickname);
+    
+    NSDictionary *para = @{@"memberId":_user.memberId,@"name":sfzhm};
+    [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject:%@",responseObject);
+        if([responseObject[@"resultFlag"]integerValue] == 8001){
+            //     NSDictionary *result= responseObject[@"result"];
+            
+            
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+            
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        //业务逻辑失败的情况下
+        [Utilities popUpAlertViewWithMsg:@"网络请求失败😂" andTitle:nil onView:self];
+    }];
+    
+
+}
 @end
