@@ -41,7 +41,7 @@
     
     [self initializeData];
     //刷新指示器
-    [self setRefreshControl];
+    [self refreshConfiguretion];
     UIImage *img1=[UIImage imageNamed:@"AdDefault"];
     
     UIImage *img3=[UIImage imageNamed:@"app_logo"];
@@ -69,17 +69,40 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//创建刷新指示器的方法
-- (void)setRefreshControl{
-    //已获取列表的刷新指示器
-    UIRefreshControl *Ref = [UIRefreshControl new];
-    [Ref addTarget:self action:@selector(Ref) forControlEvents:UIControlEventValueChanged];
-    Ref.tag = 10001;
-    [_homeTableView addSubview:Ref];
+//刷新
+-(void)refreshConfiguretion{
+    //初始化一个下拉刷新控件
+    UIRefreshControl *refreshContro=[[UIRefreshControl alloc]init];
+    
+    refreshContro.tag=10001;
+    //设置标题
+    NSString * title=@"加载中🐰";
+    //创建属性字典
+    NSDictionary *attrD=@{NSForegroundColorAttributeName : [UIColor grayColor]};
+    //将文字和属性字典包裹成一个带属性的字符串
+    NSAttributedString *attri=[[NSAttributedString alloc]initWithString:title attributes:attrD];
+    refreshContro.attributedTitle=attri;
+    //设置风格颜色为黑色（风格颜色：刷新指示器的颜色）
+    refreshContro.tintColor=[UIColor blackColor];
+    //设置背景颜色
+    refreshContro.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    //定义用户出发下拉事件执行的方法
+    [refreshContro addTarget:self action:@selector(refreData:) forControlEvents:UIControlEventValueChanged];
+    //将下拉刷新控件添加到activityView中（在tableView中，下拉刷新控件会自动放置在表格视图顶部后侧位置
+    [self.homeTableView addSubview:refreshContro];
+    
 }
-- (void)Ref{
-    homePageNum = 1;
-    [self cityRequest];
+-(void)refreData:(UIRefreshControl *)sender{
+    //
+    [self performSelector:@selector(end) withObject:nil afterDelay:2];
+    
+}
+
+-(void)end{
+    //在activityView中根据下标10001获得其子视图：下拉刷新控件
+    UIRefreshControl *refresh=(UIRefreshControl *)[self.homeTableView viewWithTag:10001];
+    //结束刷新
+    [refresh endRefreshing];
 }
 - (void)InitializeData{
     _avi = [Utilities getCoverOnView:self.view];

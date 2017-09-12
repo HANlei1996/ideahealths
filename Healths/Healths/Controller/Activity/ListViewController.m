@@ -139,7 +139,7 @@
     
     refreshContro.tag=10001;
     //设置标题
-    NSString * title=@"加载中。。。。";
+    NSString * title=@"加载中🐰";
     //创建属性字典
     NSDictionary *attrD=@{NSForegroundColorAttributeName : [UIColor grayColor]};
     //将文字和属性字典包裹成一个带属性的字符串
