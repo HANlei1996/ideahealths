@@ -297,7 +297,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="w3n-uK-zmf">
-                                                <rect key="frame" x="45" y="36.5" width="285" height="27"/>
+                                                <rect key="frame" x="40" y="36.5" width="290" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="无锡市南长区阳光城市花园B区76号1楼">
                                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -315,7 +315,7 @@
                                             <constraint firstItem="w3n-uK-zmf" firstAttribute="centerY" secondItem="Ir5-1p-DSB" secondAttribute="centerY" id="RWa-RB-RQq"/>
                                             <constraint firstItem="Ir5-1p-DSB" firstAttribute="leading" secondItem="LaS-R7-OMd" secondAttribute="leading" id="SdH-14-UiR"/>
                                             <constraint firstAttribute="bottom" secondItem="Ir5-1p-DSB" secondAttribute="bottom" constant="10" id="aKP-dT-EvD"/>
-                                            <constraint firstItem="w3n-uK-zmf" firstAttribute="leading" secondItem="Ir5-1p-DSB" secondAttribute="trailing" constant="10" id="d2w-AS-dn9"/>
+                                            <constraint firstItem="w3n-uK-zmf" firstAttribute="leading" secondItem="Ir5-1p-DSB" secondAttribute="trailing" constant="5" id="d2w-AS-dn9"/>
                                             <constraint firstAttribute="trailing" secondItem="aHC-ne-nAS" secondAttribute="trailing" constant="15" id="leZ-L7-0pk"/>
                                             <constraint firstItem="aHC-ne-nAS" firstAttribute="leading" secondItem="w3n-uK-zmf" secondAttribute="trailing" constant="10" id="nCw-Dp-s7u"/>
                                             <constraint firstItem="LaS-R7-OMd" firstAttribute="leading" secondItem="0WP-gN-3PC" secondAttribute="leading" constant="15" id="re9-Oc-rgB"/>
@@ -652,7 +652,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uQG-rR-u2X">
-                                                <rect key="frame" x="50" y="37.5" width="290" height="27"/>
+                                                <rect key="frame" x="40" y="37.5" width="300" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="无锡市南长区阳光城市花园B区76号1楼">
                                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -670,7 +670,7 @@
                                             <constraint firstItem="Fcw-V1-da1" firstAttribute="top" secondItem="inE-9b-ThN" secondAttribute="bottom" constant="10" id="K30-Jf-Sy4"/>
                                             <constraint firstItem="8Az-A2-iMj" firstAttribute="leading" secondItem="uQG-rR-u2X" secondAttribute="trailing" id="Svc-Br-l0r"/>
                                             <constraint firstItem="uQG-rR-u2X" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="WSd-U4-xTv"/>
-                                            <constraint firstItem="uQG-rR-u2X" firstAttribute="leading" secondItem="Fcw-V1-da1" secondAttribute="trailing" constant="15" id="cfL-9d-bri"/>
+                                            <constraint firstItem="uQG-rR-u2X" firstAttribute="leading" secondItem="Fcw-V1-da1" secondAttribute="trailing" constant="5" id="cfL-9d-bri"/>
                                             <constraint firstItem="8Az-A2-iMj" firstAttribute="centerY" secondItem="Fcw-V1-da1" secondAttribute="centerY" id="fn2-Xc-IrD"/>
                                             <constraint firstAttribute="height" constant="70" id="iWJ-hw-Uo0"/>
                                             <constraint firstItem="Fcw-V1-da1" firstAttribute="leading" secondItem="aQF-jh-qhP" secondAttribute="leading" constant="15" id="qmP-Do-7yU"/>
@@ -823,10 +823,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfA-Db-l3Z">
-                                        <rect key="frame" x="0.0" y="506" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="506" width="375" height="160"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Qc-aR-C7b">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <prototypes>
@@ -900,10 +900,10 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="5Hh-q3-kdR"/>
                                             <constraint firstItem="6Qc-aR-C7b" firstAttribute="leading" secondItem="QfA-Db-l3Z" secondAttribute="leading" id="JJR-6N-iek"/>
                                             <constraint firstAttribute="bottom" secondItem="6Qc-aR-C7b" secondAttribute="bottom" id="a1Q-9a-Vsl"/>
                                             <constraint firstAttribute="trailing" secondItem="6Qc-aR-C7b" secondAttribute="trailing" id="bDc-Sl-chF"/>
+                                            <constraint firstAttribute="height" constant="160" id="bdI-Qh-9rE"/>
                                             <constraint firstAttribute="bottom" secondItem="6Qc-aR-C7b" secondAttribute="bottom" id="ht8-eB-yz9"/>
                                             <constraint firstItem="6Qc-aR-C7b" firstAttribute="top" secondItem="QfA-Db-l3Z" secondAttribute="top" id="nhD-eX-FHU"/>
                                         </constraints>
@@ -918,7 +918,7 @@
                                     <constraint firstItem="qLe-oJ-7n3" firstAttribute="top" secondItem="Og4-4k-WNA" secondAttribute="bottom" id="I0V-db-Z4f"/>
                                     <constraint firstItem="QKo-fg-iGw" firstAttribute="top" secondItem="qLe-oJ-7n3" secondAttribute="bottom" id="JnQ-8n-z9R"/>
                                     <constraint firstItem="Og4-4k-WNA" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="Qeh-4b-JNt"/>
-                                    <constraint firstAttribute="bottom" secondItem="QfA-Db-l3Z" secondAttribute="bottom" constant="100" id="USt-wh-OSZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="QfA-Db-l3Z" secondAttribute="bottom" id="USt-wh-OSZ"/>
                                     <constraint firstItem="QKo-fg-iGw" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="VZ5-RE-m1m"/>
                                     <constraint firstAttribute="trailing" secondItem="aQF-jh-qhP" secondAttribute="trailing" id="YbA-bR-Ear"/>
                                     <constraint firstItem="QfA-Db-l3Z" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="bEp-1m-mdt"/>
@@ -931,7 +931,6 @@
                                     <constraint firstItem="aQF-jh-qhP" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="je4-LU-5Xj"/>
                                     <constraint firstItem="QfA-Db-l3Z" firstAttribute="top" secondItem="RiE-Zb-Cb8" secondAttribute="bottom" id="kXk-dh-KoQ"/>
                                     <constraint firstItem="Mn1-X0-Jvf" firstAttribute="top" secondItem="QKo-fg-iGw" secondAttribute="bottom" id="krF-cr-PTB"/>
-                                    <constraint firstAttribute="bottom" secondItem="QfA-Db-l3Z" secondAttribute="bottom" constant="100" id="m7H-co-tdl"/>
                                     <constraint firstItem="qLe-oJ-7n3" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="o6h-4X-Vhv"/>
                                     <constraint firstItem="RiE-Zb-Cb8" firstAttribute="leading" secondItem="Mn1-X0-Jvf" secondAttribute="leading" id="ptb-JF-U0D"/>
                                     <constraint firstItem="A0w-hs-1U3" firstAttribute="leading" secondItem="RGl-64-oHx" secondAttribute="leading" id="r81-dP-DAI"/>
@@ -958,11 +957,13 @@
                         <outlet property="clubName" destination="inE-9b-ThN" id="N1j-LU-zz5"/>
                         <outlet property="coachCount" destination="AKq-03-9F8" id="wVx-NA-a5l"/>
                         <outlet property="contentTextView" destination="qQ1-Kl-KeF" id="Plm-dg-lxO"/>
+                        <outlet property="detailScorllView" destination="RGl-64-oHx" id="BMM-9v-cgB"/>
                         <outlet property="detailView" destination="jGE-IM-D1f" id="mVW-b8-SDe"/>
                         <outlet property="experienceCardTableView" destination="6Qc-aR-C7b" id="umh-qs-DsE"/>
                         <outlet property="membersCount" destination="ywn-7v-CZL" id="vvP-Q6-rB0"/>
                         <outlet property="textviewH" destination="IGb-HP-JDY" id="RO7-cW-1hX"/>
                         <outlet property="time" destination="UDa-SI-g5d" id="lyc-2X-dNI"/>
+                        <outlet property="viewH" destination="bdI-Qh-9rE" id="Bvb-Dn-DIw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="au2-xS-n6r" sceneMemberID="firstResponder"/>
