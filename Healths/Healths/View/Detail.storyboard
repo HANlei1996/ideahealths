@@ -596,7 +596,7 @@
         <!--会所详情-->
         <scene sceneID="Bt6-Nv-oBF">
             <objects>
-                <viewController title="会所详情" hidesBottomBarWhenPushed="YES" id="EHy-sp-NRC" customClass="ClubDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="clubdetail" title="会所详情" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EHy-sp-NRC" customClass="ClubDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SKf-9c-l4h"/>
                         <viewControllerLayoutGuide type="bottom" id="Ex1-Io-AQe"/>

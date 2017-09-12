@@ -25,6 +25,7 @@
     self.imgUrl = [dict[@"imgUrl"] isKindOfClass:[NSNull class]] ? @"" : dict[@"imgUrl"] ;
     self.name=[dict[@"name"] isKindOfClass:[NSNull class]] ?@"活动":dict[@"name"];
     self.neirong=[dict[@"content"] isKindOfClass:[NSNull class]] ?@"暂无内容":dict[@"content"];
+        self.address=[dict[@"address"] isKindOfClass:[NSNull class]] ?@"":dict[@"address"];
     self.like=[dict[@"like"]isKindOfClass:[NSNull class]]?0:[dict[@"like"]integerValue];
     self.unlike=[dict[@"unlike"]isKindOfClass:[NSNull class]]?0:[dict[@"unlike"]integerValue];
     self.isFavo = [dict[@"isFavo"] isKindOfClass:[ NSNull class]] ? NO:[dict[@"isFavo"] boolValue];

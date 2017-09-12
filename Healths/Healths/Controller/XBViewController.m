@@ -139,7 +139,7 @@
 }
 - (IBAction)XBSaveAction:(UIBarButtonItem *)sender {
     NSString *xb=_XBTextField.text;
-     //[[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
+     [[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
     
     _avi=[Utilities getCoverOnView:self.view];
     
@@ -151,7 +151,9 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
           //  NSDictionary *result= responseObject[@"result"];
-            
+            NSNotification *note = [NSNotification notificationWithName:@"refreshXB" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
+
             
             
             [self dismissViewControllerAnimated:YES completion:nil];

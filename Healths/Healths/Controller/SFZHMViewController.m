@@ -81,13 +81,14 @@
     
     //NSLog(@"%@",_user.nickname);
     
-    NSDictionary *para = @{@"memberId":_user.memberId,@"name":sfzhm};
+    NSDictionary *para = @{@"memberId":_user.memberId,@"identificationcard":sfzhm};
     [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
         [_avi stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             //     NSDictionary *result= responseObject[@"result"];
-            
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSFZHM" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
             [self dismissViewControllerAnimated:YES completion:nil];

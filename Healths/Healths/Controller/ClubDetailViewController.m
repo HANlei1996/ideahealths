@@ -60,7 +60,7 @@
 // 这个方法专门做导航条的控制
 -(void)naviConfig{
     //设置导航条标题文字
-    self.navigationItem.title=@"体验卡信息";
+    self.navigationItem.title=@"会所详情";
     //设置导航条的颜色（风格颜色）
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:100/255.0 blue:255.0 alpha:1.0]];
     //设置导航条的标题颜色
@@ -86,8 +86,8 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-    NSLog(@"club id = %@",_detail.clubid);
-    NSDictionary *parameter=@{@"clubKeyId":_detail.clubid};
+    
+    NSDictionary *parameter=@{@"clubKeyId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
@@ -172,11 +172,11 @@
         SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
         
         //purchaseVC.detail=_detail;
-        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId"];
+        [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId2"];
         HomeModel *model = _arr1[indexPath.section];
         //NSDictionary *dict = model.experienceInfos[indexPath.row];
         
-        [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.eId];
+        [[StorageMgr singletonStorageMgr] addKey:@"expId2" andValue:model.eId];
         
         [self.navigationController pushViewController:purchaseVC animated:YES];
         [_experienceCardTableView deselectRowAtIndexPath:indexPath animated:YES];
