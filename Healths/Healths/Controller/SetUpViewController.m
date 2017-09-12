@@ -31,9 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSR) name:@"refreshSR" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSFZHM) name:@"refreshSFZHM" object:nil];
   //  _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
-    if ([Utilities loginCheck]) {
-        //已登录
-        
+    
         _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"昵称",@"nicknameLabel",_user.nickname,@"infoLabel",nil];
         NSMutableDictionary *dict2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"性别",@"nicknameLabel",_user.gender,@"infoLabel", nil];
@@ -47,11 +45,7 @@
         
         
         
-    }else{
-        _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
-        
-    }
-  
+    
     _SetUpTableView.tableFooterView = [UIView new];
     [self setFootViewForTableView];
     [_SetUpTableView reloadData];
@@ -70,6 +64,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    if ([Utilities loginCheck]) {
+        //已登录
+    }else{
+        _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
+        
+    }
     
 }
 -(void)refreshNick{
