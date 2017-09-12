@@ -732,9 +732,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="req-B2-XZH">
-                                                    <rect key="frame" x="23" y="81" width="337" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="15" y="81" width="345" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIw-04-YSR">
@@ -772,6 +772,7 @@
                                                 <constraint firstItem="dgT-Rc-btA" firstAttribute="top" secondItem="Ybh-Gt-5rX" secondAttribute="top" id="35O-Lp-Z0X"/>
                                                 <constraint firstItem="dgT-Rc-btA" firstAttribute="top" secondItem="Ybh-Gt-5rX" secondAttribute="top" constant="5" id="5kG-Xm-bzg"/>
                                                 <constraint firstItem="Ybh-Gt-5rX" firstAttribute="top" secondItem="5il-Ih-0DS" secondAttribute="top" constant="10" id="Hj6-bz-eqs"/>
+                                                <constraint firstItem="req-B2-XZH" firstAttribute="leading" secondItem="Ybh-Gt-5rX" secondAttribute="leading" id="K7e-19-WgL"/>
                                                 <constraint firstItem="sIw-04-YSR" firstAttribute="leading" secondItem="dgT-Rc-btA" secondAttribute="trailing" constant="10" id="LQn-hV-ihF"/>
                                                 <constraint firstItem="sIw-04-YSR" firstAttribute="top" secondItem="Ybh-Gt-5rX" secondAttribute="top" id="QzF-qL-YNb"/>
                                                 <constraint firstItem="CdU-8e-1Zx" firstAttribute="bottom" secondItem="Ybh-Gt-5rX" secondAttribute="bottom" constant="-5" id="T59-Xz-PcF"/>
@@ -782,9 +783,7 @@
                                                 <constraint firstItem="CdU-8e-1Zx" firstAttribute="top" secondItem="dgT-Rc-btA" secondAttribute="bottom" constant="8" symbolic="YES" id="hhl-9K-hCi"/>
                                                 <constraint firstItem="sIw-04-YSR" firstAttribute="trailing" secondItem="req-B2-XZH" secondAttribute="trailing" id="kxu-zd-GP2"/>
                                                 <constraint firstAttribute="trailing" secondItem="sIw-04-YSR" secondAttribute="trailing" constant="15" id="mYU-eM-m4Z"/>
-                                                <constraint firstItem="req-B2-XZH" firstAttribute="leading" secondItem="5il-Ih-0DS" secondAttribute="leadingMargin" constant="15" id="p8i-xZ-RO3"/>
                                                 <constraint firstItem="req-B2-XZH" firstAttribute="top" secondItem="Ybh-Gt-5rX" secondAttribute="bottom" constant="21" id="rhD-mM-F5x"/>
-                                                <constraint firstAttribute="trailing" secondItem="req-B2-XZH" secondAttribute="trailing" constant="15" id="wYR-80-H7Q"/>
                                                 <constraint firstItem="hZe-A9-WIU" firstAttribute="bottom" secondItem="CdU-8e-1Zx" secondAttribute="bottom" id="xkI-mJ-MdV"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -827,7 +826,7 @@
                     <navigationItem key="navigationItem" id="Cgt-zV-vTP">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kqs-Kj-MOl">
-                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                             <state key="normal" title="苏州">
@@ -917,7 +916,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJ0-Ec-nHQ">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

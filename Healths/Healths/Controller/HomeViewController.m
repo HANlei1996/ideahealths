@@ -43,9 +43,9 @@
     //刷新指示器
     [self setRefreshControl];
     UIImage *img1=[UIImage imageNamed:@"AdDefault"];
-    UIImage *img2=[UIImage imageNamed:@"Default"];
+    
     UIImage *img3=[UIImage imageNamed:@"app_logo"];
-    _logoImage.animationImages=[NSArray arrayWithObjects:img1,img2,img3, nil];
+    _logoImage.animationImages=[NSArray arrayWithObjects:img1,img3, nil];
     _logoImage.animationDuration=5;
     [_logoImage startAnimating];//动画开始
     //    //创建一个刷新指示器放在tableview中
