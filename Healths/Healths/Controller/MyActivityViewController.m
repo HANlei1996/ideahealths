@@ -140,7 +140,7 @@
 }
 //设置每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 112.f;
+    return 100.f;
 }
 
 //细胞选中后调用
