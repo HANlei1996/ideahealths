@@ -18,13 +18,13 @@
     NSInteger homePageNum;
 }
 @property (strong, nonatomic) IBOutlet UIView *detailView;
+@property (weak, nonatomic) IBOutlet UIScrollView *detailScorllView;
 
 @property (weak, nonatomic) IBOutlet UITableView *experienceCardTableView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *activityImgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *clubName;
-@property (weak, nonatomic) IBOutlet UILabel *clubAddress;
 @property (weak, nonatomic) IBOutlet UIButton *callBtn;
 - (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textviewH;
 @property (weak, nonatomic) IBOutlet UIButton *addressBtn;
 - (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewH;
 
 @end
 
@@ -45,20 +46,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     _arr1 = [NSMutableArray new];
     _experienceCardTableView.tableFooterView = [UIView new];
     // Do any additional setup after loading the view.
     [self networkRequest];
     [self naviConfig];
+    [self refreshConfiguretion];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 // 这个方法专门做导航条的控制
--(void)naviConfig{
+- (void)naviConfig{
     //设置导航条标题文字
     self.navigationItem.title=@"会所详情";
     //设置导航条的颜色（风格颜色）
@@ -73,11 +75,42 @@
     self.navigationController.navigationBar.translucent=YES;
 }
 
+//刷新
+- (void)refreshConfiguretion{
+    //初始化一个下拉刷新控件
+    UIRefreshControl *refreshControl=[[UIRefreshControl alloc]init];
+    
+    refreshControl.tag=10000;
+    //设置标题
+    NSString * title=@"加载中...";
+    //创建属性字典
+    NSDictionary *attrD=@{NSForegroundColorAttributeName : [UIColor grayColor]};
+    //将文字和属性字典包裹成一个带属性的字符串
+    NSAttributedString *attri=[[NSAttributedString alloc]initWithString:title attributes:attrD];
+    refreshControl.attributedTitle=attri;
+    //设置风格颜色为黑色（风格颜色：刷新指示器的颜色）
+    refreshControl.tintColor=[UIColor blackColor];
+    //设置背景颜色
+    refreshControl.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    //定义用户出发下拉事件执行的方法
+    [refreshControl addTarget:self action:@selector(refreData:) forControlEvents:UIControlEventValueChanged];
+    //将下拉刷新控件添加到activityView中（在tableView中，下拉刷新控件会自动放置在表格视图顶部后侧位置
+    [self.detailScorllView addSubview:refreshControl];
+    
+}
 
-//键盘收回
-- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    //让根视图结束编辑状态达到收起键盘的目的
-    [self.view endEditing:YES];
+- (void)refreData:(UIRefreshControl *)sender{
+    //[self networkRequest];
+    [self performSelector:@selector(endRefresh) withObject:nil afterDelay:2];
+    
+    
+}
+
+-(void)endRefresh{
+    //在activityView中根据下标10000获得其子视图：下拉刷新控件
+    UIRefreshControl *refresh=(UIRefreshControl *)[self.detailScorllView viewWithTag:10000];
+    //结束刷新
+    [refresh endRefreshing];
 }
 
 -(void)networkRequest{
@@ -86,7 +119,6 @@
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-    
     NSDictionary *parameter=@{@"clubKeyId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
@@ -117,8 +149,6 @@
 
 -(void)uiLayout{
     [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
-    
-    //[self addTapGestureRecognizer:_DetailView]
     _clubName.text = _detail.clubName;
     //_clubAddress.text = _detail.clubAddressB;
     [_addressBtn setTitle:_detail.clubAddressB forState:UIControlStateNormal];
@@ -158,7 +188,7 @@
     cell.soldCount.text = [NSString stringWithFormat:@"已售:%@",model.saleCount];
     NSURL *URL2=[NSURL URLWithString:model.eLogo];
     [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
-    
+    _viewH.constant = (indexPath.section + 1) * 80.f;
     return cell;
 }
 //设置每行高度
@@ -236,9 +266,10 @@
         UITapGestureRecognizer *zoomIVTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(zoomTap:)];
         [_image addGestureRecognizer:zoomIVTap];
         
-        // }
+      
     }
-}//大图的单击手势响应事件
+}
+//大图的单击手势响应事件
 - (void)zoomTap: (UITapGestureRecognizer *)tap{
     if (tap.state == UIGestureRecognizerStateRecognized) {
         //把大图的本身东西扔掉

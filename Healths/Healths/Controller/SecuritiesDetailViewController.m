@@ -13,6 +13,7 @@
 #import "AddressViewController.h"
 
 @interface SecuritiesDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @property (weak, nonatomic) IBOutlet UIImageView *tyjImage;
 @property (weak, nonatomic) IBOutlet UILabel *xjLabel;
@@ -41,6 +42,8 @@
     // Do any additional setup after loading the view.
     [self naviConfig];
     [self networkRequest];
+    [self refreshConfiguretion];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +80,41 @@
     // Pass the selected object to the new view controller.
 }
 */
+//刷新
+-(void)refreshConfiguretion{
+    //初始化一个下拉刷新控件
+    UIRefreshControl *refreshContro=[[UIRefreshControl alloc]init];
+    
+    refreshContro.tag=10001;
+    //设置标题
+    NSString * title=@"加载中🐰";
+    //创建属性字典
+    NSDictionary *attrD=@{NSForegroundColorAttributeName : [UIColor grayColor]};
+    //将文字和属性字典包裹成一个带属性的字符串
+    NSAttributedString *attri=[[NSAttributedString alloc]initWithString:title attributes:attrD];
+    refreshContro.attributedTitle=attri;
+    //设置风格颜色为黑色（风格颜色：刷新指示器的颜色）
+    refreshContro.tintColor=[UIColor blackColor];
+    //设置背景颜色
+    refreshContro.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    //定义用户出发下拉事件执行的方法
+    [refreshContro addTarget:self action:@selector(refreData:) forControlEvents:UIControlEventValueChanged];
+    //将下拉刷新控件添加到activityView中（在tableView中，下拉刷新控件会自动放置在表格视图顶部后侧位置
+    [self.scrollview addSubview:refreshContro];
+    
+}
+-(void)refreData:(UIRefreshControl *)sender{
+    //
+    [self performSelector:@selector(end) withObject:nil afterDelay:2];
+    
+}
+
+-(void)end{
+    //在activityView中根据下标10001获得其子视图：下拉刷新控件
+    UIRefreshControl *refresh=(UIRefreshControl *)[self.scrollview viewWithTag:10001];
+    //结束刷新
+    [refresh endRefreshing];
+}
 
 - (IBAction)ljxdBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 
@@ -85,9 +123,10 @@
         if ([_xjLabel.text isEqualToString:@"0"]) {
             UIAlertController *alertView=[UIAlertController alertControllerWithTitle:@"支付成功" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *okAction=[UIAlertAction actionWithTitle:@"知道了" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                
                 [self.navigationController popViewControllerAnimated:YES];
                 
-            }];
+                }];
             [alertView addAction:okAction];
          [self presentViewController:alertView animated:YES completion:nil];
             
@@ -136,6 +175,7 @@
     }];
     
 }
+
 -(void)uiLayout{
     [_tyjImage sd_setImageWithURL:[NSURL URLWithString :_detail.eLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
     _xjLabel.text=_detail.currentPrice;
