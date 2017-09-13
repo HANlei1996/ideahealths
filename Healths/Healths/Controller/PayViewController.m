@@ -8,7 +8,9 @@
 
 #import "PayViewController.h"
 
-@interface PayViewController ()
+@interface PayViewController () <UITableViewDelegate, UITableViewDataSource> {
+    NSInteger selected;
+}
 @property (weak, nonatomic) IBOutlet UILabel *tykLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dmLabel;
 @property (weak, nonatomic) IBOutlet UILabel *djLabel;
@@ -61,9 +63,11 @@
 
 -(void)dataInitialize{
     _arr=@[@"支付宝支付",@"微信支付",@"银联支付"];
-    
+    selected = 0;
 }
+
 -(void)payAction{
+    NSLog(@"selected: %ld", self.tableView.indexPathForSelectedRow.row);
     switch(self.tableView.indexPathForSelectedRow.row){
         case 0:{
             NSString *tradeNo=[GBAlipayManager generateTradeNO];
@@ -138,17 +142,28 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"支付方式";
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //遍历表格视图中所有选中状态下的细胞
-    for(NSIndexPath *eachIP in tableView.indexPathsForSelectedRows){
-        //当选中的细胞不是当前正在按的这个细胞情况下
-        if(eachIP != indexPath){
-            //将细胞从选中状态改为不选中状态
-            [tableView deselectRowAtIndexPath:eachIP animated:YES];
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row != selected) {
+        selected = indexPath.row;
+        //遍历表格视图中所有选中状态下的细胞
+        for(NSIndexPath *eachIP in tableView.indexPathsForSelectedRows){
+            //当选中的细胞不是当前正在按的这个细胞情况下
+            if(eachIP != indexPath){
+                //将细胞从选中状态改为不选中状态
+                [tableView deselectRowAtIndexPath:eachIP animated:YES];
+            }else{
+                //[tableView deselectRowAtIndexPath:eachIP animated:YES];
+            }
         }
     }
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == selected) {
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
+}
 
 - (IBAction)jiajianBtn:(UIStepper *)sender forEvent:(UIEvent *)event {
     self.slLabel.text=[NSString stringWithFormat:@"%g",sender.value];
