@@ -787,8 +787,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn1-X0-Jvf">
                                         <rect key="frame" x="0.0" y="450" width="375" height="36"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qQ1-Kl-KeF">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="qQ1-Kl-KeF">
+                                                <rect key="frame" x="15" y="0.0" width="345" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="IGb-HP-JDY"/>
@@ -801,8 +801,8 @@
                                         <constraints>
                                             <constraint firstItem="qQ1-Kl-KeF" firstAttribute="top" secondItem="Mn1-X0-Jvf" secondAttribute="top" id="XUf-zA-Nu8"/>
                                             <constraint firstAttribute="bottom" secondItem="qQ1-Kl-KeF" secondAttribute="bottom" id="d1z-ly-6y7"/>
-                                            <constraint firstItem="qQ1-Kl-KeF" firstAttribute="leading" secondItem="Mn1-X0-Jvf" secondAttribute="leading" id="iuE-LN-K01"/>
-                                            <constraint firstAttribute="trailing" secondItem="qQ1-Kl-KeF" secondAttribute="trailing" id="zFB-jA-Zn9"/>
+                                            <constraint firstItem="qQ1-Kl-KeF" firstAttribute="leading" secondItem="Mn1-X0-Jvf" secondAttribute="leading" constant="15" id="qbn-RQ-kMm"/>
+                                            <constraint firstAttribute="trailing" secondItem="qQ1-Kl-KeF" secondAttribute="trailing" constant="15" id="w9e-Ly-1wm"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiE-Zb-Cb8">

@@ -33,8 +33,8 @@
     // Do any additional setup after loading the view.
     _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
     _SRtextField.text=_user.dob;
-    _pickerView.minimumDate = [NSDate date];
-    _pickerView.backgroundColor = UIColorFromRGB(235, 235, 241);
+   // _pickerView.minimumDate = [NSDate date];
+    //_pickerView.backgroundColor = UIColorFromRGB(235, 235, 241);
 
 }
 
