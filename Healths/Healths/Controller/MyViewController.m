@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *avi;
 @property (strong, nonatomic) NSArray *myArr;
-
+@property (strong,nonatomic)NSString *shu;
 @end
 
 @implementation MyViewController
@@ -143,7 +143,7 @@
             
         }
     if (indexPath.section == 3){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"当前积分:2534" message:@"积分商城即将登陆，准备好了吗，亲？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"当前积分:%@",_shu]  message:@"积分商城即将登陆，准备好了吗，亲？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //        [self exit];
             
@@ -161,10 +161,7 @@
         [_avi stopAnimating];
         NSLog(@"mypromotion:%@", responseObject);
         if ([responseObject[@"resultFlag"]integerValue]==8001) {
-            NSDictionary *result =responseObject[@"2543"];
-            UserModel *user=[[UserModel alloc]initWithDictionary:result];
-            [[StorageMgr singletonStorageMgr]addKey:@"MemberInfo" andValue:user];
-            [[StorageMgr singletonStorageMgr ]addKey:@"MemberId" andValue:user.credit];
+            _shu = responseObject[@"result"];
         }
         else{
             [_avi stopAnimating];
