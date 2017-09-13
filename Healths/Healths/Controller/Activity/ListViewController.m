@@ -56,35 +56,35 @@
     [self naviConfig];
     [self data];
     [self uilay];
-    [self locationConfig];
+    //[self locationConfig];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkCityState:) name:@"ResetHome" object:nil];
     
 }
-//每次将要来都这个页面的时候
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-        [self locationStart];
-}
-//每次到达这个页面的时候
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-//每次将要离开这个页面的时候
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [_locMgr stopUpdatingLocation];
-}
-//每次离开这个页面的时候
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    //获得当前页面的导航控制器所维系的关于导航关系的数组,判断该数组中是否包含自己来得知当前操作是离开打本页面还是退出被本页面
-    if(![self.navigationController.viewControllers containsObject:self])
-    {
-        //在这里释放所有监听（包括Action事件；protcol协议；Gesture手势；Notification通知...）
-        
-    }
-}
+////每次将要来都这个页面的时候
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//        [self locationStart];
+//}
+////每次到达这个页面的时候
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//}
+////每次将要离开这个页面的时候
+//-(void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    [_locMgr stopUpdatingLocation];
+//}
+////每次离开这个页面的时候
+//-(void)viewDidDisappear:(BOOL)animated{
+//    [super viewDidDisappear:animated];
+//    //获得当前页面的导航控制器所维系的关于导航关系的数组,判断该数组中是否包含自己来得知当前操作是离开打本页面还是退出被本页面
+//    if(![self.navigationController.viewControllers containsObject:self])
+//    {
+//        //在这里释放所有监听（包括Action事件；protcol协议；Gesture手势；Notification通知...）
+//        
+//    }
+//}
 //一旦退出这个页面的时候（并且所有的监听都已经全部被释放了）
 -(void)dealloc{
     //在这里释放所有内存（这是为nil)
@@ -94,29 +94,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//这个方法专门处理定位的基本设置
--(void)locationConfig{
-    _locMgr = [CLLocationManager new];
-    //签协议
-    _locMgr.delegate = self;
-    //识别定位到的设备位移多少距离进行一次识别
-    _locMgr.distanceFilter =kCLDistanceFilterNone;
-    //设置把地球分割成边长多少精度的方块
-    _locMgr.desiredAccuracy =kCLLocationAccuracyBest ;
-}
-//这个方法处理开始定位
--(void)locationStart{
-  //判断用户有没有选择过是否使用定位
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        //询问用户是否愿意使用定位
-#ifdef __IPHONE_8_0
-        //使用“使用中打开定位”这个策略去运用定位功能
-        [_locMgr requestWhenInUseAuthorization];
-#endif
-    }
-    //打开定位服务的开关（开始定位）
-    [_locMgr startUpdatingLocation];
-}
+////这个方法专门处理定位的基本设置
+//-(void)locationConfig{
+//    _locMgr = [CLLocationManager new];
+//    //签协议
+//    _locMgr.delegate = self;
+//    //识别定位到的设备位移多少距离进行一次识别
+//    _locMgr.distanceFilter =kCLDistanceFilterNone;
+//    //设置把地球分割成边长多少精度的方块
+//    _locMgr.desiredAccuracy =kCLLocationAccuracyBest ;
+//}
+////这个方法处理开始定位
+//-(void)locationStart{
+//  //判断用户有没有选择过是否使用定位
+//    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+//        //询问用户是否愿意使用定位
+//#ifdef __IPHONE_8_0
+//        //使用“使用中打开定位”这个策略去运用定位功能
+//        [_locMgr requestWhenInUseAuthorization];
+//#endif
+//    }
+//    //打开定位服务的开关（开始定位）
+//    [_locMgr startUpdatingLocation];
+//}
 
 // 这个方法专门做导航条的控制
 -(void)naviConfig{
@@ -601,8 +601,8 @@
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{
-    //NSLog(@"纬度: %f",newLocation.coordinate.latitude);
-    //NSLog(@"经度: %f",newLocation.coordinate.longitude);
+    NSLog(@"纬度: %f",newLocation.coordinate.latitude);
+    NSLog(@"经度: %f",newLocation.coordinate.longitude);
     _location = newLocation;
     //用flag思想判断是否可以去根据定位拿到城市
     if (firstVisit) {

@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
-
+#import <CoreLocation/CoreLocation.h>
 #import "UIImageView+WebCache.h"
 #import "ClubDetailViewController.h"
 #import "CardTableViewCell.h"
@@ -17,15 +17,22 @@
     NSInteger homePageNum;
     NSInteger isLastPage;
     NSInteger cityPageNum;
+    BOOL firstVisit;
+    BOOL isLoading;
 }
 @property (weak, nonatomic) IBOutlet UITableView *homeTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
 
+
+
+
+
 @property (strong,nonatomic)NSMutableArray *Arr1;
 @property (strong, nonatomic) NSMutableArray *Arr2;
 @property (strong, nonatomic) NSMutableArray *experience;
-
+@property (strong,nonatomic) CLLocation *location;
 @property (strong, nonatomic) UIActivityIndicatorView *avi;
+@property (strong,nonatomic) CLLocationManager *locMgr;
 @end
 
 @implementation HomeViewController
@@ -35,11 +42,11 @@
     // Do any additional setup after loading the view.
     _experience = [NSMutableArray new];
     
-    _Arr2 = [NSMutableArray new];
+    
     cityPageNum = 1;
     [self naviConfig];
-    
-    [self initializeData];
+    //[self locationConfig];
+    [self InitializeData];
     //刷新指示器
     [self refreshConfiguretion];
     UIImage *img1=[UIImage imageNamed:@"AdDefault"];
@@ -48,22 +55,32 @@
     _logoImage.animationImages=[NSArray arrayWithObjects:img1,img3, nil];
     _logoImage.animationDuration=5;
     [_logoImage startAnimating];//动画开始
-    //    //创建一个刷新指示器放在tableview中
-    //    UIRefreshControl *ref = [UIRefreshControl new];
-    //    [ref addTarget:self action:@selector(refreshRequest) forControlEvents:UIControlEventValueChanged];
-    //    ref.tag = 10001;
     
-    //    [_homeTableView addSubview:ref];
-    //    NSDictionary *dicA=@{ @"imgURL":@"http://7u2h3s.com2.z0.glb.qiniucdn.com/activityImg_2_0B28535F-B789-4E8B-9B5D-28DEDB728E9A",@"id":@"莫梵",@"distance":@80,@"address":@"无锡",@"name":@"体验劵",@"categoryName":@"综合卷",@"price":@"1"};
-    //    NSMutableArray *array=[NSMutableArray arrayWithObjects:dicA,nil];
-    //    for (NSDictionary *dict in array) {
-    //
-    //        //用ActivityModel类中定义的初始化方法initWithDictionary：将遍历得来的字典dictionary转换成ActivityMode对象
-    //        HomeModel *home=[[HomeModel alloc]initWithDictionary:dict];
-    //        //将上述实例化好的ActivityModel对象插入_arr数组中
-    //        [_Arr2 addObject:home];
-    //}
 }
+////每次将要来都这个页面的时候
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [self locationStart];
+//}
+////每次到达这个页面的时候
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//}
+////每次将要离开这个页面的时候
+//-(void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    [_locMgr stopUpdatingLocation];
+//}
+////每次离开这个页面的时候
+//-(void)viewDidDisappear:(BOOL)animated{
+//    [super viewDidDisappear:animated];
+//    //获得当前页面的导航控制器所维系的关于导航关系的数组,判断该数组中是否包含自己来得知当前操作是离开打本页面还是退出被本页面
+//    if(![self.navigationController.viewControllers containsObject:self])
+//    {
+//        //在这里释放所有监听（包括Action事件；protcol协议；Gesture手势；Notification通知...）
+//        
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -106,6 +123,9 @@
 }
 - (void)InitializeData{
     _avi = [Utilities getCoverOnView:self.view];
+//    firstVisit = YES;
+    isLoading = NO;
+    _Arr2 = [NSMutableArray new];
     [self cityRequest];
 }
 // 这个方法专门做导航条的控制
@@ -122,10 +142,7 @@
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
 }
-- (void)initializeData{
-    _avi = [Utilities getCoverOnView:self.view];
-    [self refreshRequest];
-}
+
 //下拉刷新
 - (void)refreshRequest{
     homePageNum = 1;
@@ -135,12 +152,14 @@
     
 }
 - (void)cityRequest{
-    [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":@"无锡",@"jing":@31.57,@"wei":@120.3,@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":@"无锡",@"jing":@120.3,@"wei":@31.57,@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        
         [_avi stopAnimating];
         UIRefreshControl *ref = (UIRefreshControl *)[_homeTableView viewWithTag:10001];
         [ref endRefreshing];
         
-        NSLog(@"responseObject: %@", responseObject);
+        
+        //NSLog(@"responseObject: %@", responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             
             
@@ -228,7 +247,8 @@
         
         [cell.bigImageView sd_setImageWithURL:URL1 placeholderImage:[UIImage imageNamed:@"Home"]];
         cell.clubIdLabel.text = homeModel.clubname;
-        cell.distanceLabel.text = homeModel.distance;
+        
+        cell.distanceLabel.text = [NSString stringWithFormat:@"%@米",homeModel.distance];
         cell.addressLabel.text = homeModel.clubaddress;
         return cell;
         
@@ -245,8 +265,8 @@
         NSURL *URL2=[NSURL URLWithString:experience[@"logo"]];
         [cell.smallImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
         cell.clubCardLabel.text = experience[@"name"];
-        NSLog(@"experience = %@",experience[@"name"]);
-        NSLog(@"experience = %@",experience[@"categoryName"]);
+        //NSLog(@"experience = %@",experience[@"name"]);
+        //NSLog(@"experience = %@",experience[@"categoryName"]);
         cell.volumeLabel.text = [experience[@"categoryName"] isKindOfClass:[NSNull class]] ?@"综合卷" :experience[@"categoryName"];
         cell.moneyLabel.text = [NSString stringWithFormat:@"%@元",experience[@"price"]];
         cell.soldLabel.text = [NSString stringWithFormat:@"已售:%@",experience[@"sellNumber"]];
@@ -323,6 +343,103 @@
         }
     }
 }
+////定位失败时
+//- (void)locationManager:(CLLocationManager *)manager
+//       didFailWithError:(NSError *)error{
+//    if (error) {
+//        switch (error.code) {
+//            case kCLErrorNetwork:
+//                [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"NetworkError", nil) andTitle:nil onView:self];
+//                break;
+//            case kCLErrorDenied:
+//                [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"GPSDisabled", nil) andTitle:nil onView:self];
+//                break;
+//            case kCLErrorLocationUnknown:
+//                [Utilities popUpAlertViewWithMsg:NSLocalizedString(@"LocationUnkonw", nil) andTitle:nil onView:self];
+//                break;
+//                
+//                
+//            default:[Utilities popUpAlertViewWithMsg:NSLocalizedString(@"SystemError", nil) andTitle:nil onView:self];
+//                break;
+//        }
+//    }
+//}
+////定位成功时
+//- (void)locationManager:(CLLocationManager *)manager
+//    didUpdateToLocation:(CLLocation *)newLocation
+//           fromLocation:(CLLocation *)oldLocation{
+//    NSLog(@"纬度: %f",newLocation.coordinate.latitude);
+//    NSLog(@"经度: %f",newLocation.coordinate.longitude);
+//    _location = newLocation;
+//    //用flag思想判断是否可以去根据定位拿到城市
+//    if (firstVisit) {
+//        firstVisit = !firstVisit;
+//        
+//        //根据定位拿到城市
+//        [self getRegeoViaCoordinate];
+//    }
+//     [_locMgr stopUpdatingLocation];
+//
+//}
+//-(void)getRegeoViaCoordinate{
+//    //duration表示从now开始过三个sec
+//    dispatch_time_t duration= dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC);
+//    //用duration这个设置好的策略去做某些事
+//    dispatch_after(duration,dispatch_get_main_queue(), ^{
+//        //正式做事情
+//        CLGeocoder *geo = [CLGeocoder new];
+//        //方向地理编码
+//        [geo reverseGeocodeLocation:_location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//            
+//                CLPlacemark *first = placemarks.firstObject;
+//                NSDictionary *locDict = first.addressDictionary;
+//                //NSLog(@"locDict = %@",locDict);
+//                NSString *cityStr = locDict[@"City"];
+//                //把city的市子去掉
+//                cityStr = [cityStr substringToIndex:(cityStr.length - 1)];
+//                [[StorageMgr singletonStorageMgr]removeObjectForKey:@"LocCity"];
+//                //将定位到的城市保存进单例化全局变量
+//                [[StorageMgr singletonStorageMgr] addKey:@"LocCity" andValue:cityStr];
+////                if (![cityStr isEqualToString:_CityBtn.titleLabel.text]) {
+////                    //将定位的城市和当前选则的城市不一样的时候去弹窗询问用户是否要切换城市
+////                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"当前定位到的城市为%@,请问您是否需要切换" ,cityStr] preferredStyle:UIAlertControllerStyleAlert];
+////                    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                        //修改城市按钮标题
+////                        [_CityBtn setTitle:cityStr forState:UIControlStateNormal];
+////                        //修改用户选择的城市记忆体
+////                        [Utilities removeUserDefaults:@"UserCity"];
+////                        [Utilities setUserDefaults:@"UserCity" content:cityStr];
+//                        //重新执行网络请求
+//                        [self cityRequest];
+////                    }];
+////                    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+////                    [alert addAction:yesAction];
+////                    [alert addAction:noAction];
+////                    [self presentViewController:alert animated:YES completion:nil];
+//            
+//        
+//         
+//        
+//      
+//        //关掉开关
+//        }];
+//        [_locMgr stopUpdatingLocation];
+//    
+//         
+//         });
+//}
+//-(void)checkCityState:(NSNotification *)note{
+//    NSString *cityStr = note.object;
+//    
+//    
+//        
+//        //修改用户选择的城市记忆体
+//        [Utilities removeUserDefaults:@"UserCity"];
+//        [Utilities setUserDefaults:@"UserCity" content:cityStr];
+//        //重新执行网络请求
+//        [self cityRequest];
+//    
+//}
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 //    if ([segue.identifier isEqualToString:@"Detail1"]) {
 //        //当从列表页到详情页的这个跳转要发生的时候
@@ -345,4 +462,5 @@
 //
 //    }
 //}
+         
 @end

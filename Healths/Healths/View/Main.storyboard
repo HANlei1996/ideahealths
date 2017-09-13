@@ -319,7 +319,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="0.3980442533557047" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.39809668624161076" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Jec-Kc-IVA" firstAttribute="leading" secondItem="N6b-OP-GhZ" secondAttribute="leading" constant="15" id="8VY-Hw-X3u"/>
                                                         <constraint firstItem="s6f-hL-7XT" firstAttribute="bottom" secondItem="Jec-Kc-IVA" secondAttribute="bottom" id="MxV-GU-ams"/>
@@ -491,19 +491,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xxo-Ib-cCK">
-                                <rect key="frame" x="10" y="74" width="355" height="381"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0ge-jN-pIF">
+                                <rect key="frame" x="10" y="74" width="355" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.89514661819999997" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Xxo-Ib-cCK" secondAttribute="trailing" constant="10" id="LnD-ue-Ycw"/>
-                            <constraint firstItem="Xxo-Ib-cCK" firstAttribute="leading" secondItem="Y1G-Ch-FBt" secondAttribute="leading" constant="10" id="UrI-Tr-YEf"/>
-                            <constraint firstItem="qqL-HN-gg7" firstAttribute="top" secondItem="Xxo-Ib-cCK" secondAttribute="bottom" constant="168" id="ePZ-iw-EeO"/>
-                            <constraint firstItem="Xxo-Ib-cCK" firstAttribute="top" secondItem="onG-lO-4gB" secondAttribute="bottom" constant="10" id="yIi-N2-83i"/>
+                            <constraint firstItem="0ge-jN-pIF" firstAttribute="top" secondItem="onG-lO-4gB" secondAttribute="bottom" constant="10" id="Jdi-hZ-wgt"/>
+                            <constraint firstAttribute="trailing" secondItem="0ge-jN-pIF" secondAttribute="trailing" constant="10" id="LJZ-tb-93I"/>
+                            <constraint firstItem="0ge-jN-pIF" firstAttribute="leading" secondItem="Y1G-Ch-FBt" secondAttribute="leading" constant="10" id="cLR-v3-7X4"/>
+                            <constraint firstItem="qqL-HN-gg7" firstAttribute="top" secondItem="0ge-jN-pIF" secondAttribute="bottom" constant="120" id="zsM-QV-uPo"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -517,7 +517,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="feedBackBarBtn" destination="hB3-3u-7hb" id="F2J-us-UW1"/>
-                        <outlet property="feedBackTextView" destination="Xxo-Ib-cCK" id="hKm-fN-dCa"/>
+                        <outlet property="feedBackTextView" destination="0ge-jN-pIF" id="EgS-SR-Lse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOT-Rf-tSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -916,7 +916,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJ0-Ec-nHQ">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
