@@ -57,6 +57,9 @@
     [_logoImage startAnimating];//动画开始
     
 }
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 ////每次将要来都这个页面的时候
 //-(void)viewWillAppear:(BOOL)animated{
 //    [super viewWillAppear:animated];
