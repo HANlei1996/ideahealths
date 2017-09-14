@@ -11,7 +11,9 @@
 #import "HomeModel.h"
 #import "DetailCardTableViewCell.h"
 #import "SecuritiesDetailViewController.h"
+#import "tiyanquanModel.h"
 #import "AddressViewController.h"
+
 
 @interface ClubDetailViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>{
     BOOL isLastPage;
@@ -62,11 +64,11 @@
 // 这个方法专门做导航条的控制
 - (void)naviConfig{
     //设置导航条标题文字
-    self.navigationItem.title=@"会所详情";
+    self.navigationItem.title = @"会所详情";
     //设置导航条的颜色（风格颜色）
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:100/255.0 blue:255.0 alpha:1.0]];
     //设置导航条的标题颜色
-    self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName : [UIColor whiteColor] };
+    self.navigationController.navigationBar.titleTextAttributes =@{NSForegroundColorAttributeName : [UIColor whiteColor] };
     //设置导航条是否隐藏
     self.navigationController.navigationBar.hidden=NO;
     //设置导航条上按钮的风格颜色
@@ -78,20 +80,20 @@
 //刷新
 - (void)refreshConfiguretion{
     //初始化一个下拉刷新控件
-    UIRefreshControl *refreshControl=[[UIRefreshControl alloc]init];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     
-    refreshControl.tag=10000;
+    refreshControl.tag = 10000;
     //设置标题
-    NSString * title=@"加载中...";
+    NSString * title = @"加载中...";
     //创建属性字典
-    NSDictionary *attrD=@{NSForegroundColorAttributeName : [UIColor grayColor]};
+    NSDictionary *attrD = @{NSForegroundColorAttributeName : [UIColor grayColor]};
     //将文字和属性字典包裹成一个带属性的字符串
-    NSAttributedString *attri=[[NSAttributedString alloc]initWithString:title attributes:attrD];
-    refreshControl.attributedTitle=attri;
+    NSAttributedString *attri = [[NSAttributedString alloc]initWithString:title attributes:attrD];
+    refreshControl.attributedTitle = attri;
     //设置风格颜色为黑色（风格颜色：刷新指示器的颜色）
-    refreshControl.tintColor=[UIColor blackColor];
+    refreshControl.tintColor = [UIColor blackColor];
     //设置背景颜色
-    refreshControl.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    refreshControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
     //定义用户出发下拉事件执行的方法
     [refreshControl addTarget:self action:@selector(refreData:) forControlEvents:UIControlEventValueChanged];
     //将下拉刷新控件添加到activityView中（在tableView中，下拉刷新控件会自动放置在表格视图顶部后侧位置
@@ -106,20 +108,20 @@
     
 }
 
--(void)endRefresh{
+- (void)endRefresh{
     //在activityView中根据下标10000获得其子视图：下拉刷新控件
-    UIRefreshControl *refresh=(UIRefreshControl *)[self.detailScorllView viewWithTag:10000];
+    UIRefreshControl *refresh = (UIRefreshControl *)[self.detailScorllView viewWithTag:10000];
     //结束刷新
     [refresh endRefreshing];
 }
 
--(void)networkRequest{
-    UIActivityIndicatorView *aiv=[Utilities getCoverOnView:self.view];
+- (void)networkRequest{
+    UIActivityIndicatorView *aiv = [Utilities getCoverOnView:self.view];
     /*if([Utilities loginCheck]){
      [parameters setObject:[[StorageMgr singletonStorageMgr] objectForKey:@"MemberId"]forKey:@"memberId"];
      
      }*/
-    NSDictionary *parameter=@{@"clubKeyId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]};
+    NSDictionary *parameter = @{@"clubKeyId":[[StorageMgr singletonStorageMgr] objectForKey:@"expId"]};
     [RequestAPI requestURL:@"/clubController/getClubDetails" withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         [aiv stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
@@ -130,12 +132,12 @@
                 HomeModel *homeModel = [[HomeModel alloc]initWithDict:dict];
                 [_arr1 addObject:homeModel];
             }
-            _detail= [[HomeModel alloc]initWithDict:result];
+            _detail = [[HomeModel alloc]initWithDict:result];
             
             [self uiLayout];
             [_experienceCardTableView reloadData];
         }else{
-            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
             [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
             
         }
@@ -147,7 +149,7 @@
     
 }
 
--(void)uiLayout{
+- (void)uiLayout{
     [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_detail.clubLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
     _clubName.text = _detail.clubName;
     //_clubAddress.text = _detail.clubAddressB;
@@ -163,11 +165,13 @@
     
     
 }
+
 //一共多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _arr1.count;
     
 }
+
 //每组多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -178,19 +182,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeModel*model = _arr1[indexPath.section];
-    DetailCardTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"card1cell" forIndexPath:indexPath];
+    DetailCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"card1cell" forIndexPath:indexPath];
     NSLog(@"%@,%@,%@,%@",model.orginPrice,model.eName,model.saleCount,model.eLogo);
-   
-        
     cell.experienceCard.text = model.eName;
     cell.price.text = [NSString stringWithFormat:@"%@ 元",model.orginPrice];
-        cell.cardType.text = @"综合卷";
+    cell.cardType.text = @"综合卷";
     cell.soldCount.text = [NSString stringWithFormat:@"已售:%@",model.saleCount];
-    NSURL *URL2=[NSURL URLWithString:model.eLogo];
+    NSURL *URL2 = [NSURL URLWithString:model.eLogo];
     [cell.experienceCardImageView sd_setImageWithURL:URL2 placeholderImage:[UIImage imageNamed:@"默认图"]];
     _viewH.constant = (indexPath.section + 1) * 80.f;
     return cell;
 }
+
 //设置每行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80.f;
@@ -198,29 +201,25 @@
 
 //细胞选中后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row ==0) {
-        SecuritiesDetailViewController *purchaseVC=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
-        
+    if (indexPath.row == 0) {
+        SecuritiesDetailViewController *purchaseVC = [Utilities getStoryboardInstance:@"Detail" byIdentity:@"secur"];
         //purchaseVC.detail=_detail;
         [[StorageMgr singletonStorageMgr] removeObjectForKey:@"expId2"];
         HomeModel *model = _arr1[indexPath.section];
         //NSDictionary *dict = model.experienceInfos[indexPath.row];
-        
         [[StorageMgr singletonStorageMgr] addKey:@"expId2" andValue:model.eId];
-        
         [self.navigationController pushViewController:purchaseVC animated:YES];
         [_experienceCardTableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
 
     }
- 
-        
-    
 }
+
 //细胞将要出现时调用
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
  
 }
+
 /*
  #pragma mark - Navigation
  
@@ -230,6 +229,14 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
+    AddressViewController *address = [Utilities getStoryboardInstance:@"Detail" byIdentity:@"address"];
+    address.latitude = _detail.clubWei;
+    address.longitude = _detail.clubJing;
+    
+    [self.navigationController pushViewController:address animated:YES];
+}
 
 - (IBAction)imageBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
 }
@@ -285,7 +292,12 @@
     UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *callAction = [UIAlertAction actionWithTitle:_detail.clubTel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //配置“电话”APP的路径，并将要拨打的号码组合到路径中
+        NSString *targetAppStr=[NSString stringWithFormat:@"telprompt://%@",_detail.clubTel];
         
+        NSURL *targetAppUrl=[NSURL URLWithString:targetAppStr];
+        //从当前APP跳转到其他指定的APP中
+        [[UIApplication sharedApplication] openURL:targetAppUrl];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -297,9 +309,5 @@
     
     [self presentViewController:actionSheetController animated:YES completion:nil];
     
-}
-- (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    AddressViewController *address=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"address"];
-    [self.navigationController pushViewController:address animated:YES];
 }
 @end

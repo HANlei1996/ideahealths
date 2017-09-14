@@ -60,7 +60,8 @@
         _orginPrice = [Utilities nullAndNilCheck:dict[@"price"] replaceBy:@""];
         _saleCount = [Utilities nullAndNilCheck:dict[@"number"] replaceBy:@""];
         self.experienceInfos =[dict[@"experienceInfos"] isKindOfClass:[NSNull class]] ?@[ ]:      dict[@"experienceInfos"];
-        
+        _clubJing = [Utilities nullAndNilCheck:dict[@"clubJing"] replaceBy:@""];
+        _clubWei = [Utilities nullAndNilCheck:dict[@"clubWei"] replaceBy:@""];
     }
     return self;
 }
