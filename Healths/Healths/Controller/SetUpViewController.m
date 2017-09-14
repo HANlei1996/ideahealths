@@ -234,10 +234,10 @@
 }
 
 - (void)exit{
-    UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
-    [self presentViewController:signNavi animated:YES completion:nil];
-
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    //UINavigationController *signNavi=[Utilities getStoryboardInstance:@"Sign" byIdentity:@"SignNavi"];
+    //[self presentViewController:signNavi animated:YES completion:nil];
+[[StorageMgr singletonStorageMgr ]removeObjectForKey:@"MemberId"];
+    [self dismissViewControllerAnimated:YES completion:nil];
     /*UINavigationController *SignNavi=[Utilities getStoryboardInstance:@"SetUp" byIdentity:@"SignNavi"];
     [self presentViewController:SignNavi animated:YES completion:nil];*/
 }
