@@ -121,7 +121,7 @@
 // 这个方法专门做导航条的控制
 -(void)naviConfig{
     //设置导航条标题文字
-    self.navigationItem.title=@"活动列表";
+    self.navigationItem.title=@"活动";
     //设置导航条的颜色（风格颜色）
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:100/255.0 blue:255.0 alpha:1.0]];
     //设置导航条的标题颜色

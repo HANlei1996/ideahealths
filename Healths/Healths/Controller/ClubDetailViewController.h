@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeModel.h"
+#import "tiyanquanModel.h"
 @interface ClubDetailViewController : UIViewController
 @property (strong,nonatomic) HomeModel *detail;
+@property (strong,nonatomic) tiyanquanModel *deta;
 @end

@@ -47,7 +47,6 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)naviConfig{
-    //设置导航条标题文字
     //设置导航条的颜色（风格颜色）
     self.navigationController.navigationBar.barTintColor=[UIColor grayColor];
     //设置导航条的标题颜色

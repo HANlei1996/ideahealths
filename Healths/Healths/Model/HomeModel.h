@@ -39,6 +39,8 @@
 @property(strong,nonatomic) NSString *eName;
 @property(strong,nonatomic) NSString *orginPrice;
 @property(strong,nonatomic) NSString *saleCount;
+@property(strong,nonatomic) NSString *clubJing;
+@property(strong,nonatomic) NSString *clubWei;
 
 -(id)initWithDict:(NSDictionary *)dict;
 -(instancetype)initWithDictionary:(NSDictionary *)dict;

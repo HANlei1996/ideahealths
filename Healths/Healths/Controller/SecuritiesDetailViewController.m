@@ -216,6 +216,9 @@
 - (IBAction)addressAction:(UIButton *)sender forEvent:(UIEvent *)event {
    //_addressBtn.titleLabel.text=_detail.eAddress;
     AddressViewController *address=[Utilities getStoryboardInstance:@"Detail" byIdentity:@"address"];
+    address.latitude = _detail.latityde;
+    address.longitude = _detail.longitude;
+    address.dm=_detail.eClubName;
     [self.navigationController pushViewController:address animated:YES];
     //_addressBtn.titleLabel.text=_detail.eAddress;
     
