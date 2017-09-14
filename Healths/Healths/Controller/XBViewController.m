@@ -139,24 +139,30 @@
 }
 - (IBAction)XBSaveAction:(UIBarButtonItem *)sender {
     NSString *xb=_XBTextField.text;
-     [[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
-    
+     //[[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
+    NSNumber *gender;
+    if([xb isEqualToString:@"男"]){
+        gender = @1;
+    }else{
+        gender = @2;
+    }
+
     _avi=[Utilities getCoverOnView:self.view];
     
     //NSLog(@"%@",_user.nickname);
     
-    NSDictionary *para = @{@"memberId":_user.memberId,@"gender":@1};
+    NSDictionary *para = @{@"memberId":_user.memberId,@"gender":gender};
     [RequestAPI requestURL:@"/mySelfController/updateMyselfInfos" withParameters:para andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
         [_avi stopAnimating];
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
           //  NSDictionary *result= responseObject[@"result"];
-            NSNotification *note = [NSNotification notificationWithName:@"refreshXB" object:nil userInfo:nil];
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSetup" object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
 
             
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+           // [self dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
@@ -171,9 +177,14 @@
     
 
 }
-- (IBAction)XBTextAction:(UITextField *)sender forEvent:(UIEvent *)event {
-    _toolBar.hidden=NO;
-    _pickerView.hidden=NO;
+//- (IBAction)XBTextAction:(UITextField *)sender forEvent:(UIEvent *)event {
+   // _toolBar.hidden=NO;
+   // _pickerView.hidden=NO;
 
-}
-@end
+//}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    _pickerView.hidden = NO;
+    _toolBar.hidden = NO;
+    return NO;
+}@end

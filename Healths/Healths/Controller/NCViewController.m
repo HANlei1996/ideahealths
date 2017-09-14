@@ -27,6 +27,8 @@
     // Do any additional setup after loading the view.
     _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
     _NCTextField.text=_user.nickname;
+    //UITextField *textField = [[UITextField alloc] init];
+    [self.NCTextField becomeFirstResponder];
 
 }
 
@@ -88,11 +90,11 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
        //     NSDictionary *result= responseObject[@"result"];
-            NSNotification *note = [NSNotification notificationWithName:@"refreshNick" object:nil userInfo:nil];
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSetup" object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
