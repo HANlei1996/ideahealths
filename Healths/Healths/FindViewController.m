@@ -22,6 +22,8 @@
     UIView *mcView;
     UIView *kindview;
     UIView *denview;
+    NSInteger index1;
+    NSInteger index2;
     // UIView *mcView;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -55,6 +57,8 @@
     pageNum = 1;
     pageSize = 10;
     index=0;
+    index1=0;
+    index2=0;
     //关闭下拉
     _tableView.scrollEnabled = NO;
     //设置蒙层
@@ -333,14 +337,20 @@
     mcView.hidden=NO;
     
     index+=1;
-    if(index%2==0){
+    if(index==2){
         _tableView.hidden=YES;
         kindview.hidden=YES;
         mcView.hidden=YES;
         denview.hidden=YES;
+        index=0;
     }else{
+        index1=0;
+        index2=0;
         _tableView.hidden=NO;
+        kindview.hidden=YES;
+        denview.hidden=YES;
         [_tableView reloadData];
+        
         
     }
     
@@ -350,16 +360,21 @@
 
 - (IBAction)KindAction:(UIButton *)sender forEvent:(UIEvent *)event {
     flag = 2;
-    index+=1;
+    index1+=1;
     self.Height.constant = _KindArr.count*40  ;
     kindview.hidden=NO;
-    if(index%2==0){
+    if(index1==2){
         _tableView.hidden=YES;
         mcView.hidden=YES;
         kindview.hidden=YES;
         denview.hidden=YES;
+        index1=0;
     }else{
+        index=0;
+        index2=0;
         _tableView.hidden=NO;
+        mcView.hidden=YES;
+        denview.hidden=YES;
         [_tableView reloadData];
         
     }
@@ -368,22 +383,26 @@
 
 - (IBAction)DistanceAction:(UIButton *)sender forEvent:(UIEvent *)event {
     flag = 3;
-    index+=1;
+    index2+=1;
     self.Height.constant = _DistanceArr.count *40;
     denview.hidden=NO;
-    if(index%2==0){
+    if(index2==2){
         _tableView.hidden=YES;
         mcView.hidden=YES;
         denview.hidden=YES;
         kindview.hidden=YES;
+        index2=0;
     }else{
+        mcView.hidden=YES;
+        index1=0;
+        index=0;
         _tableView.hidden=NO;
+        kindview.hidden=YES;
         [_tableView reloadData];
         
     }
     
 }
-
 
 
 
