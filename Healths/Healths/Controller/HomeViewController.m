@@ -180,7 +180,7 @@
     
 }
 - (void)cityRequest{
-    [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":[Utilities getUserDefaults:@"UserCity"],@"jing":@120.30000,@"wei":@31.570000,@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+    [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":@"无锡",@"jing":@120.30000,@"wei":@31.570000,@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         
         //[RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":[Utilities getUserDefaults:@"UserCity"],@"jing":@(_location.coordinate.longitude),@"wei":@(_location.coordinate.latitude),@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         //NSLog(@"ji =%f",_location.coordinate.longitude);
