@@ -27,6 +27,9 @@
     // Do any additional setup after loading the view.
     _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
     _SFZHMTextField.text=_user.idCardNo;
+ //   UITextField *textField = [[UITextField alloc] init];
+    [self.SFZHMTextField becomeFirstResponder];
+
 
 }
 
@@ -87,11 +90,11 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             //     NSDictionary *result= responseObject[@"result"];
-            NSNotification *note = [NSNotification notificationWithName:@"refreshSFZHM" object:nil userInfo:nil];
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSetup" object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];

@@ -25,22 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self naviConfig];
-    //监听名为@"refreshHome"的通知，监听到后执行refreshHome方法
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNick) name:@"refreshNick" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshXB) name:@"refreshXB" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSR) name:@"refreshSR" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSFZHM) name:@"refreshSFZHM" object:nil];
+    //监听名为@"refreshSetup"的通知，监听到后执行refreshSetup方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSetup) name:@"refreshSetup" object:nil];
+    [self arr];
   //  _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
     
-        _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
-        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"昵称",@"nicknameLabel",_user.nickname,@"infoLabel",nil];
+    
+        /*NSMutableDictionary *dict1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"昵称",@"nicknameLabel",_user.nickname,@"infoLabel",nil];
         NSMutableDictionary *dict2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"性别",@"nicknameLabel",_user.gender,@"infoLabel", nil];
         NSMutableDictionary *dict3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"生日",@"nicknameLabel",_user.dob,@"infoLabel", nil];
         NSMutableDictionary *dict4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys: @"身份证号码",@"nicknameLabel",_user.idCardNo,@"infoLabel", nil];
-        _setupArr = [[NSMutableArray alloc]initWithObjects:dict1,dict2,dict3,dict4,nil];
-        //NSLog(@"东东是：%@",_user.dob);
-       /* _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];*/
-        [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
+        _setupArr = [[NSMutableArray alloc]initWithObjects:dict1,dict2,dict3,dict4,nil];*/
+    
+    
         
         
         
@@ -60,19 +57,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)arr{
+    NSLog(@"东东是：%@",_user.dob);
+    _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+    _setupArr = [[NSMutableArray alloc]initWithObjects:@{@"nicknameLabel":@"昵称",@"infoLabel":_user.nickname},@{@"nicknameLabel":@"性别",@"infoLabel":_user.gender},@{@"nicknameLabel":@"生日",@"infoLabel":_user.dob},@{@"nicknameLabel":@"身份证号码",@"infoLabel":_user.idCardNo}, nil];
+    
+}
 //当前页面将要显示的时候，显示导航栏
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     if ([Utilities loginCheck]) {
         //已登录
+        _user=[[StorageMgr singletonStorageMgr]objectForKey:@"MemberInfo"];
+        [_setupImage sd_setImageWithURL:[NSURL URLWithString:_user.avatarUrl] placeholderImage:[UIImage imageNamed:@"ic_user_head"]];
     }else{
         _setupImage.image=[UIImage imageNamed:@"ic_user_head"];
         
     }
     
 }
--(void)refreshNick{
+/*-(void)refreshNick{
     NSMutableDictionary * dict = _setupArr[0];
     NSLog(@"nsdictionary:%@",dict);
     NSString *string = [[StorageMgr singletonStorageMgr] objectForKey:@"NC"];
@@ -105,7 +110,7 @@
     [_SetUpTableView reloadData];
 }
 
-
+*/
 
 
 -(void)naviConfig{
@@ -242,6 +247,80 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     return view;
+}
+-(void)readyForEncoding{
+    _avi = [Utilities getCoverOnView:self.view];
+    
+    [RequestAPI requestURL:@"/login/getKey" withParameters:@{@"deviceType":@7001,@"deviceId":[Utilities uniqueVendor]} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        NSLog(@"responseObject:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            //[_avi stopAnimating];
+            NSDictionary *result=responseObject [@"result"];
+            NSString *exponent =result[@"exponent"];
+            NSString *modulus =result[@"modulus"];
+            NSString *string = [[StorageMgr singletonStorageMgr]objectForKey:@"Password"];
+            //对内容进行MD5加密
+            NSString *md5Str =[string getMD5_32BitString];
+          //  [[StorageMgr singletonStorageMgr]addKey:@"Password"andValue:_passwordnameTextField.text];
+            //用模数与指数对MD5加密过的密码进行加密
+            NSString *rsaStr=[NSString encryptWithPublicKeyFromModulusAndExponent:md5Str.UTF8String modulus:modulus exponent:exponent];
+            //加密完成执行登录接口
+            [self signInWithEncryptPwd:rsaStr];
+            
+            
+        }else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+    
+    
+}
+-(void)signInWithEncryptPwd:(NSString *)encryptPwd{
+    NSString *userName = [[StorageMgr singletonStorageMgr]objectForKey:@"userName"];
+        NSString *deviceId = [[StorageMgr singletonStorageMgr]objectForKey:@"deviceId"];
+    
+
+    [RequestAPI requestURL:@"/login" withParameters:@{@"userName":userName,@"password":encryptPwd,@"deviceType":@7001,@"deviceId":deviceId} andHeader:nil byMethod:kPost andSerializer:kJson success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"responseObject:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            
+            NSDictionary *result=responseObject[@"result"];
+            UserModel *user=[[UserModel alloc]initWithDictionary:result];
+            //将登录获取的用户信息打包存取到单例化全局变量中
+            [[StorageMgr singletonStorageMgr]addKey:@"MemberInfo" andValue:user];
+            //单独将用户的id也存储进单例化全局变量中来作为用户是否已经登录的判断依据，同事也方便其他所有页面更快捷的使用用户id这个参数
+            [[StorageMgr singletonStorageMgr ]addKey:@"MemberId" andValue:user.memberId];
+            //  收起键盘
+            [self.view endEditing:YES];
+            //清空密码输入框里的内容
+           // _passwordnameTextField.text=@"";
+            //记忆用户名
+            [Utilities setUserDefaults:@"Username" content:userName];
+            [self arr];
+            [_SetUpTableView reloadData];
+            //用MODEL的方式跳回上一页
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+            
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+        
+    }];
+}
+-(void)refreshSetup{
+    [self readyForEncoding];
 }
 
 

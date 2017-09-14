@@ -139,14 +139,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmB-qt-ZVi">
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmB-qt-ZVi">
                                 <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <connections>
                                     <outlet property="dataSource" destination="EV6-C1-wwH" id="Lt1-XA-Bvc"/>
                                     <outlet property="delegate" destination="EV6-C1-wwH" id="jya-v6-hAJ"/>
                                 </connections>
                             </pickerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-ao-l3N">
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-ao-l3N">
                                 <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="ODw-Ig-IlU">
@@ -162,7 +162,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-9N-CUc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yvy-9N-CUc">
                                 <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eiH-f0-MXg"/>
@@ -172,6 +172,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="XBTextAction:forEvent:" destination="EV6-C1-wwH" eventType="editingDidEnd" id="6H9-aq-KcF"/>
+                                    <outlet property="delegate" destination="EV6-C1-wwH" id="bVu-ou-KhA"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -218,7 +219,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-MV-Osd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-MV-Osd">
                                 <rect key="frame" x="0.0" y="94" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3Us-hX-jUN"/>
@@ -228,9 +229,10 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="SRAction:forEvent:" destination="QhJ-fw-G6U" eventType="editingDidEnd" id="zlY-0k-oSt"/>
+                                    <outlet property="delegate" destination="QhJ-fw-G6U" id="tln-ao-fRd"/>
                                 </connections>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-rF-zPq">
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gj-rF-zPq">
                                 <rect key="frame" x="0.0" y="407" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="hwe-bZ-rrR">
@@ -249,7 +251,7 @@
                                     <outlet property="delegate" destination="QhJ-fw-G6U" id="BUX-TS-bts"/>
                                 </connections>
                             </toolbar>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-TL-OzH">
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-TL-OzH">
                                 <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="526552725.61865699">
                                     <!--2017-09-08 08:38:45 +0000-->
@@ -307,6 +309,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="mMm-s5-I6A" id="NuT-BT-lm0"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-xB-mYI">
                                 <rect key="frame" x="0.0" y="109" width="375" height="558"/>
@@ -359,6 +364,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vx4-1s-MUN" id="VyW-b0-l9x"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjQ-3N-q2W">
                                 <rect key="frame" x="0.0" y="109" width="375" height="558"/>

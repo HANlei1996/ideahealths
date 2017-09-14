@@ -81,10 +81,10 @@
 }
 */
 
-- (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event {
-    _toolBar.hidden=NO;
-    _pickerView.hidden=NO;
-}
+//- (IBAction)SRAction:(UITextField *)sender forEvent:(UIEvent *)event {
+   // _toolBar.hidden=NO;
+   // _pickerView.hidden=NO;
+//}
 - (IBAction)SRSaveAction:(UIBarButtonItem *)sender {
     NSString *sr=_SRtextField.text;
     [[StorageMgr singletonStorageMgr]addKey:@"SR" andValue:sr];
@@ -99,11 +99,11 @@
         NSLog(@"responseObject:%@",responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             //  NSDictionary *result= responseObject[@"result"];
-            NSNotification *note = [NSNotification notificationWithName:@"refreshSR" object:nil userInfo:nil];
+            NSNotification *note = [NSNotification notificationWithName:@"refreshSetup" object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter] performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:YES];
             
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
@@ -132,5 +132,11 @@
     _toolBar.hidden = YES;
     _pickerView.hidden = YES;
 
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    _pickerView.hidden = NO;
+    _toolBar.hidden = NO;
+    return NO;
 }
 @end
