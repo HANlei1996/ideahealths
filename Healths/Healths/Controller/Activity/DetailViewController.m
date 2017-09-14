@@ -94,7 +94,7 @@
 
 }
 -(void)uiLayout{
-    [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_activity.imgUrl] placeholderImage:[UIImage imageNamed:@"Image"]];
+    [_activityImgView sd_setImageWithURL:[NSURL URLWithString :_activity.imgUrl] placeholderImage:[UIImage imageNamed:@"Default"]];
     //[self addTapGestureRecognizer:_DetailView]
     _applyFeeLbl.text=[NSString stringWithFormat:@"%@元",_activity.applyFee];
     _attendenceLbl.text=[NSString stringWithFormat:@"%@/%@",_activity.attendence,_activity.limitation];
