@@ -8,9 +8,8 @@
 
 #import "AddressViewController.h"
 #import "tiyanquanModel.h"
-
 @interface AddressViewController ()
-
+@property (strong, nonatomic) NSMutableArray *arr;
 @end
 
 @implementation AddressViewController
@@ -18,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self naviConfig];
+    _arr = [NSMutableArray new];
     // Do any additional setup after loading the view.
     //count = 0;
     //初始化位置管理器对象作为定位功能的基础
@@ -217,6 +217,8 @@
 //根据坐标创建大头针并安插
 - (void)pinAnnotationViaCoordinate:(CLLocationCoordinate2D)mapCoordinate {
     
+    
+    
     //设置弱引用的自身以供block使用来解开强引用循环（双下划线）
     __weak AddressViewController *weakSelf = self;
     //设置大头针的标题与副标题
@@ -226,9 +228,20 @@
         //将方法参数中的坐标设置为大头针的坐标属性
         annotation.coordinate = mapCoordinate;
         if (info) {
+//            NSArray *models = info[@"FormattedAddressLines"];
+//            //tiyanquanModel *model = [[tiyanquanModel alloc] initWithDictionary:info];
+//            for (NSDictionary *dict in models) {
+//                
+//                //用ActivityModel类中定义的初始化方法initWithDictionary：将遍历得来的字典dictionary转换成ActivityMode对象
+//                tiyanquanModel *model =[[tiyanquanModel alloc]initWithDictionary:dict];
+//                //将上述实例化好的ActivityModel对象插入_arr数组中
+//                [_arr addObject:dict];
+//            }
             //设置大头针的标题与副标题属性
-            annotation.title = info[@"City"];
-            annotation.subtitle =info[@"Name"];
+            annotation.title = info[@"FormattedAddressLines"][0];
+            //annotation.subtitle =info[@"FormattedAddressLines"][0];
+            //NSLog(@"address:%@",model.eAddress);
+            //NSLog(@"%@",info["FormattedAddressLines"]);
         }
         //将大头针插入地图视图
         [weakSelf.mapView addAnnotation:annotation];
