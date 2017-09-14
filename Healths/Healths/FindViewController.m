@@ -18,12 +18,12 @@
     NSInteger totalPage;
     BOOL isLast;
     NSInteger index;
+    NSInteger index1;
+    NSInteger index2;
     NSInteger pageSize;
     UIView *mcView;
     UIView *kindview;
     UIView *denview;
-    NSInteger index1;
-    NSInteger index2;
     // UIView *mcView;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -31,9 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 @property (weak, nonatomic) IBOutlet UIButton *kindBtn;
 @property (weak, nonatomic) IBOutlet UIButton *distanceBtn;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *Height;
 - (IBAction)CityAction:(UIButton *)sender forEvent:(UIEvent *)event;
 - (IBAction)KindAction:(UIButton *)sender forEvent:(UIEvent *)event;
@@ -84,11 +82,24 @@
     denview.hidden=YES;
     //_tableView.layer.zPosition = 1;
     //_ButtonView.layer.zPosition=2;
+    //交互
+    mcView.userInteractionEnabled = YES;
+    kindview.userInteractionEnabled = YES;
+    denview.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event:)];
+    UITapGestureRecognizer *tapGesture1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event1:)];
+    UITapGestureRecognizer *tapGesture2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event2:)];
+    [mcView addGestureRecognizer:tapGesture];
+    [kindview addGestureRecognizer:tapGesture1];
+    [denview addGestureRecognizer:tapGesture2];
+    [tapGesture setNumberOfTapsRequired:1];
+    
+    //////////////////////////////////
     _HSArr = [NSMutableArray new];
     _TypeArr  = [NSMutableArray new];
     
     _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类", nil];
-    _CityArr = [[NSArray alloc]initWithObjects:@"全城",@"距离我1千米",@"距离我2千米",@"距离我3千米",nil];
+    _CityArr = [[NSArray alloc]initWithObjects:@"全城",@"距离我2千米",@"距离我3千米",@"距离我4千米",nil];
     _DistanceArr = [[NSArray alloc]initWithObjects:@"按距离",@"按人气", nil];
     
     
@@ -96,7 +107,30 @@
     [self naviConfig];
     [self dataInitialize];
 }
-
+- (void)event:(UITapGestureRecognizer *)action{
+    _tableView.hidden=YES;
+    mcView.hidden=YES;
+    
+    index=0;
+    
+    //action.view ;
+}
+- (void)event1:(UITapGestureRecognizer *)action{
+    _tableView.hidden=YES;
+    kindview.hidden=YES;
+    
+    index1=0;
+    
+    //action.view ;
+}
+- (void)event2:(UITapGestureRecognizer *)action{
+    _tableView.hidden=YES;
+    denview.hidden=YES;
+    
+    index2=0;
+    
+    //action.view ;
+}
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -184,26 +218,30 @@
         if(indexPath.row == 0){
             [_cityBtn setTitle:[NSString stringWithFormat:@"全城"] forState:(UIControlStateNormal)];
             mcView.hidden=YES;
+            index=0;
             [self HSRequest];
         }
         if(indexPath.row == 1){
             
             
-            _distance = @"1000";
-            [_cityBtn setTitle:[NSString stringWithFormat:@"距离我1千米"] forState:(UIControlStateNormal)];
-            mcView.hidden=YES;
-            [self JLRequest];
-        }
-        if(indexPath.row == 2){
             _distance = @"2000";
             [_cityBtn setTitle:[NSString stringWithFormat:@"距离我2千米"] forState:(UIControlStateNormal)];
             mcView.hidden=YES;
+            index=0;
             [self JLRequest];
         }
-        if(indexPath.row == 3){
+        if(indexPath.row == 2){
             _distance = @"3000";
             [_cityBtn setTitle:[NSString stringWithFormat:@"距离我3千米"] forState:(UIControlStateNormal)];
             mcView.hidden=YES;
+            index=0;
+            [self JLRequest];
+        }
+        if(indexPath.row == 3){
+            _distance = @"4000";
+            [_cityBtn setTitle:[NSString stringWithFormat:@"距离我4千米"] forState:(UIControlStateNormal)];
+            mcView.hidden=YES;
+            index=0;
             [self JLRequest];
         }
         _tableView.hidden=YES;
@@ -214,30 +252,35 @@
         if(indexPath.row == 0){
             [_kindBtn setTitle:[NSString stringWithFormat:@"全部分类"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
+            index1=0;
             [self HSRequest];
         }
         if(indexPath.row == 1){
             [_kindBtn setTitle:[NSString stringWithFormat:@"动感单车"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
             _kindId = @"1";
+            index1=0;
             [self FLClubRequest];
         }
         if(indexPath.row == 2){
             [_kindBtn setTitle:[NSString stringWithFormat:@"力量器械"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
             _kindId = @"2";
+            index1=0;
             [self FLClubRequest];
         }
         if(indexPath.row == 3){
             [_kindBtn setTitle:[NSString stringWithFormat:@"瑜伽/普拉提"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
             _kindId = @"3";
+            index1=0;
             [self FLClubRequest];
         }
         if(indexPath.row == 4){
             [_kindBtn setTitle:[NSString stringWithFormat:@"有氧运动"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
             _kindId = @"4";
+            index1=0;
             [self FLClubRequest];
         }
         _tableView.hidden=YES;
@@ -247,11 +290,13 @@
             [_distanceBtn setTitle:[NSString stringWithFormat:@"按距离"] forState:(UIControlStateNormal)];
             denview.hidden=YES;
             [self HSRequest];
+            index2=0;
         }
         if(indexPath.row == 1){
             [_distanceBtn setTitle:[NSString stringWithFormat:@"按人气"] forState:(UIControlStateNormal)];
             denview.hidden=YES;
             [self TypeClubRequest];
+            index2=0;
         }
         denview.hidden=YES;
         _tableView.hidden=YES;
@@ -403,6 +448,7 @@
     }
     
 }
+
 
 
 
