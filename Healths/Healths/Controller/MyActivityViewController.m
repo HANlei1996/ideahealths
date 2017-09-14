@@ -130,7 +130,7 @@
     MyActivityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyActivityCell" forIndexPath:indexPath];
     ActivityModel *activity = _MyActivityArr[indexPath.row];
     NSURL *url = [NSURL URLWithString:activity.imgUrl];
-    [cell.huodongImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认图"]];
+    [cell.huodongImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Default"]];
     cell.hdmingchengLable.text = activity.name;
     cell.dingLable.text = [NSString stringWithFormat:@"顶:%ld",(long)activity.like];
     cell.caiLable.text = [NSString stringWithFormat:@"踩:%ld",(long)activity.unlike];
