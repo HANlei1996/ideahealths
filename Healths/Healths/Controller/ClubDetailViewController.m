@@ -157,7 +157,7 @@
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
     _contentTextView.editable = NO;
-    _textviewH.constant = self.contentTextView.contentSize.height;
+    _textviewH.constant = self.contentTextView.contentSize.height + 50;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
