@@ -227,16 +227,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="icn-PD-Q7z">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-4E-FDc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="icn-PD-Q7z" firstAttribute="leading" secondItem="iQM-PM-NQo" secondAttribute="leading" id="TcF-lf-YLo"/>
-                            <constraint firstAttribute="trailing" secondItem="icn-PD-Q7z" secondAttribute="trailing" id="Xuf-E0-yvC"/>
-                            <constraint firstAttribute="bottom" secondItem="icn-PD-Q7z" secondAttribute="bottom" id="lOU-zq-UMw"/>
-                            <constraint firstItem="icn-PD-Q7z" firstAttribute="top" secondItem="iQM-PM-NQo" secondAttribute="top" id="sCO-Vj-qlh"/>
+                            <constraint firstAttribute="bottom" secondItem="WoL-4E-FDc" secondAttribute="bottom" id="BSW-aD-cFo"/>
+                            <constraint firstItem="WoL-4E-FDc" firstAttribute="leading" secondItem="iQM-PM-NQo" secondAttribute="leading" id="XSS-mh-30i"/>
+                            <constraint firstAttribute="trailing" secondItem="WoL-4E-FDc" secondAttribute="trailing" id="mQM-dR-3FO"/>
+                            <constraint firstItem="WoL-4E-FDc" firstAttribute="top" secondItem="iQM-PM-NQo" secondAttribute="top" id="pFp-U3-PoF"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -930,7 +930,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJ0-Ec-nHQ">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1266,7 +1266,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="01" width="622" height="1148"/>
+        <image name="01" width="622" height="1008"/>
         <image name="app_logo" width="480" height="183"/>
         <image name="ic_user_head" width="100" height="100"/>
         <image name="发现" width="30" height="30"/>
