@@ -165,26 +165,6 @@
                                     <outlet property="delegate" destination="XHN-o3-baC" id="h2M-v8-YJZ"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABb-N2-DA3">
-                                <rect key="frame" x="250" y="279" width="110" height="40"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Dd7-4w-Ni3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="点击获取验证码">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.80276113010000005" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="VCBtnAction:forEvent:" destination="XHN-o3-baC" eventType="touchUpInside" id="ALb-yM-JPH"/>
-                                    <action selector="vCBtnAction:forEvent:" destination="XHN-o3-baC" eventType="touchUpInside" id="fV1-pF-hlX"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名(手机号)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0e7-M2-UpZ">
                                 <rect key="frame" x="15" y="104" width="345" height="30"/>
                                 <nil key="textColor"/>
@@ -194,30 +174,65 @@
                                     <outlet property="delegate" destination="XHN-o3-baC" id="NSQ-EX-c1e"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELZ-84-Qhs">
+                                <rect key="frame" x="250" y="278.5" width="110" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABb-N2-DA3">
+                                        <rect key="frame" x="1" y="1" width="108" height="39"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="点击获取验证码">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.80276113010000005" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="VCBtnAction:forEvent:" destination="XHN-o3-baC" eventType="touchUpInside" id="ALb-yM-JPH"/>
+                                            <action selector="vCBtnAction:forEvent:" destination="XHN-o3-baC" eventType="touchUpInside" id="fV1-pF-hlX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0061439923010000001" green="0.57158226469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ABb-N2-DA3" secondAttribute="trailing" constant="1" id="70P-ZE-ODU"/>
+                                    <constraint firstAttribute="height" constant="41" id="7Dm-FE-aeB"/>
+                                    <constraint firstItem="ABb-N2-DA3" firstAttribute="leading" secondItem="ELZ-84-Qhs" secondAttribute="leading" constant="1" id="KHA-DF-sSf"/>
+                                    <constraint firstAttribute="bottom" secondItem="ABb-N2-DA3" secondAttribute="bottom" constant="1" id="Rds-kv-hm1"/>
+                                    <constraint firstItem="ABb-N2-DA3" firstAttribute="top" secondItem="ELZ-84-Qhs" secondAttribute="top" constant="1" id="pa5-Sp-tZA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wlf-Gy-RkJ" firstAttribute="top" secondItem="4OB-Du-Re1" secondAttribute="bottom" constant="15" id="3ko-g6-ApD"/>
                             <constraint firstAttribute="trailing" secondItem="paQ-xB-zuX" secondAttribute="trailing" constant="15" id="4NW-HC-9Cf"/>
-                            <constraint firstItem="ABb-N2-DA3" firstAttribute="centerY" secondItem="wlf-Gy-RkJ" secondAttribute="centerY" id="54p-z7-NaJ"/>
                             <constraint firstAttribute="trailing" secondItem="4OB-Du-Re1" secondAttribute="trailing" constant="15" id="Eac-h6-hHA"/>
                             <constraint firstItem="P7S-6U-WuS" firstAttribute="centerX" secondItem="AJT-Qk-7PC" secondAttribute="centerX" id="Edh-B4-7Cw"/>
+                            <constraint firstItem="ELZ-84-Qhs" firstAttribute="trailing" secondItem="4OB-Du-Re1" secondAttribute="trailing" id="HNd-MX-icr"/>
                             <constraint firstItem="paQ-xB-zuX" firstAttribute="top" secondItem="32M-kP-0Wc" secondAttribute="bottom" constant="15" id="IIp-qy-n2X"/>
                             <constraint firstItem="32M-kP-0Wc" firstAttribute="top" secondItem="0e7-M2-UpZ" secondAttribute="bottom" constant="15" id="Ibz-gD-kWi"/>
                             <constraint firstItem="4OB-Du-Re1" firstAttribute="leading" secondItem="AJT-Qk-7PC" secondAttribute="leading" constant="15" id="IfJ-fI-utY"/>
                             <constraint firstItem="P7S-6U-WuS" firstAttribute="trailing" secondItem="4OB-Du-Re1" secondAttribute="trailing" id="Izp-rH-GHo"/>
-                            <constraint firstItem="ABb-N2-DA3" firstAttribute="leading" secondItem="wlf-Gy-RkJ" secondAttribute="trailing" constant="15" id="Kox-Jm-mZY"/>
                             <constraint firstAttribute="trailing" secondItem="0e7-M2-UpZ" secondAttribute="trailing" constant="15" id="O32-SY-7LO"/>
-                            <constraint firstItem="P7S-6U-WuS" firstAttribute="top" secondItem="ABb-N2-DA3" secondAttribute="bottom" constant="40" id="PGD-tQ-be3"/>
                             <constraint firstItem="0e7-M2-UpZ" firstAttribute="top" secondItem="kNi-8y-64H" secondAttribute="bottom" constant="40" id="RVT-Lb-NDa"/>
                             <constraint firstItem="paQ-xB-zuX" firstAttribute="leading" secondItem="AJT-Qk-7PC" secondAttribute="leading" constant="15" id="WIM-3Q-drb"/>
                             <constraint firstItem="wlf-Gy-RkJ" firstAttribute="leading" secondItem="AJT-Qk-7PC" secondAttribute="leading" constant="15" id="WIy-pz-Ai3"/>
                             <constraint firstItem="4OB-Du-Re1" firstAttribute="top" secondItem="paQ-xB-zuX" secondAttribute="bottom" constant="15" id="WcJ-kF-mQV"/>
+                            <constraint firstItem="ELZ-84-Qhs" firstAttribute="centerY" secondItem="wlf-Gy-RkJ" secondAttribute="centerY" id="bNB-my-pRu"/>
                             <constraint firstItem="0e7-M2-UpZ" firstAttribute="leading" secondItem="AJT-Qk-7PC" secondAttribute="leading" constant="15" id="bcd-DL-vrM"/>
+                            <constraint firstItem="P7S-6U-WuS" firstAttribute="top" secondItem="ELZ-84-Qhs" secondAttribute="bottom" constant="39.5" id="cwx-2S-9hS"/>
                             <constraint firstItem="32M-kP-0Wc" firstAttribute="leading" secondItem="AJT-Qk-7PC" secondAttribute="leading" constant="15" id="egi-HS-HbN"/>
                             <constraint firstItem="P7S-6U-WuS" firstAttribute="leading" secondItem="4OB-Du-Re1" secondAttribute="leading" id="gJk-pf-tnh"/>
+                            <constraint firstItem="ELZ-84-Qhs" firstAttribute="leading" secondItem="wlf-Gy-RkJ" secondAttribute="trailing" constant="15" id="hJx-MA-izy"/>
                             <constraint firstAttribute="trailing" secondItem="32M-kP-0Wc" secondAttribute="trailing" constant="15" id="nQY-lx-f74"/>
-                            <constraint firstItem="ABb-N2-DA3" firstAttribute="trailing" secondItem="4OB-Du-Re1" secondAttribute="trailing" id="xCs-fx-j6R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="注册" id="QVr-t0-8VP"/>
