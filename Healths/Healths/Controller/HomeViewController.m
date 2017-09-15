@@ -13,6 +13,7 @@
 #import "ClubDetailViewController.h"
 #import "CardTableViewCell.h"
 #import "SecuritiesDetailViewController.h"
+#import "ZLImageViewDisplayView.h"
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSInteger homePageNum;
     NSInteger isLastPage;
@@ -20,6 +21,8 @@
     BOOL firstVisit;
     BOOL isLoading;
     NSInteger page;
+    BOOL flag;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *homeTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -47,8 +50,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _experience = [NSMutableArray new];
-    
-    
+    _Arr1 = [NSMutableArray new];
+    flag =YES;
     cityPageNum = 1;
     [self naviConfig];
     //[self locationConfig];
@@ -56,12 +59,7 @@
     //刷新指示器
     
     [self refreshConfiguretion];
-    UIImage *img1=[UIImage imageNamed:@"AdDefault"];
     
-    UIImage *img3=[UIImage imageNamed:@"app_logo"];
-    _logoImage.animationImages=[NSArray arrayWithObjects:img1,img3, nil];
-    _logoImage.animationDuration=5;
-    [_logoImage startAnimating];//动画开始
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkCityState:) name:@"ResetHome" object:nil];
     
 }
@@ -179,15 +177,25 @@
     
     
 }
+-(void) addZLImageViewDisPlayView:(NSArray *)arr{
+    CGRect frame = CGRectMake(0,0, UI_SCREEN_W, 150);
+    //初始化控件
+    ZLImageViewDisplayView *imageViewDisplay = [ZLImageViewDisplayView zlImageViewDisplayViewWithFrame:frame];
+    imageViewDisplay.imageViewArray = arr;
+    imageViewDisplay.scrollInterval = 4;
+    imageViewDisplay.animationInterVale = 1;
+    [_logoImage addSubview:imageViewDisplay];
+    
+}
 - (void)cityRequest{
     [RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":@"无锡",@"jing":@120.30000,@"wei":@31.570000,@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         
         //[RequestAPI requestURL:@"/homepage/choice" withParameters:@{@"city":[Utilities getUserDefaults:@"UserCity"],@"jing":@(_location.coordinate.longitude),@"wei":@(_location.coordinate.latitude),@"page":@(homePageNum),@"perPage":@14} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
         //NSLog(@"ji =%f",_location.coordinate.longitude);
         
-        NSLog(@"a123=%@",_CityBtn.titleLabel.text);
+        //NSLog(@"a123=%@",_CityBtn.titleLabel.text);
         [self endA];
-        //NSLog(@"responseObject: %@", responseObject);
+        NSLog(@"responseObject: %@", responseObject);
         if([responseObject[@"resultFlag"]integerValue] == 8001){
             
             
@@ -222,6 +230,20 @@
                 //                [_experience2 addObject:_experience];
                 //experience 存的是每个会所的体验券字典，可能是一个也可能是多个
                 
+            }
+            //第一次来才加载广告图片
+            NSArray *advertisement = responseObject[@"advertisement"];
+
+            if (flag) {
+                flag = NO;
+                for (NSDictionary *dict in advertisement) {
+                    HomeModel *TuP =[[HomeModel alloc] initWithDictionary:dict];
+                [_Arr1 addObject:TuP.logoimage];
+                    NSLog(@"图片地址是：%@",TuP.logoimage);
+                    
+                }
+                [self addZLImageViewDisPlayView:_Arr1];
+                NSLog(@"123=%lu",(unsigned long)_Arr1.count);
             }
             //NSLog(@"%lu,%lu",(unsigned long)_Arr1.count,(unsigned long)_Arr2.count);
             

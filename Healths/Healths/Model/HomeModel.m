@@ -28,6 +28,7 @@
         self.categoryName = [Utilities nullAndNilCheck:dict[@"categoryName"] replaceBy:@""];
         self.price = [Utilities nullAndNilCheck:dict[@"orginPrice"] replaceBy:@""];
         self.sellNumber = [Utilities nullAndNilCheck:dict[@"sellNumber"] replaceBy:@""];
+        self.logoimage = [Utilities nullAndNilCheck:dict[@"imgurl"] replaceBy:@""];
     }
     return self;
 }
