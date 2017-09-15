@@ -84,6 +84,29 @@
  // Pass the selected object to the new view controller.
  }
  */
+-(void)requst{
+    _avi = [Utilities getCoverOnView:self.view];
+    
+    [RequestAPI requestURL:@"/score/memberScore" withParameters:@{@"memberId":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        [_avi stopAnimating];
+        NSLog(@"mypromotion:%@", responseObject);
+        if ([responseObject[@"resultFlag"]integerValue]==8001) {
+            _shu = responseObject[@"result"];
+        }
+        else{
+            [_avi stopAnimating];
+            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
+    }];
+    
+    
+}
+
+
 //设置表格视图一共有多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _myArr.count;
@@ -103,9 +126,7 @@
 }
 //设置组的底部视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 2) {
-        return 5.f;
-    }
+    
     return 1.f;
 }
 //设置细胞高度
@@ -154,28 +175,6 @@
     }
 }
     
--(void)requst{
-    _avi = [Utilities getCoverOnView:self.view];
-    
-    [RequestAPI requestURL:@"/score/memberScore" withParameters:@{@"memberId":@2} andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        [_avi stopAnimating];
-        NSLog(@"mypromotion:%@", responseObject);
-        if ([responseObject[@"resultFlag"]integerValue]==8001) {
-            _shu = responseObject[@"result"];
-        }
-        else{
-            [_avi stopAnimating];
-            NSString *errorMsg=[ErrorHandler getProperErrorString:[responseObject[@"resultFlag"]integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        [Utilities popUpAlertViewWithMsg:@"网络错误,请稍等再试" andTitle:@"提示" onView:self];
-    }];
-    
-    
-}
-
 
 
 - (IBAction)settingAction:(UIBarButtonItem *)sender {

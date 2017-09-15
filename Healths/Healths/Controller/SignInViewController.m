@@ -57,8 +57,7 @@
     self.navigationController.navigationBar.translucent=YES;
     //为导航条左上角创建一个按钮
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(backAction)];
-    self.navigationItem.leftBarButtonItem = left;
-}
+    self.navigationItem.leftBarButtonItem = left;}
 
 //用Model的方式返回上一页
 - (void)backAction {
@@ -88,7 +87,7 @@
     //当文本框中的内容改变时判断内容长度是否为0，是：禁用按钮   否：启用按钮
     if (_usernameTextField.text.length != 0 && textField.text.length != 0) {
         _signBtn.enabled = YES;
-        _signBtn.backgroundColor = UIColorFromRGB(99, 163, 210);
+        _signBtn.backgroundColor = UIColorFromRGB(20, 100, 255);
     }else{
         _signBtn.enabled = NO;
         _signBtn.backgroundColor = UIColorFromRGB(200, 200, 200);

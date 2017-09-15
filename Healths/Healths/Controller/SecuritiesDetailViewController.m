@@ -179,7 +179,7 @@
 -(void)uiLayout{
     [_tyjImage sd_setImageWithURL:[NSURL URLWithString :_detail.eLogo] placeholderImage:[UIImage imageNamed:@"默认图"]];
     _xjLabel.text=_detail.currentPrice;
-    _yjLabel.text=_detail.orinPrice;
+    _yjLabel.text=[NSString stringWithFormat:@"%@元",_detail.orinPrice];
     [_addressBtn setTitle:_detail.eAddress forState:UIControlStateNormal];
     //_addressBtn.titleLabel.text=_detail.eAddress;
     _tykLabel.text=_detail.eName;
