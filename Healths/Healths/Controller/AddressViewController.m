@@ -238,8 +238,8 @@
 //                [_arr addObject:dict];
 //            }
             //设置大头针的标题与副标题属性
-            annotation.title = info[@"FormattedAddressLines"][0];
-            //annotation.subtitle =info[@"FormattedAddressLines"][0];
+            annotation.title = info[@"City"];
+            annotation.subtitle =info[@"FormattedAddressLines"][0];
             //NSLog(@"address:%@",model.eAddress);
             //NSLog(@"%@",info["FormattedAddressLines"]);
         }

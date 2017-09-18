@@ -21,7 +21,7 @@
 @property (strong,nonatomic) NSString *categoryName;//体验券类型名称
 @property (strong,nonatomic) NSString *price;//体验券价格
 @property (strong,nonatomic) NSString *sellNumber;
-
+@property (strong,nonatomic) NSString *logoimage;
 @property (strong,nonatomic) NSArray *experience;
 @property (strong,nonatomic) NSArray *experienceInfos;
 @property(strong,nonatomic) NSString *clubLogo;

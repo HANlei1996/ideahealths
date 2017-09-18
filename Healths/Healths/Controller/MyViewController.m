@@ -33,6 +33,7 @@
     _myArr = @[@{@"myIndenLabel":@"我的订单"},@{@"myIndenLabel":@"我的活动"},@{@"myIndenLabel":@"我的推广"},@{@"myIndenLabel":@"积分中心"},@{@"myIndenLabel":@"意见反馈"},@{@"myIndenLabel":@"关于我们"}];
     [self naviConfig];
     _MyTableView.tableFooterView = [UIView new];
+    [self requst];
 }
 //每次将要来都这个页面的时候
 -(void)viewWillAppear:(BOOL)animated{
