@@ -87,11 +87,10 @@
     //当文本框中的内容改变时判断内容长度是否为0，是：禁用按钮   否：启用按钮
     if (_usernameTextField.text.length != 0 && textField.text.length != 0) {
         _signBtn.enabled = YES;
-<<<<<<< HEAD
         _signBtn.backgroundColor = UIColorFromRGB(0, 122, 255);
-=======
+
         _signBtn.backgroundColor = UIColorFromRGB(20, 130, 255);
->>>>>>> d606c36684dea85cf42c377bb8fcededa167cc60
+
     }else{
         _signBtn.enabled = NO;
         _signBtn.backgroundColor = UIColorFromRGB(200, 200, 200);
