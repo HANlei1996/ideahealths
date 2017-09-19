@@ -497,7 +497,7 @@
     
 }
 //设置每一组中每一行的细胞被点击以后要做的事情
-- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //判断当前tableView是否为activiyTableView(这个条件判断常用在一个页面中多个tableView的时候
     if([tableView isEqual:_activiyTableView]){
    //取消选中
