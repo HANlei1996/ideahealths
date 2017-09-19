@@ -174,10 +174,7 @@
     NSString *b=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
     float j=[b floatValue];
         j=i*j;
-    _djLabel.text=[NSString stringWithFormat:@"%0.1f元",j];
-    _jgLabel.text=_djLabel.text;
-    //NSLog(@"%@",self.djLabel.text);
-    //NSLog(@"%@",self.jgLabel.text);
-    //_jgLabel.text=[NSString stringWithFormat:@"%@元",_detail.currentPrice];
-}
+   _jgLabel.text=[NSString stringWithFormat:@"%0.1f元",j];
+    //_jgLabel.text=_djLabel.text;
+    }
 @end

@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addressBtn;
 - (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewH;
+@property(strong,nonatomic) NSArray *arr;
 
 @end
 
@@ -145,6 +146,7 @@
         [aiv stopAnimating];
         //业务逻辑失败的情况下
         [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+        
     }];
     
 }
@@ -157,7 +159,7 @@
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
     _contentTextView.text = _detail.clubIntroduce;
     _contentTextView.editable = NO;
-    _textviewH.constant = self.contentTextView.contentSize.height + 50;
+    _textviewH.constant = self.contentTextView.contentSize.height + 40;
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
@@ -289,25 +291,49 @@
 }
 
 - (IBAction)callBtnAction:(UIButton *)sender forEvent:(UIEvent *)event {
-    UIAlertController *actionSheetController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSString *string = _detail.clubTel;
+    _arr =  [string componentsSeparatedByString:@","];
+    // NSLog(@"数组里的是：%@",_arr);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *callAction = [UIAlertAction actionWithTitle:_detail.clubTel style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //配置“电话”APP的路径，并将要拨打的号码组合到路径中
-        NSString *targetAppStr=[NSString stringWithFormat:@"telprompt://%@",_detail.clubTel];
+    // for(int i = 0 ; i < _arr.count ; i++){
+    UIAlertAction *callAction = [UIAlertAction actionWithTitle:_arr[0] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //  NSLog(@"点了第一个");
+        // NSLog(@"%@",_arr[0]);
+        //配置电话APP的路径，并将要拨打的号码组合到路径中
+        NSString *targetAppStr = [NSString stringWithFormat:@"tel:%@",_arr[0]];
         
-        NSURL *targetAppUrl=[NSURL URLWithString:targetAppStr];
-        //从当前APP跳转到其他指定的APP中
-        [[UIApplication sharedApplication] openURL:targetAppUrl];
-    }];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        UIWebView *callWebview =[[UIWebView alloc]init];
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:targetAppStr]]];
+        [[UIApplication sharedApplication].keyWindow addSubview:callWebview];
+        
         
     }];
+    [alertController addAction:callAction];
+    // }
+    if(_arr.count == 2)
+    {
+        
+        UIAlertAction *callAction = [UIAlertAction actionWithTitle:_arr[1] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // NSLog(@"点了第二个");
+            // NSLog(@"%@",_arr[1]);
+            //配置电话APP的路径，并将要拨打的号码组合到路径中
+            NSString *targetAppStr = [NSString stringWithFormat:@"tel:%@",_arr[1]];
+            
+            UIWebView *callWebview =[[UIWebView alloc]init];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:targetAppStr]]];
+            [[UIApplication sharedApplication].keyWindow addSubview:callWebview];
+            
+            
+        }];
+        [alertController addAction:callAction];
+        
+    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleCancel handler:nil];
     
-    [actionSheetController addAction:cancelAction];
-    [actionSheetController addAction:callAction];
+    [alertController addAction:cancelAction];
     
-    [self presentViewController:actionSheetController animated:YES completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 @end

@@ -367,6 +367,7 @@
         [[StorageMgr singletonStorageMgr] addKey:@"expId" andValue:model.clubid];
         
         //[self.navigationController pushViewController:purchaseVC animated:YES];
+        [_homeTableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
         
     }
@@ -381,8 +382,10 @@
         [[StorageMgr singletonStorageMgr] addKey:@"expId2" andValue:dict[@"id"]];
         
         [self.navigationController pushViewController:purchaseVC animated:YES];
+        [_homeTableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
+    
     
 }
 //细胞将要出现时调用

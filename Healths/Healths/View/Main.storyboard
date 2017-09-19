@@ -75,7 +75,7 @@
                                     <constraint firstItem="a5T-UJ-Z4Z" firstAttribute="top" secondItem="oXF-Yx-8kY" secondAttribute="bottom" constant="10" id="uOU-l0-g7i"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0yF-Ma-0BZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0yF-Ma-0BZ">
                                 <rect key="frame" x="0.0" y="214" width="375" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -227,7 +227,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-4E-FDc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="23副本" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-4E-FDc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -288,7 +288,7 @@
                                         <rect key="frame" x="0.0" y="176" width="375" height="246"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdD-4v-ggU" id="F00-Fu-cUs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="245.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T2L-5T-oDM">
@@ -352,7 +352,7 @@
                                         <rect key="frame" x="0.0" y="422" width="375" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFP-CX-R2a" id="qMk-dh-3kk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUG-qL-iWs">
@@ -507,7 +507,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0ge-jN-pIF">
-                                <rect key="frame" x="10" y="74" width="355" height="429"/>
+                                <rect key="frame" x="10" y="74" width="355" height="349"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -518,7 +518,7 @@
                             <constraint firstItem="0ge-jN-pIF" firstAttribute="top" secondItem="onG-lO-4gB" secondAttribute="bottom" constant="10" id="Jdi-hZ-wgt"/>
                             <constraint firstAttribute="trailing" secondItem="0ge-jN-pIF" secondAttribute="trailing" constant="10" id="LJZ-tb-93I"/>
                             <constraint firstItem="0ge-jN-pIF" firstAttribute="leading" secondItem="Y1G-Ch-FBt" secondAttribute="leading" constant="10" id="cLR-v3-7X4"/>
-                            <constraint firstItem="qqL-HN-gg7" firstAttribute="top" secondItem="0ge-jN-pIF" secondAttribute="bottom" constant="120" id="zsM-QV-uPo"/>
+                            <constraint firstItem="qqL-HN-gg7" firstAttribute="top" secondItem="0ge-jN-pIF" secondAttribute="bottom" constant="200" id="zsM-QV-uPo"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -590,25 +590,25 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="默认图" translatesAutoresizingMaskIntoConstraints="NO" id="C7H-pk-dOU">
-                                                    <rect key="frame" x="14" y="39" width="84" height="42"/>
+                                                    <rect key="frame" x="14" y="39" width="66.5" height="42"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="C7H-pk-dOU" secondAttribute="height" multiplier="2:1" id="S8H-TQ-xdW"/>
+                                                        <constraint firstAttribute="width" secondItem="C7H-pk-dOU" secondAttribute="height" multiplier="960:606" id="S8H-TQ-xdW"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体验券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-2w-T0v">
-                                                    <rect key="frame" x="103" y="39" width="43" height="17"/>
+                                                    <rect key="frame" x="85.5" y="39" width="43" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvp-uP-W7N">
-                                                    <rect key="frame" x="103" y="52" width="27" height="16"/>
+                                                    <rect key="frame" x="85.5" y="52" width="27" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKz-lh-hP8">
-                                                    <rect key="frame" x="103" y="64" width="24" height="17"/>
+                                                    <rect key="frame" x="85.5" y="64" width="24" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -930,7 +930,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJ0-Ec-nHQ">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1267,8 +1267,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="01" width="311" height="504"/>
         <image name="17B7B03B7C39DDC9F013C4310A8B9E53" width="24" height="22"/>
+        <image name="23副本" width="311" height="504"/>
         <image name="app_logo" width="480" height="183"/>
         <image name="ic_user_head" width="100" height="100"/>
         <image name="发现" width="30" height="30"/>
