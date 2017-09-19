@@ -55,6 +55,7 @@
     // Do any additional setup after loading the view.
     [self networkRequest];
     [self naviConfig];
+   // [self refreshConfiguretion];
     [self refreshConfiguretion];
 }
 

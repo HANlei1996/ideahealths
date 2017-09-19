@@ -14,6 +14,7 @@
 #import "DetailViewController.h"
 #import "IssueViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MJRefresh.h"
 @interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
 {
     NSInteger page;
@@ -47,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+   // [self addHeader];
     //ActivityModel *activity=[[ActivityModel alloc]init];
    // activity.name=@"活动";
     
@@ -61,6 +62,29 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkCityState:) name:@"ResetHome" object:nil];
     
 }
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.activiyTableView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        //        for (int i = 0; i<5; i++) {
+        //            [vc.fakeColors insertObject:MJRandomColor atIndex:0];
+        //        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.activiyTableView reloadData];
+            // 结束刷新
+            [vc.activiyTableView headerEndRefreshing];
+        });
+    }];
+    
+}
+
+
 ////每次将要来都这个页面的时候
 //-(void)viewWillAppear:(BOOL)animated{
 //    [super viewWillAppear:animated];
@@ -133,7 +157,7 @@
     //设置是否需要毛玻璃效果
     self.navigationController.navigationBar.translucent=YES;
 }
--(void)refreshConfiguretion{
+/*-(void)refreshConfiguretion{
     //初始化一个下拉刷新控件
     UIRefreshControl *refreshContro=[[UIRefreshControl alloc]init];
     
@@ -166,12 +190,12 @@
     //结束刷新
     [refresh endRefreshing];
 }
-
+*/
 //专门做界面的操作
 -(void)uilay{
     
     _activiyTableView.tableFooterView=[UIView new];//为表格视图创建footer（该方法可以去除表格视图底部多余的下划线)
-    [self refreshConfiguretion];
+    //[self refreshConfiguretion];
 }
 
 //专门做数据的处理
@@ -239,9 +263,11 @@
         //开始请求
         [RequestAPI requestURL:request withParameters:parameter andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
             //成功以后要做的事情在此处执行
-            NSLog(@"responseObject=%@",responseObject);
+           NSLog(@"responseObject=%@",responseObject);
+            [self addHeader];
             //停止菊花转
             [self endA];
+            
             if ([responseObject[@"resultFlag"]integerValue]==8001) {
                 //业务逻辑成功的情况下
                 NSDictionary *result=responseObject[@"result"];
@@ -261,6 +287,7 @@
                     [_arr addObject:activityModel];
                 }
                 //刷新表格（重载数据）
+                [self addHeader];
                 [_activiyTableView reloadData];
             }else{
                 //业务逻辑失败的情况下
@@ -282,7 +309,7 @@
 -(void)endA{
     isLoading=NO;
     [_aiv stopAnimating];
-    [self end];
+    //[self end];
 }
 //设置表格视图一共有多少组
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
