@@ -79,6 +79,15 @@
 - (IBAction)SFZHMSaveAction:(UIBarButtonItem *)sender {
     NSString * sfzhm  = _SFZHMTextField.text;
     [[StorageMgr singletonStorageMgr]addKey:@"SFZHM" andValue:sfzhm];
+    if (_SFZHMTextField.text.length==0) {
+        [Utilities popUpAlertViewWithMsg:@"请输入你的身份证号码" andTitle:nil onView:self];
+        return;
+    }
+    if ( _SFZHMTextField.text.length != 18) {
+        [Utilities popUpAlertViewWithMsg:@"请输入有效的身份证号码" andTitle:nil onView:self];
+        return;
+    }
+
     
     _avi=[Utilities getCoverOnView:self.view];
     
