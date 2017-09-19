@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
-    
+    [self.feedBackTextView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,4 +67,5 @@
 - (IBAction)feedBackAction:(UIBarButtonItem *)sender {
     [self request];
 }
+
 @end
