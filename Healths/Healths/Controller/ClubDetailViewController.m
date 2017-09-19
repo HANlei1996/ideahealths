@@ -41,6 +41,7 @@
 - (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewH;
 @property(strong,nonatomic) NSArray *arr;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -157,9 +158,9 @@
     //_clubAddress.text = _detail.clubAddressB;
     [_addressBtn setTitle:_detail.clubAddressB forState:UIControlStateNormal];
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
-    _contentTextView.text = _detail.clubIntroduce;
-    _contentTextView.editable = NO;
-    _textviewH.constant = self.contentTextView.contentSize.height + 40;
+    _textLabel.text = _detail.clubIntroduce;
+    //_contentTextView.editable = NO;
+    _textviewH.constant = ceilf(self.contentTextView.contentSize.height );
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;
