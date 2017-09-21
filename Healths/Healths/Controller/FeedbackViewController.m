@@ -8,7 +8,7 @@
 
 #import "FeedbackViewController.h"
 
-@interface FeedbackViewController ()
+@interface FeedbackViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *feedBackTextView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *feedBackBarBtn;
 - (IBAction)feedBackAction:(UIBarButtonItem *)sender;
@@ -29,7 +29,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
  #pragma mark - Navigation
  
@@ -63,6 +62,20 @@
         [Utilities popUpAlertViewWithMsg:@"网络错误" andTitle:nil onView:self];
     }];
 }
+//键盘收回
+- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //让根视图结束编辑状态达到收起键盘的目的
+    [self.view endEditing:YES];
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"] == YES) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 
 - (IBAction)feedBackAction:(UIBarButtonItem *)sender {
     [self request];

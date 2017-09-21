@@ -507,10 +507,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0ge-jN-pIF">
-                                <rect key="frame" x="10" y="74" width="355" height="349"/>
+                                <rect key="frame" x="10" y="74" width="355" height="385"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="385" id="P7a-O6-ojE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cHa-bj-hP2" id="Cc9-Jc-RPe"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -518,7 +524,6 @@
                             <constraint firstItem="0ge-jN-pIF" firstAttribute="top" secondItem="onG-lO-4gB" secondAttribute="bottom" constant="10" id="Jdi-hZ-wgt"/>
                             <constraint firstAttribute="trailing" secondItem="0ge-jN-pIF" secondAttribute="trailing" constant="10" id="LJZ-tb-93I"/>
                             <constraint firstItem="0ge-jN-pIF" firstAttribute="leading" secondItem="Y1G-Ch-FBt" secondAttribute="leading" constant="10" id="cLR-v3-7X4"/>
-                            <constraint firstItem="qqL-HN-gg7" firstAttribute="top" secondItem="0ge-jN-pIF" secondAttribute="bottom" constant="200" id="zsM-QV-uPo"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
