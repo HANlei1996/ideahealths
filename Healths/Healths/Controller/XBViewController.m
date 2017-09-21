@@ -138,6 +138,16 @@
 
 }
 - (IBAction)XBSaveAction:(UIBarButtonItem *)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"当前修改信息:"]  message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [self request];
+    }];
+    
+    [alert addAction:actionA];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+-(void)request{
     NSString *xb=_XBTextField.text;
      //[[StorageMgr singletonStorageMgr]addKey:@"XB" andValue:xb];
     NSNumber *gender;
@@ -177,6 +187,7 @@
     
 
 }
+
 //- (IBAction)XBTextAction:(UITextField *)sender forEvent:(UIEvent *)event {
    // _toolBar.hidden=NO;
    // _pickerView.hidden=NO;

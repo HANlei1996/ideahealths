@@ -14,6 +14,7 @@
 #import "CardTableViewCell.h"
 #import "SecuritiesDetailViewController.h"
 #import "ZLImageViewDisplayView.h"
+#import "MJRefresh.h"
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSInteger homePageNum;
     NSInteger isLastPage;
@@ -57,8 +58,8 @@
     //[self locationConfig];
     [self data];
     //刷新指示器
-    
-    [self refreshConfiguretion];
+    [self addHeader];
+   // [self refreshConfiguretion];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkCityState:) name:@"ResetHome" object:nil];
     
@@ -77,7 +78,7 @@
     // Dispose of any resources that can be recreated.
 }
 //刷新
--(void)refreshConfiguretion{
+/*-(void)refreshConfiguretion{
     //初始化一个下拉刷新控件
     UIRefreshControl *refreshContro=[[UIRefreshControl alloc]init];
     
@@ -111,11 +112,36 @@
     //结束刷新
     [refresh endRefreshing];
 }
+ */
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.homeTableView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        //        for (int i = 0; i<5; i++) {
+        //            [vc.fakeColors insertObject:MJRandomColor atIndex:0];
+        //        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.homeTableView reloadData];
+            // 结束刷新
+            [vc.homeTableView headerEndRefreshing];
+        });
+    }];
+    
+}
+
+
+
 //专门做界面的操作
 -(void)uilay{
     
     _homeTableView.tableFooterView=[UIView new];//为表格视图创建footer（该方法可以去除表格视图底部多余的下划线)
-    [self refreshConfiguretion];
+    //[self refreshConfiguretion];
 }
 
 //专门做数据的处理
@@ -272,7 +298,7 @@
 -(void)endA{
     isLoading=NO;
     [_avi stopAnimating];
-    [self end];
+    //[self end];
 }
 //一共多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

@@ -41,6 +41,7 @@
 - (IBAction)addressBtnAction:(UIButton *)sender forEvent:(UIEvent *)event;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewH;
 @property(strong,nonatomic) NSArray *arr;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -54,6 +55,7 @@
     // Do any additional setup after loading the view.
     [self networkRequest];
     [self naviConfig];
+   // [self refreshConfiguretion];
     [self refreshConfiguretion];
 }
 
@@ -146,6 +148,7 @@
         [aiv stopAnimating];
         //业务逻辑失败的情况下
         [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+        
     }];
     
 }
@@ -156,9 +159,9 @@
     //_clubAddress.text = _detail.clubAddressB;
     [_addressBtn setTitle:_detail.clubAddressB forState:UIControlStateNormal];
     [_callBtn setTitle:[NSString stringWithFormat:@"%@",_detail.clubTel] forState:UIControlStateNormal];
-    _contentTextView.text = _detail.clubIntroduce;
-    _contentTextView.editable = NO;
-    _textviewH.constant = self.contentTextView.contentSize.height + 50;
+    _textLabel.text = _detail.clubIntroduce;
+    //_contentTextView.editable = NO;
+    _textviewH.constant = ceilf(self.contentTextView.contentSize.height );
     _time.text = _detail.clubTime;
     _membersCount.text = _detail.clubMember;
     _citeCount.text = _detail.clubSite;

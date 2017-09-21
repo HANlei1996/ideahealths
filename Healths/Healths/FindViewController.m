@@ -12,6 +12,7 @@
 #import "XLTableViewCell.h"
 #import "ClubDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "MJRefresh.h"
 @interface FindViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate>{
     NSInteger  flag;
     NSInteger pageNum;
@@ -106,7 +107,36 @@
     _tableView.hidden=YES;
     [self naviConfig];
     [self dataInitialize];
+   // [self addHeader];
 }
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.collectionView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        //        for (int i = 0; i<5; i++) {
+        //            [vc.fakeColors insertObject:MJRandomColor atIndex:0];
+        //        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView headerEndRefreshing];
+        });
+    }];
+    
+}
+
+
+
+
+
+
+
 - (void)event:(UITapGestureRecognizer *)action{
     _tableView.hidden=YES;
     mcView.hidden=YES;
@@ -253,6 +283,7 @@
             [_kindBtn setTitle:[NSString stringWithFormat:@"全部分类"] forState:(UIControlStateNormal)];
             kindview.hidden=YES;
             index1=0;
+            //[self addHeader];
             [self HSRequest];
         }
         if(indexPath.row == 1){
@@ -315,12 +346,13 @@
     FindModel * model = _HSArr[indexPath.item];
     cell.label1.text = model.name;
     cell.label2.text = model.address;
-    NSLog(@"123= %@%@",model.address,model.clubid);
+    NSLog(@"%@%@",model.address,model.clubid);
     cell.label3.text = [NSString stringWithFormat:@"%@米",model.distance];
     NSURL *URL = [NSURL URLWithString:model.image];
     [cell.image sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@""]];
-    
+
     return cell;
+    
 }
 //设置每个cell的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -478,7 +510,7 @@
                 [_KindArr addObject:model.fName];
             }
             
-            
+            [self addHeader];
             [self HSRequest];
             
         }else{
@@ -518,7 +550,7 @@
                 [_HSArr addObject:model];
                 
             }
-            
+               [self addHeader];
             [_collectionView reloadData];
         }else{
             //业务逻辑失败的情况下
@@ -563,7 +595,7 @@
                 
                 
             }
-            
+               [self addHeader];
             [_collectionView reloadData];
             
         }else{
@@ -598,6 +630,7 @@
                 [_HSArr addObject:model];
                 
             }
+               [self addHeader];
             [_collectionView reloadData];
         }else{
             //业务逻辑失败的情况下
@@ -630,6 +663,7 @@
                 [_HSArr addObject:model];
                 
             }
+               [self addHeader];
             [_collectionView reloadData];
         }else{
             //业务逻辑失败的情况下

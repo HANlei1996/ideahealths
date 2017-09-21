@@ -86,6 +86,16 @@
    // _pickerView.hidden=NO;
 //}
 - (IBAction)SRSaveAction:(UIBarButtonItem *)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"当前修改信息:"]  message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [self request];
+    }];
+    
+    [alert addAction:actionA];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+-(void)request{
     NSString *sr=_SRtextField.text;
     [[StorageMgr singletonStorageMgr]addKey:@"SR" andValue:sr];
     
@@ -118,6 +128,7 @@
     
 
 }
+
 - (IBAction)CancelAction:(UIBarButtonItem *)sender {
     _toolBar.hidden = YES;
     _pickerView.hidden = YES;
