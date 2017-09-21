@@ -75,8 +75,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //让根视图结束编辑状态达到收起键盘的目的
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == _SFZHMTextField) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
 
 - (IBAction)SFZHMSaveAction:(UIBarButtonItem *)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"当前修改信息:"]  message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionA = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [self request];
+    }];
+    
+    [alert addAction:actionA];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+-(void)request{
+
     NSString * sfzhm  = _SFZHMTextField.text;
     [[StorageMgr singletonStorageMgr]addKey:@"SFZHM" andValue:sfzhm];
     if (_SFZHMTextField.text.length==0) {
