@@ -103,7 +103,7 @@
     _HSArr = [NSMutableArray new];
     _TypeArr  = [NSMutableArray new];
     
-    _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类",nil];
+   // _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类",nil];
     _CityArr = [[NSArray alloc]initWithObjects:@"全城",@"距离我2千米",@"距离我3千米",@"距离我4千米",nil];
     _DistanceArr = [[NSArray alloc]initWithObjects:@"按距离",@"按人气", nil];
     
@@ -224,6 +224,9 @@
                 [_TypeArr addObject:model];
                 
             }
+            [_KindArr removeAllObjects];
+            _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类", nil];
+
             for(int i = 0; i < 4;i++){
                 FindModel *model = _TypeArr[i];
                 [_KindArr addObject:model.fName];
