@@ -563,32 +563,32 @@
             case 0:
                 
                 _kindId = @"0";
-                //_kindBtn.titleLabel.text=@"全部分类";
+                _kindBtn.titleLabel.text=@"全部分类";
                 break;
             case 1:
                 
                 _kindId = @"1";
-                //_kindBtn.titleLabel.text=@"动感单车";
+                _kindBtn.titleLabel.text=@"动感单车";
                 break;
             case 2:
                 
                 _kindId = @"2";
-                // _kindBtn.titleLabel.text=@"力量器械";
+                _kindBtn.titleLabel.text=@"力量器械";
                 break;
             case 3:
                 
                 _kindId = @"3";
-                // _kindBtn.titleLabel.text=@"瑜伽/普拉提";
+                 _kindBtn.titleLabel.text=@"瑜伽/普拉提";
                 break;
             case 4:
                 
                 _kindId = @"4";
-                // _kindBtn.titleLabel.text=@"有氧运动";
+                 _kindBtn.titleLabel.text=@"有氧运动";
                 break;
             default:
                 
                 _kindId = @"0";
-                // _kindBtn.titleLabel.text=@"全部分类";
+                 _kindBtn.titleLabel.text=@"全部分类";
                 break;
         }
     }
