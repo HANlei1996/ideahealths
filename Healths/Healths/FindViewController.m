@@ -103,7 +103,7 @@
     _HSArr = [NSMutableArray new];
     _TypeArr  = [NSMutableArray new];
     
-    _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类",nil];
+   // _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类",nil];
     _CityArr = [[NSArray alloc]initWithObjects:@"全城",@"距离我2千米",@"距离我3千米",@"距离我4千米",nil];
     _DistanceArr = [[NSArray alloc]initWithObjects:@"按距离",@"按人气", nil];
     
@@ -224,6 +224,9 @@
                 [_TypeArr addObject:model];
                 
             }
+            [_KindArr removeAllObjects];
+            _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类", nil];
+
             for(int i = 0; i < 4;i++){
                 FindModel *model = _TypeArr[i];
                 [_KindArr addObject:model.fName];
@@ -560,32 +563,32 @@
             case 0:
                 
                 _kindId = @"0";
-                //_kindBtn.titleLabel.text=@"全部分类";
+                _kindBtn.titleLabel.text=@"全部分类";
                 break;
             case 1:
                 
                 _kindId = @"1";
-                //_kindBtn.titleLabel.text=@"动感单车";
+                _kindBtn.titleLabel.text=@"动感单车";
                 break;
             case 2:
                 
                 _kindId = @"2";
-                // _kindBtn.titleLabel.text=@"力量器械";
+                _kindBtn.titleLabel.text=@"力量器械";
                 break;
             case 3:
                 
                 _kindId = @"3";
-                // _kindBtn.titleLabel.text=@"瑜伽/普拉提";
+                 _kindBtn.titleLabel.text=@"瑜伽/普拉提";
                 break;
             case 4:
                 
                 _kindId = @"4";
-                // _kindBtn.titleLabel.text=@"有氧运动";
+                 _kindBtn.titleLabel.text=@"有氧运动";
                 break;
             default:
                 
                 _kindId = @"0";
-                // _kindBtn.titleLabel.text=@"全部分类";
+                 _kindBtn.titleLabel.text=@"全部分类";
                 break;
         }
     }
