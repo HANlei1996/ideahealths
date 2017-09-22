@@ -45,6 +45,7 @@
 @property (strong,nonatomic)NSArray *DistanceArr;
 @property (strong,nonatomic)NSString *distance;
 @property (strong,nonatomic)NSString *kindId;
+@property (strong,nonatomic)NSString *Type;
 //@property(nonatomic, strong)NSMutableArray *selectedArray;//是否被点击
 
 @end
@@ -58,6 +59,9 @@
     index=0;
     index1=0;
     index2=0;
+    _distance = @"0";
+    _kindId = @"0";
+    _Type = @"0";
     //关闭下拉
     _tableView.scrollEnabled = NO;
     //设置蒙层
@@ -99,7 +103,7 @@
     _HSArr = [NSMutableArray new];
     _TypeArr  = [NSMutableArray new];
     
-    _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类", nil];
+    _KindArr  = [[NSMutableArray alloc]initWithObjects:@"全部分类",nil];
     _CityArr = [[NSArray alloc]initWithObjects:@"全城",@"距离我2千米",@"距离我3千米",@"距离我4千米",nil];
     _DistanceArr = [[NSArray alloc]initWithObjects:@"按距离",@"按人气", nil];
     
@@ -107,7 +111,7 @@
     _tableView.hidden=YES;
     [self naviConfig];
     [self dataInitialize];
-   // [self addHeader];
+    // [self addHeader];
 }
 - (void)addHeader
 {
@@ -198,6 +202,209 @@
  return YES;
  }
  */
+-(void)dataInitialize{
+    
+    [self TypeRequest];
+}
+#pragma mark - request
+
+
+- (void)TypeRequest{
+    
+    _avi = [Utilities getCoverOnView:self.view];
+    NSDictionary *para =  @{@"city":@"无锡"};
+    [RequestAPI requestURL:@"/clubController/getNearInfos" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        
+        [_avi stopAnimating];
+        if([responseObject[@"resultFlag"] integerValue] == 8001){
+            NSDictionary *features = responseObject[@"result"][@"features"];
+            NSArray *featureForm = features[@"featureForm"];
+            for(NSDictionary *dict in featureForm){
+                FindModel *model = [[FindModel alloc]initWithclubDictionary:dict];
+                [_TypeArr addObject:model];
+                
+            }
+            for(int i = 0; i < 4;i++){
+                FindModel *model = _TypeArr[i];
+                [_KindArr addObject:model.fName];
+            }
+            
+            [self addHeader];
+            [self HSRequest];
+            
+        }else{
+            //业务逻辑失败的情况下
+            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+        
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+    }];
+    
+}
+
+- (void)HSRequest{
+    // mcView.hidden = YES;
+    _avi = [Utilities getCoverOnView:self.view];
+    NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:@{@"city":@"无锡",@"jing":@"120.300000",@"wei":@"31.570000",@"page":@(pageNum),@"perPage":@(pageSize),@"Type":_Type}];
+    
+    if (![_distance isEqualToString:@"0"]) {
+        [para setObject:_distance forKey:@"distance"];
+    }
+    if (![_kindId isEqualToString:@"0"]) {
+        [para setObject:_kindId forKey:@"featureId"];
+    }
+    
+    [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+        // NSLog(@"responseObject:%@", responseObject);
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
+        [ref endRefreshing];
+        if([responseObject[@"resultFlag"] integerValue] == 8001){
+            NSLog(@"responseObject=%@",responseObject);
+            NSDictionary *result = responseObject[@"result"];
+            NSArray *array = result[@"models"];
+            NSDictionary  *pageDict =result[@"pagingInfo"];
+            totalPage = [pageDict[@"totalPage"]integerValue];
+            
+            if(pageNum == 1){
+                [_HSArr removeAllObjects];
+            }
+            for(NSDictionary *dict in array){
+                FindModel *model = [[FindModel alloc]initWithDictionary:dict];
+                [_HSArr addObject:model];
+                
+            }
+            [self addHeader];
+            [_collectionView reloadData];
+        }else{
+            //业务逻辑失败的情况下
+            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
+            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+        }
+        
+    } failure:^(NSInteger statusCode, NSError *error) {
+        [_avi stopAnimating];
+        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
+        [ref endRefreshing];
+        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+        
+    }];
+    
+}
+
+/*- (void)JLRequest{
+ //  mcView.hidden = YES;
+ 
+ NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@0,@"distance":_distance};
+ [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+ //  NSLog(@"responseObject:%@", responseObject);
+ [_avi stopAnimating];
+ UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
+ [ref endRefreshing];
+ 
+ if([responseObject[@"resultFlag"] integerValue] == 8001){
+ NSDictionary *result = responseObject[@"result"];
+ NSArray *array = result[@"models"];
+ NSDictionary  *pageDict =result[@"pagingInfo"];
+ totalPage = [pageDict[@"totalPage"]integerValue];
+ 
+ if(pageNum == 1){
+ [_HSArr removeAllObjects];
+ }
+ 
+ for(NSDictionary *dict in array){
+ FindModel *model = [[FindModel alloc]initWithDictionary:dict];
+ 
+ [_HSArr addObject:model];
+ 
+ 
+ }
+ [self addHeader];
+ [_collectionView reloadData];
+ 
+ }else{
+ //业务逻辑失败的情况下
+ NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
+ [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+ }
+ 
+ } failure:^(NSInteger statusCode, NSError *error) {
+ [_avi stopAnimating];
+ UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
+ [ref endRefreshing];
+ [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+ }];
+ 
+ }
+ 
+ - (void)FLClubRequest{
+ // mcView.hidden = YES;
+ _avi = [Utilities getCoverOnView:self.view];
+ NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@0,@"featureId":_kindId};
+ [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+ //  NSLog(@"responseObject:%@", responseObject);
+ [_avi stopAnimating];
+ if([responseObject[@"resultFlag"] integerValue] == 8001){
+ NSDictionary *result = responseObject[@"result"];
+ NSArray *array = result[@"models"];
+ [_HSArr removeAllObjects];
+ for(NSDictionary *dict in array){
+ FindModel *model = [[FindModel alloc]initWithDictionary:dict];
+ 
+ [_HSArr addObject:model];
+ 
+ }
+ [self addHeader];
+ [_collectionView reloadData];
+ }else{
+ //业务逻辑失败的情况下
+ NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
+ [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+ }
+ 
+ } failure:^(NSInteger statusCode, NSError *error) {
+ [_avi stopAnimating];
+ [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+ }];
+ 
+ }
+ 
+ 
+ - (void)TypeClubRequest{
+ //  mcView.hidden = YES;
+ _avi = [Utilities getCoverOnView:self.view];
+ NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@1};
+ [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
+ 
+ [_avi stopAnimating];
+ if([responseObject[@"resultFlag"] integerValue] == 8001){
+ NSDictionary *result = responseObject[@"result"];
+ NSArray *array = result[@"models"];
+ [_HSArr removeAllObjects];
+ for(NSDictionary *dict in array){
+ FindModel *model = [[FindModel alloc]initWithDictionary:dict];
+ 
+ [_HSArr addObject:model];
+ 
+ }
+ [self addHeader];
+ [_collectionView reloadData];
+ }else{
+ //业务逻辑失败的情况下
+ NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
+ [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
+ }
+ 
+ } failure:^(NSInteger statusCode, NSError *error) {
+ [_avi stopAnimating];
+ [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
+ }];
+ 
+ }
+ */
 #pragma mark - tableView
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40.f;
@@ -214,7 +421,7 @@
     if(flag == 2){
         
         _tableView.hidden=NO;
-        return _KindArr.count;
+        return 5;
         
     }
     if(flag == 3){
@@ -244,94 +451,187 @@
 //设置每一组中每一行被点击以后要做的事情
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(flag == 1){
+    if(flag == 1)
+    {
         if(indexPath.row == 0){
-            [_cityBtn setTitle:[NSString stringWithFormat:@"全城"] forState:(UIControlStateNormal)];
+            
             mcView.hidden=YES;
-            index=0;
-            [self HSRequest];
+            
+            
         }
         if(indexPath.row == 1){
             
             
-            _distance = @"2000";
-            [_cityBtn setTitle:[NSString stringWithFormat:@"距离我2千米"] forState:(UIControlStateNormal)];
             mcView.hidden=YES;
-            index=0;
-            [self JLRequest];
+            
+            
         }
         if(indexPath.row == 2){
-            _distance = @"3000";
-            [_cityBtn setTitle:[NSString stringWithFormat:@"距离我3千米"] forState:(UIControlStateNormal)];
+            
             mcView.hidden=YES;
-            index=0;
-            [self JLRequest];
+            
+            
         }
         if(indexPath.row == 3){
-            _distance = @"4000";
-            [_cityBtn setTitle:[NSString stringWithFormat:@"距离我4千米"] forState:(UIControlStateNormal)];
+            
             mcView.hidden=YES;
-            index=0;
-            [self JLRequest];
+            
+            
         }
         _tableView.hidden=YES;
-        
+        index=0;
+        switch (indexPath.row) {
+            case 0:
+                mcView.hidden=YES;
+                
+                // [self HSRequest];
+                _distance = @"0";
+                _cityBtn.titleLabel.text = @"全城";
+                break;
+            case 1:
+                mcView.hidden=YES;
+                
+                //[self HSRequest];
+                _distance = @"2000";
+                _cityBtn.titleLabel.text = @"2km";
+                break;
+            case 2:
+                mcView.hidden=YES;
+                
+                // [self HSRequest];
+                _distance = @"3000";
+                _cityBtn.titleLabel.text = @"3km";
+                break;
+            case 3:
+                mcView.hidden=YES;
+                
+                //[self HSRequest];
+                _distance = @"4000";
+                _cityBtn.titleLabel.text = @"4km";
+                break;
+            default:
+                mcView.hidden=YES;
+                
+                // [self HSRequest];
+                _distance = @"0";
+                _cityBtn.titleLabel.text = @"全城";
+                break;
+        }
     }
+    
     if(flag == 2){
         
         if(indexPath.row == 0){
-            [_kindBtn setTitle:[NSString stringWithFormat:@"全部分类"] forState:(UIControlStateNormal)];
+            
             kindview.hidden=YES;
-            index1=0;
-            //[self addHeader];
-            [self HSRequest];
+            
+            
         }
         if(indexPath.row == 1){
-            [_kindBtn setTitle:[NSString stringWithFormat:@"动感单车"] forState:(UIControlStateNormal)];
+            
             kindview.hidden=YES;
-            _kindId = @"1";
-            index1=0;
-            [self FLClubRequest];
+            
+            
         }
         if(indexPath.row == 2){
-            [_kindBtn setTitle:[NSString stringWithFormat:@"力量器械"] forState:(UIControlStateNormal)];
+            
             kindview.hidden=YES;
-            _kindId = @"2";
-            index1=0;
-            [self FLClubRequest];
+            
+            
         }
         if(indexPath.row == 3){
-            [_kindBtn setTitle:[NSString stringWithFormat:@"瑜伽/普拉提"] forState:(UIControlStateNormal)];
+            
             kindview.hidden=YES;
-            _kindId = @"3";
-            index1=0;
-            [self FLClubRequest];
+            
+            
+            
         }
         if(indexPath.row == 4){
-            [_kindBtn setTitle:[NSString stringWithFormat:@"有氧运动"] forState:(UIControlStateNormal)];
+            
             kindview.hidden=YES;
-            _kindId = @"4";
-            index1=0;
-            [self FLClubRequest];
+            
+            
+            
         }
+        index1=0;
         _tableView.hidden=YES;
+        
+        switch (indexPath.row) {
+            case 0:
+                
+                _kindId = @"0";
+                //_kindBtn.titleLabel.text=@"全部分类";
+                break;
+            case 1:
+                
+                _kindId = @"1";
+                //_kindBtn.titleLabel.text=@"动感单车";
+                break;
+            case 2:
+                
+                _kindId = @"2";
+                // _kindBtn.titleLabel.text=@"力量器械";
+                break;
+            case 3:
+                
+                _kindId = @"3";
+                // _kindBtn.titleLabel.text=@"瑜伽/普拉提";
+                break;
+            case 4:
+                
+                _kindId = @"4";
+                // _kindBtn.titleLabel.text=@"有氧运动";
+                break;
+            default:
+                
+                _kindId = @"0";
+                // _kindBtn.titleLabel.text=@"全部分类";
+                break;
+        }
     }
+    
     if(flag == 3){
         if(indexPath.row == 0){
-            [_distanceBtn setTitle:[NSString stringWithFormat:@"按距离"] forState:(UIControlStateNormal)];
+            
             denview.hidden=YES;
-            [self HSRequest];
-            index2=0;
+            
+            
         }
         if(indexPath.row == 1){
-            [_distanceBtn setTitle:[NSString stringWithFormat:@"按人气"] forState:(UIControlStateNormal)];
+            
             denview.hidden=YES;
-            [self TypeClubRequest];
-            index2=0;
+            
+            
         }
+        index2=0;
         denview.hidden=YES;
         _tableView.hidden=YES;
     }
+    switch (indexPath.row) {
+        case 0:
+            _Type = @"0";
+            _distanceBtn.titleLabel.text=@"按距离";
+            break;
+        case 1:
+            _Type = @"1";
+            _distanceBtn.titleLabel.text=@"按人气";
+            break;
+        default:
+            _Type = @"0";
+            _distanceBtn.titleLabel.text=@"按距离";
+            break;
+    }
+    [self dataInitialize];
+}
+
+
+
+- (void)setRefreshControl{
+    
+    UIRefreshControl *acquireRef = [UIRefreshControl new];
+    [acquireRef addTarget:self action:@selector(TypeRequest) forControlEvents:UIControlEventValueChanged];
+    acquireRef.tag = 10001;
+    [_collectionView addSubview:acquireRef];
     
 }
 
@@ -350,7 +650,7 @@
     cell.label3.text = [NSString stringWithFormat:@"%@米",model.distance];
     NSURL *URL = [NSURL URLWithString:model.image];
     [cell.image sd_setImageWithURL:URL placeholderImage:[UIImage imageNamed:@""]];
-
+    
     return cell;
     
 }
@@ -369,32 +669,34 @@
     
 }
 
-- (void)setRefreshControl{
-    
-    UIRefreshControl *acquireRef = [UIRefreshControl new];
-    [acquireRef addTarget:self action:@selector(acquireRef) forControlEvents:UIControlEventValueChanged];
-    acquireRef.tag = 10001;
-    [_collectionView addSubview:acquireRef];
-    
-}
-
+/*- (void)setRefreshControl{
+ 
+ UIRefreshControl *acquireRef = [UIRefreshControl new];
+ [acquireRef addTarget:self action:@selector(acquireRef) forControlEvents:UIControlEventValueChanged];
+ acquireRef.tag = 10001;
+ [_collectionView addSubview:acquireRef];
+ 
+ }
+ */
 - (void)acquireRef{
     pageNum = 1;
     if(flag == 1){
         
         _avi = [Utilities getCoverOnView:self.view];
-        [self JLRequest];
+        [self HSRequest];
     }
     if(flag == 2){
-        [self FLClubRequest];
+        [self HSRequest];
     }
     if(flag == 3){
         
-        [self TypeClubRequest];
+        [self HSRequest];
     }else{
         [self HSRequest];
     }
 }
+
+
 //细胞将要出现时调用
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(nonnull UICollectionViewCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     if(indexPath.row == _HSArr.count -1){
@@ -484,199 +786,7 @@
 
 
 
-#pragma mark - request
--(void)dataInitialize{
-    
-    [self TypeRequest];
-}
 
-- (void)TypeRequest{
-    
-    _avi = [Utilities getCoverOnView:self.view];
-    NSDictionary *para =  @{@"city":@"无锡"};
-    [RequestAPI requestURL:@"/clubController/getNearInfos" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        
-        [_avi stopAnimating];
-        if([responseObject[@"resultFlag"] integerValue] == 8001){
-            NSDictionary *features = responseObject[@"result"][@"features"];
-            NSArray *featureForm = features[@"featureForm"];
-            for(NSDictionary *dict in featureForm){
-                FindModel *model = [[FindModel alloc]initWithclubDictionary:dict];
-                [_TypeArr addObject:model];
-                
-            }
-            for(int i = 0; i < 4;i++){
-                FindModel *model = _TypeArr[i];
-                [_KindArr addObject:model.fName];
-            }
-            
-            [self addHeader];
-            [self HSRequest];
-            
-        }else{
-            //业务逻辑失败的情况下
-            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-        
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
-    }];
-    
-}
-
-- (void)HSRequest{
-    // mcView.hidden = YES;
-    _avi = [Utilities getCoverOnView:self.view];
-    NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@0};
-    [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        // NSLog(@"responseObject:%@", responseObject);
-        [_avi stopAnimating];
-        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
-        [ref endRefreshing];
-        if([responseObject[@"resultFlag"] integerValue] == 8001){
-            NSLog(@"responseObject=%@",responseObject);
-            NSDictionary *result = responseObject[@"result"];
-            NSArray *array = result[@"models"];
-            NSDictionary  *pageDict =result[@"pagingInfo"];
-            totalPage = [pageDict[@"totalPage"]integerValue];
-            
-            if(pageNum == 1){
-                [_HSArr removeAllObjects];
-            }
-            for(NSDictionary *dict in array){
-                FindModel *model = [[FindModel alloc]initWithDictionary:dict];
-                [_HSArr addObject:model];
-                
-            }
-               [self addHeader];
-            [_collectionView reloadData];
-        }else{
-            //业务逻辑失败的情况下
-            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-        
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
-        [ref endRefreshing];
-        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
-        
-    }];
-    
-}
-
-- (void)JLRequest{
-    //  mcView.hidden = YES;
-    
-    NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@0,@"distance":_distance};
-    [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        //  NSLog(@"responseObject:%@", responseObject);
-        [_avi stopAnimating];
-        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
-        [ref endRefreshing];
-        
-        if([responseObject[@"resultFlag"] integerValue] == 8001){
-            NSDictionary *result = responseObject[@"result"];
-            NSArray *array = result[@"models"];
-            NSDictionary  *pageDict =result[@"pagingInfo"];
-            totalPage = [pageDict[@"totalPage"]integerValue];
-            
-            if(pageNum == 1){
-                [_HSArr removeAllObjects];
-            }
-            
-            for(NSDictionary *dict in array){
-                FindModel *model = [[FindModel alloc]initWithDictionary:dict];
-                
-                [_HSArr addObject:model];
-                
-                
-            }
-               [self addHeader];
-            [_collectionView reloadData];
-            
-        }else{
-            //业务逻辑失败的情况下
-            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-        
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        UIRefreshControl *ref = (UIRefreshControl *)[_collectionView viewWithTag:10001];
-        [ref endRefreshing];
-        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
-    }];
-    
-}
-
-- (void)FLClubRequest{
-    // mcView.hidden = YES;
-    _avi = [Utilities getCoverOnView:self.view];
-    NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@0,@"featureId":_kindId};
-    [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        //  NSLog(@"responseObject:%@", responseObject);
-        [_avi stopAnimating];
-        if([responseObject[@"resultFlag"] integerValue] == 8001){
-            NSDictionary *result = responseObject[@"result"];
-            NSArray *array = result[@"models"];
-            [_HSArr removeAllObjects];
-            for(NSDictionary *dict in array){
-                FindModel *model = [[FindModel alloc]initWithDictionary:dict];
-                
-                [_HSArr addObject:model];
-                
-            }
-               [self addHeader];
-            [_collectionView reloadData];
-        }else{
-            //业务逻辑失败的情况下
-            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-        
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
-    }];
-    
-}
-
-
-- (void)TypeClubRequest{
-    //  mcView.hidden = YES;
-    _avi = [Utilities getCoverOnView:self.view];
-    NSDictionary *para =  @{@"city":@"无锡",@"jing":@120.300,@"wei":@31.570,@"page":@(pageNum),@"perPage":@(pageSize),@"Type":@1};
-    [RequestAPI requestURL:@"/clubController/nearSearchClub" withParameters:para andHeader:nil byMethod:kGet andSerializer:kForm success:^(id responseObject) {
-        
-        [_avi stopAnimating];
-        if([responseObject[@"resultFlag"] integerValue] == 8001){
-            NSDictionary *result = responseObject[@"result"];
-            NSArray *array = result[@"models"];
-            [_HSArr removeAllObjects];
-            for(NSDictionary *dict in array){
-                FindModel *model = [[FindModel alloc]initWithDictionary:dict];
-                
-                [_HSArr addObject:model];
-                
-            }
-               [self addHeader];
-            [_collectionView reloadData];
-        }else{
-            //业务逻辑失败的情况下
-            NSString *errorMsg = [ErrorHandler getProperErrorString:[responseObject[@"result"] integerValue]];
-            [Utilities popUpAlertViewWithMsg:errorMsg andTitle:nil onView:self];
-        }
-        
-    } failure:^(NSInteger statusCode, NSError *error) {
-        [_avi stopAnimating];
-        [Utilities popUpAlertViewWithMsg:@"请保持网络连接畅通" andTitle:nil onView:self];
-    }];
-    
-}
 
 -(void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -720,4 +830,5 @@
     //
     //
 }
+
 @end

@@ -26,7 +26,8 @@
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *homeTableView;
-@property (weak, nonatomic) IBOutlet UIImageView *logoImage;
+@property (weak, nonatomic) IBOutlet UIView *logoView;
+
 @property (weak, nonatomic) IBOutlet UIButton *CityBtn;
 
 
@@ -126,7 +127,7 @@
         //        }
         
         // 模拟延迟加载数据，因此2秒后才调用）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [vc.homeTableView reloadData];
             // 结束刷新
             [vc.homeTableView headerEndRefreshing];
@@ -210,7 +211,7 @@
     imageViewDisplay.imageViewArray = arr;
     imageViewDisplay.scrollInterval = 4;
     imageViewDisplay.animationInterVale = 1;
-    [_logoImage addSubview:imageViewDisplay];
+    [_logoView addSubview:imageViewDisplay];
     
 }
 - (void)cityRequest{
